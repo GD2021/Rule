@@ -7,7 +7,7 @@ Quantumult X 脚本:
 
 [rewrite_local]
 # 汁乎视频
-^http[s]?:\/\/.+((wldfnjh)|(yieamnd)|(qkjuyet)|(pejyyah)).com\/api\/.+(/user/info|/login/guest|/play|/post/detail|ping/config).*$ url script-response-body https://raw.githubusercontents.com/GD2021/QUANX/blob/main/zh.js
+^http[s]?:\/\/.+((wldfnjh)|(yieamnd)|(qkjuyet)|(pejyyah)).com\/api\/.+(/user/info|/login/guest|/play|/post/detail|ping/config).*$ url script-response-body https://raw.githubusercontents.com/GD2021/QUANX/main/zh.js
 
 hostname = *wldfnjh*,*yieamnd*,*qkjuyet*,*pejyyah*
 */
