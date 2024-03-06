@@ -1,3 +1,48 @@
+# 规则名称:PornMedia
+# 规则统计:23
+# 更新日期:202312082051
+
+# 网站地址:hanime1.me
+# 规则统计:2
+HOST-SUFFIX,hanime1.me
+HOST-SUFFIX,hembed.com
+
+# 网站地址:stripchat.com
+# 规则统计:3
+HOST-SUFFIX,doppiocdn.com
+HOST-SUFFIX,strpst.com
+HOST-SUFFIX,stripchat.com
+
+# 网站地址:missav.com
+# 规则统计:2
+HOST-SUFFIX,missav.com
+HOST-SUFFIX,avdocker.com
+
+# 网站地址:netflav5.com
+# 规则统计:5
+HOST-SUFFIX,netflav5.com
+# 播放器(MM)
+HOST-SUFFIX,lions-vidcdn.com
+HOST-SUFFIX,sw-cdnstream.com
+# 播放器(EM)
+HOST-SUFFIX,subtitlecloud.one
+# 播放器(DO)
+HOST-SUFFIX,video-delivery.net
+
+# 网站地址:jable.tv
+# 规则统计:2
+HOST-SUFFIX,jable.tv
+HOST-SUFFIX,mushroomtrack.com
+
+# 网站地址: rouman5.com
+# 规则统计:5
+HOST-SUFFIX,rouman5.com
+HOST-SUFFIX,rmcdn1.xyz
+HOST-SUFFIX,rmcdn2.xyz
+HOST-SUFFIX,rmcdn3.xyz
+HOST-SUFFIX,rmcdn4.xyz
+
+
 ## >> pornhub
 HOST-SUFFIX,phncdn.com
 HOST-SUFFIX,phprcdn.com
@@ -65,7 +110,43 @@ HOST-SUFFIX,c1.flyeyes.pics
 HOST-SUFFIX,861515236.tapecontent.net
 HOST-SUFFIX,df916sd.video-delivery.net
 
+# -> (萌幻之乡)
+HOST-SUFFIX,hmoe1.net
+HOST-SUFFIX,hmoe11.net
+HOST-SUFFIX,hmoe.moe
+HOST-SUFFIX,hmoe.one
+HOST-SUFFIX,hmoe.top
+HOST-SUFFIX,hmoe.link
+
+# -> (Hanime)
+HOST-SUFFIX,hembed.com
+HOST-SUFFIX,motherlessmedia.com
+HOST-SUFFIX,plyr.io
+HOST-SUFFIX,sb-cd.com
+
+# -> (18comic)
+HOST-SUFFIX,iiooxx.rocks
+
+# -> (popjav)
+HOST-SUFFIX,popjav.info
+HOST-SUFFIX,video-delivery.net
+HOST-SUFFIX,dood.video
+
+# -> (MaoMi-AV)
+HOST-SUFFIX,69ayp.com
+HOST-SUFFIX,maomiav.com
+
+# [Others]
+HOST-SUFFIX,qoqkkhy.com
+HOST-SUFFIX,monkrus.ws
+
 ## >> 其他
+host-suffix, bestjavporn.com
+host-suffix, video-delivery.net
+host-suffix, bestjavcdn.com
+host-suffix, helloavgirls.com
+host-suffix, mushroomtrack.com
+
 HOST-SUFFIX,pigav.com
 HOST-SUFFIX,lain.la
 HOST-SUFFIX,pomf2.lain.la
