@@ -1,14 +1,13 @@
-# https://raw.githubusercontent.com/yidianhongxin/Quantumult_X-DRL/main/AI_qx.list
-# https://openai.com/
+# NAME: OpenAI
+# REPO: https://ishort.ink/tWGw
+# UPDATED: 2024-03-31 02:13:21
 HOST,browser-intake-datadoghq.com,OpenAI
 HOST,static.cloudflareinsights.com,OpenAI
 HOST-SUFFIX,ai.com,OpenAI
 HOST-SUFFIX,algolia.net,OpenAI
 HOST-SUFFIX,api.statsig.com,OpenAI
 HOST-SUFFIX,auth0.com,OpenAI
-HOST-SUFFIX,cdn.cloudflare.net,OpenAI
 HOST-SUFFIX,chatgpt.com,OpenAI
-HOST-SUFFIX,challenges.cloudflare.com,OpenAI
 HOST-SUFFIX,chatgpt.livekit.cloud,OpenAI
 HOST-SUFFIX,client-api.arkoselabs.com,OpenAI
 HOST-SUFFIX,events.statsigapi.net,OpenAI
@@ -31,12 +30,16 @@ IP-CIDR,24.199.123.28/32,OpenAI
 IP-CIDR,64.23.132.171/32,OpenAI
 IP-ASN,20473,OpenAI
 # ---
-# https://claude.ai/
+# NAME: https://claude.ai/
+# REPO: https://ishort.ink/6p5V
+# UPDATED: 2024-02-25 16:06:05
 HOST,cdn.usefathom.com,OpenAI
 HOST-SUFFIX,anthropic.com,OpenAI
 HOST-SUFFIX,claude.ai,OpenAI
 # ---
-# https://bard.google.com/
+# NAME: bard
+# REPO: https://ishort.ink/i2oy
+# UPDATED: 2024-02-25 16:06:06
 HOST,ai.google.dev,OpenAI
 HOST,alkalimakersuite-pa.clients6.google.com,OpenAI
 HOST,generativelanguage.googleapis.com,OpenAI
@@ -47,7 +50,10 @@ HOST-SUFFIX,deepmind.google,OpenAI
 HOST-SUFFIX,gemini.google.com,OpenAI
 HOST-SUFFIX,generativeai.google,OpenAI
 HOST-SUFFIX,proactivebackend-pa.googleapis.com,OpenAI
-# Gemini
+# ---
+# NAME: Gemini
+# REPO: https://ishort.ink/Wfxs
+# UPDATED: 2024-02-25 16:06:06
 HOST,ai.google.dev,OpenAI
 HOST,alkalimakersuite-pa.clients6.google.com,OpenAI
 HOST,makersuite.google.com,OpenAI
@@ -62,30 +68,72 @@ HOST-KEYWORD,colab,OpenAI
 HOST-KEYWORD,developerprofiles,OpenAI
 HOST-KEYWORD,generativelanguage,OpenAI
 # ---
-# https://www.bing.com/
+# NAME: Bing
+# REPO: https://ishort.ink/wzA6
+# UPDATED: 2024-02-25 16:06:04
+HOST-SUFFIX,bing.com,OpenAI
+HOST-SUFFIX,bing.com.cn,OpenAI
+HOST-SUFFIX,bing.net,OpenAI
+HOST-SUFFIX,bingads.com,OpenAI
+HOST-SUFFIX,bingagencyawards.com,OpenAI
+HOST-SUFFIX,bingapistatistics.com,OpenAI
+HOST-SUFFIX,bingsandbox.com,OpenAI
+HOST-SUFFIX,bingvisualsearch.com,OpenAI
+HOST-SUFFIX,bingworld.com,OpenAI
+# ---
+# NAME: Copilot
+# REPO: https://ishort.ink/uuW9
+# UPDATED: 2024-02-25 16:06:06
 HOST,api.msn.com,OpenAI
+HOST,api.statsig.com,OpenAI
 HOST,assets.msn.com,OpenAI
+HOST,browser-intake-datadoghq.com,OpenAI
 HOST,copilot.microsoft.com,OpenAI
-HOST,dealczars.bing-shopping.microsoft-falcon.io,OpenAI
-# HOST,eas.outlook.com
-HOST,edgeservices.bing.com,OpenAI
-HOST,functional.events.data.microsoft.com,OpenAI
+HOST,gateway.bingviz.microsoft.net,OpenAI
 HOST,gateway.bingviz.microsoftapp.net,OpenAI
+HOST,in.appcenter.ms,OpenAI
 HOST,location.microsoft.com,OpenAI
-HOST,login.microsoftonline.com,OpenAI
-HOST,proteus-assetstore.azurewebsites.net,OpenAI
+HOST,odc.officeapps.live.com,OpenAI
+HOST,openai-api.arkoselabs.com,OpenAI
+HOST,openaicomproductionae4b.blob.core.windows.net,OpenAI
+HOST,production-openaicom-storage.azureedge.net,OpenAI
+HOST,r.bing.com,OpenAI
 HOST,self.events.data.microsoft.com,OpenAI
 HOST,services.bingapis.com,OpenAI
-HOST,shopping.bing-shopping.microsoft-falcon.io,OpenAI
-HOST,sapphire.api.microsoftapp.net,OpenAI
-HOST,sr.bing.com,OpenAI
-HOST,sydney.bing.com,OpenAI
-HOST,ssl.bing.com,OpenAI
-HOST,th.bing.com,OpenAI
+HOST,static.cloudflareinsights.com,OpenAI
 HOST,www.bing.com,OpenAI
-HOST,www2.bing.com,OpenAI
-HOST,www.bingapis.com,OpenAI
-HOST-SUFFIX,edge.microsoft.com,OpenAI
+HOST-SUFFIX,algolia.net,OpenAI
+HOST-SUFFIX,api.microsoftapp.net,OpenAI
+HOST-SUFFIX,auth0.com,OpenAI
+HOST-SUFFIX,bing-shopping.microsoft-falcon.io,OpenAI
+HOST-SUFFIX,cdn.cloudflare.net,OpenAI
+HOST-SUFFIX,challenges.cloudflare.com,OpenAI
+HOST-SUFFIX,chatgpt.livekit.cloud,OpenAI
+HOST-SUFFIX,client-api.arkoselabs.com,OpenAI
+HOST-SUFFIX,edgeservices.bing.com,OpenAI
+HOST-SUFFIX,events.statsigapi.net,OpenAI
+HOST-SUFFIX,featuregates.org,OpenAI
+HOST-SUFFIX,host.livekit.cloud,OpenAI
+HOST-SUFFIX,identrust.com,OpenAI
+HOST-SUFFIX,intercom.io,OpenAI
+HOST-SUFFIX,intercomcdn.com,OpenAI
+HOST-SUFFIX,launchdarkly.com,OpenAI
+HOST-SUFFIX,oaistatic.com,OpenAI
+HOST-SUFFIX,oaiusercontent.com,OpenAI
+HOST-SUFFIX,observeit.net,OpenAI
+HOST-SUFFIX,openai.com,OpenAI
+HOST-SUFFIX,openaiapi-site.azureedge.net,OpenAI
+HOST-SUFFIX,openaicom.imgix.net,OpenAI
+HOST-SUFFIX,poe.com,OpenAI
+HOST-SUFFIX,segment.io,OpenAI
+HOST-SUFFIX,sentry.io,OpenAI
+HOST-SUFFIX,stripe.com,OpenAI
+HOST-SUFFIX,turn.livekit.cloud,OpenAI
+HOST-KEYWORD,openaicom-api,OpenAI
+IP-CIDR,24.199.123.28/32,OpenAI
+IP-CIDR,64.23.132.171/32,OpenAI
+IP-ASN,14061,OpenAI
+IP-ASN,20473,OpenAI
 # ---
 # 马斯克的推特Grok
 HOST,grok.x.ai,OpenAI
