@@ -1,0 +1,409 @@
+#====================================================================================
+# @ConfigName        LingKeQing参考实例配置
+# @Author            @KissKeQing
+# @Illustrate        本配置参考 @SukkaW 大佬提出的分流所尝试自用测试的 Verge Rev 版本规则
+#                    部分规则根据作者使用需求进行了一些调整，我不对本规则任何部分负有责任（锚点部分写的特别烂）
+#                    您不应当因为本规则的内容而去打扰 @SukkaW 大佬，大部分规则支持可以在
+#                    blog.skk.moe/post/i-have-my-unique-surge-setup/ 中寻得
+# @Thanks            @SukkaW @Semporia @blackmatrix7 @ACL4SSR     
+#====================================================================================
+port: 7890
+socks-port: 7891
+mixed-port: 7893
+allow-lan: false
+bind-address: "*"
+mode: rule
+log-level: info
+ipv6: false
+geo-update-interval: 24
+find-process-mode: strict
+external-controller: 127.0.0.1:9090
+
+dns:
+  enable: true
+  ipv6: false
+  listen: 0.0.0.0:53
+  prefer-h3: true #建议 false 除非你知道这是什么
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - localhost.ptlogin2.qq.com
+    - +.srv.nintendo.net
+    - +.stun.playstation.net
+    - +.msftconnecttest.com
+    - +.msftncsi.com
+    - +.xboxlive.com
+    - msftconnecttest.com
+    - xbox.*.microsoft.com
+    - "*.battlenet.com.cn"
+    - "*.battlenet.com"
+    - "*.blzstatic.cn"
+    - "*.battle.net"
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+  fallback:
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+
+
+#========= 建立锚点 =========#
+# 代理节点选择组
+selected_proxy_group: &selected_proxy_group
+  type: select
+  proxies:
+    - 🇭🇰 香港节点
+    - 🇸🇬 狮城节点
+    - 🇯🇵 日本节点
+    - 🇺🇲 美国节点 
+    - 🇨🇳 台湾节点
+    - 🇬🇧 英国节点
+    - 🇫🇷 法国节点
+    - 🇰🇷 韩国节点
+    - 🇭🇰 HongKong
+    - 🇸🇬 Singapore
+    - 🇯🇵 Japan
+    - 🇺🇲 American 
+    - 🇨🇳 Taiwan
+    - 🇬🇧 England
+    - 🇫🇷 France
+    - 🇰🇷 Korea
+    - DIRECT
+
+# （节点）节点连通性检查 
+healthy_check_group: &healthy_check_group
+  type: http
+  interval: 86400
+  health-check:
+    enable: true
+    url: http://www.gstatic.com/generate_204
+    interval: 1800
+
+# （节点选择）自动选择代理
+auto_select_group: &auto_select_group
+  type: url-test
+  lazy: true
+  url: http://www.gstatic.com/generate_204
+  interval: 900
+  use:
+    - Subscribe
+
+# （节点选择）手动选择代理
+manual_proxy_group: &manual_proxy_group
+  type: select
+  use:
+    - Subscribe
+
+# 传统HTTP代理节点组
+classical_http_group: &classical_http_group
+  type: http
+  behavior: classical
+  interval: 86400
+
+# 域名HTTP代理节点组
+domain_http_group: &domain_http_group
+  type: http
+  behavior: domain
+  interval: 86400
+
+# IP/CIDR HTTP代理节点组
+ipcidr_http_group: &ipcidr_http_group
+  type: http
+  behavior: ipcidr
+  interval: 86400
+#========= 锚点结束 =========#
+proxy-providers:
+  Subscribe:
+    <<: *healthy_check_group
+    url: # 机场订阅填写区域
+    path: ./proxy_providers/tmp.yaml
+
+proxy-groups:
+  - {name: Topic, <<: *selected_proxy_group}
+  - {name: AllServer, <<: *manual_proxy_group}
+  - {name: OpenAI, <<: *selected_proxy_group}
+  - {name: bilibili, <<: *selected_proxy_group}
+  - {name: GameHub, <<: *selected_proxy_group}
+  - {name: Google, <<: *selected_proxy_group}
+  - {name: Apple, <<: *selected_proxy_group}
+  - {name: AIGC, <<: *selected_proxy_group}
+  - {name: PayPal, <<: *selected_proxy_group}
+  - {name: Telegram, <<: *selected_proxy_group}
+  - {name: Twitter, <<: *selected_proxy_group}
+  - {name: Netflix, <<: *selected_proxy_group}
+  - {name: Youtube, <<: *selected_proxy_group}
+  - {name: Stream, <<: *selected_proxy_group}
+  - {name: OneDrive, <<: *selected_proxy_group}
+  - {name: Speedtest, <<: *selected_proxy_group}
+  - {name: Microsoft, <<: *selected_proxy_group}
+  - {name: AdBlock, type: select, proxies: [REJECT]}
+
+  - {name: ♻️ 自动选择, <<: *auto_select_group}
+  - {name: 🇭🇰 香港节点, <<: *auto_select_group, filter: "港|HK|(?i)Hong"}
+  - {name: 🇯🇵 日本节点, <<: *auto_select_group, filter: "日|东京|JP|(?i)Japan"}
+  - {name: 🇨🇳 台湾节点, <<: *auto_select_group, filter: "台|湾|TW|(?i)Taiwan"}
+  - {name: 🇺🇲 美国节点, <<: *auto_select_group, filter: "美|US|(?i)States|American"}
+  - {name: 🇸🇬 狮城节点, <<: *auto_select_group, filter: "新|坡|SG|(?i)Singapore"}
+  - {name: 🇬🇧 英国节点, <<: *auto_select_group, filter: "英|UK|(?i)Britain|England"}
+  - {name: 🇫🇷 法国节点, <<: *auto_select_group, filter: "法|FR|(?i)France"}
+  - {name: 🇰🇷 韩国节点, <<: *auto_select_group, filter: "韩|KR|(?i)Korea"}
+  - {name: 🇭🇰 HongKong, <<: *manual_proxy_group, filter: "港|HK|(?i)Hong"}
+  - {name: 🇯🇵 Japan, <<: *manual_proxy_group, filter: "日|东京|JP|(?i)Japan"}
+  - {name: 🇨🇳 Taiwan, <<: *manual_proxy_group, filter: "台|湾|TW|(?i)Taiwan"}
+  - {name: 🇺🇲 American, <<: *manual_proxy_group, filter: "美|US|(?i)States|American"}
+  - {name: 🇸🇬 Singapore, <<: *manual_proxy_group, filter: "新|坡|SG|(?i)Singapore"}
+  - {name: 🇬🇧 England, <<: *manual_proxy_group, filter: "英|UK|(?i)Britain|England"}
+  - {name: 🇫🇷 France, <<: *manual_proxy_group, filter: "法|FR|(?i)France"}
+  - {name: 🇰🇷 Korea, <<: *manual_proxy_group, filter: "韩|KR|(?i)Korea"}
+
+rule-providers:
+  # 大部分借鉴了狐狐的规则，小部分做了调整
+  Ad-Domain:
+    <<: *domain_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/domainset/reject.conf
+    path: ./ruleset/anti-ad-domain.conf
+  Ad-Rule:
+    <<: *classical_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/reject.conf
+    path: ./ruleset/anti-ad-rule.conf
+  QUIC-Block:
+    <<: *classical_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/reject-no-drop.conf
+    path: ./ruleset/quic-block.conf
+  Adobe-Block:
+    <<: *classical_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/reject-drop.conf
+    path: ./ruleset/adobe-block.conf
+  CDN-Domain:
+    <<: *domain_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/domainset/cdn.conf
+    path: ./ruleset/cdn-domain.conf
+  CDN:
+    <<: *classical_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/cdn.conf
+    path: ./ruleset/cdn-nonip.conf
+  Speedtest:
+    <<: *domain_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/domainset/speedtest.conf
+    path: ./ruleset/speedtest.conf
+  Stream:
+    <<: *classical_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/stream.conf
+    path: ./ruleset/stream.conf
+  Telegram:
+    <<: *classical_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/telegram.conf
+    path: ./ruleset/telegram.conf
+  Apple-CDN:
+    <<: *classical_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/apple_cdn.conf
+    path: ./ruleset/apple_cdn.conf
+  Microsoft_CDN:
+    <<: *classical_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/microsoft_cdn.conf
+    path: ./ruleset/microsoft_cdn.conf
+  Download-Domain:
+    <<: *domain_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/domainset/download.conf
+    path: ./ruleset/download_Domain.conf
+  Download:
+    <<: *classical_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/download.conf
+    path: ./ruleset/download_nonip.conf
+  Apple-CN:
+    <<: *domain_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/apple_cn.conf
+    path: ./ruleset/apple-cn.conf
+  Apple:
+    <<: *classical_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/apple_services.conf
+    path: ./ruleset/apple.conf
+  Microsoft:
+    <<: *classical_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/microsoft.conf
+    path: ./ruleset/microsoft.conf
+  # 此处规则换源至 @blackmatrix7
+  OpenAI:
+    <<: *classical_http_group
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml
+    path: ./ruleset/OpenAI.yaml
+  AIGC:
+    <<: *classical_http_group
+    format: text
+    url: https://raw.githubusercontent.com/QingRex/Clash/main/AI.list
+    path: ./ruleset/AI.list
+  ### 以下规则为个人需要添加
+  GoogleFCM:
+    <<: *classical_http_group
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list
+    path: ./ruleset/GoogleFCM.list
+  PayPal:
+    <<: *classical_http_group
+    format: text
+    url: https://raw.githubusercontent.com/LM-Firefly/Rules/master/PROXY/PayPal.list
+    path: ./ruleset/PayPal.list
+  Epic:
+    <<: *classical_http_group
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Epic.list
+    path: ./ruleset/Epic.list
+  Steam:
+    <<: *classical_http_group
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam.list
+    path: ./ruleset/Steam.list
+  YouTube:
+    <<: *classical_http_group
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.list
+    path: ./ruleset/YouTube.list
+  Google_Search:
+    <<: *classical_http_group
+    format: text
+    url: https://raw.githubusercontent.com/bunizao/TutuBetterRules/tutu/RuleList/DOMAlN/Google_Search.list
+    path: ./ruleset/Google_Search.list
+  Netflix:
+    <<: *classical_http_group
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Netflix.list
+    path: ./ruleset/Netflix.list
+  BilibiliHMT:
+    <<: *classical_http_group
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/BilibiliHMT.list
+    path: ./ruleset/BilibiliHMT.text
+  Bilibili:
+    <<: *classical_http_group
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bilibili.list
+    path: ./ruleset/Bilibili.list
+  ChinaMedia:
+    <<: *classical_http_group
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list
+    path: ./ruleset/ChinaMedia.list
+  GFW:
+    <<: *classical_http_group
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list
+    path: ./ruleset/ProxyGFW.list
+  Bahamut:
+    <<: *classical_http_group
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bahamut.list
+    path: ./ruleset/Bahamut.list
+  OneDrive:
+    <<: *classical_http_group
+    format: text
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list
+    path: ./ruleset/OneDrive.list
+  Twitter:
+    <<: *classical_http_group
+    format: text
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Twitter/Twitter.list
+    path: ./ruleset/Twitter.list
+  Game:
+    <<: *classical_http_group
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/Game.yaml
+    path: ./ruleset/Game.yaml
+  ### 以下规则回源至 @SukkaW 
+  Global:
+    <<: *domain_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/global.conf
+    path: ./ruleset/global.conf
+  China:
+    <<: *classical_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/domestic.conf
+    path: ./ruleset/domestic.conf
+  Dirct:
+    <<: *classical_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/direct.conf
+    path: ./ruleset/direct.conf
+  Local:
+    <<: *classical_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/non_ip/lan.conf
+    path: ./ruleset/local.conf
+  Lan:
+    <<: *ipcidr_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/ip/lan.conf
+    path: ./ruleset/lan.conf
+  China-IP:
+    <<: *ipcidr_http_group
+    format: text
+    url: https://ruleset.skk.moe/List/ip/china_ip.conf
+    path: ./ruleset/china_ip.conf
+rules:
+  # 思想：翻墙主力全部是 Topic 节点过去，如有需要自行添加
+  - RULE-SET,Ad-Domain,AdBlock
+  - RULE-SET,Ad-Rule,AdBlock
+  - RULE-SET,QUIC-Block,AdBlock
+  - RULE-SET,Adobe-Block,AdBlock
+  - RULE-SET,OpenAI,OpenAI
+  - RULE-SET,AIGC,AIGC
+  - RULE-SET,CDN-Domain,Topic
+  - RULE-SET,CDN,Topic
+  - RULE-SET,PayPal,PayPal
+  - RULE-SET,Telegram,Telegram
+  - RULE-SET,Netflix,Netflix
+  - RULE-SET,Twitter,Twitter
+  - RULE-SET,YouTube,Youtube
+  - RULE-SET,Google_Search,Youtube
+  - RULE-SET,GoogleFCM,Google
+  - RULE-SET,Bahamut, 🇨🇳 台湾节点
+  - RULE-SET,Apple-CDN,DIRECT
+  - RULE-SET,Apple-CN,DIRECT
+  - RULE-SET,Apple,Apple
+  - RULE-SET,OneDrive,OneDrive
+  - RULE-SET,Microsoft_CDN,DIRECT
+  - RULE-SET,Microsoft,Microsoft
+  - RULE-SET,Stream,Stream
+  # - PROCESS-NAME,r5apex.exe, 🇭🇰 HongKong #Steam版本Apex可以打开
+  - RULE-SET,Download-Domain,DIRECT
+  - RULE-SET,Download,DIRECT
+  - RULE-SET,Epic,GameHub
+  - RULE-SET,Steam,GameHub  
+  - RULE-SET,Game,GameHub
+  - RULE-SET,GFW,Topic
+  - RULE-SET,Global,Topic
+  - RULE-SET,Speedtest,Speedtest
+  - RULE-SET,BilibiliHMT,bilibili
+  - RULE-SET,Bilibili,bilibili
+  - RULE-SET,ChinaMedia,DIRECT
+  - RULE-SET,China,DIRECT
+  - RULE-SET,Dirct,DIRECT
+  - RULE-SET,Local,DIRECT
+  - RULE-SET,Lan,DIRECT
+  - RULE-SET,China-IP,DIRECT
+  # - GEOIP,CN,DIRECT #有待商榷是否启用
+  - MATCH,Topic
