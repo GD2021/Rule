@@ -1,0 +1,33 @@
+host-suffix, accountkit.com
+host-suffix, cdninstagram.com
+host-suffix, f8.com
+host-suffix, facebookmail.com
+host-suffix, fb.com
+host-suffix, fb.me
+host-suffix, fb.watch
+host-suffix, fbaddins.com
+host-suffix, fbcdn.net
+host-suffix, fbsbx.com
+host-suffix, fbworkmail.com
+host-suffix, instagram.com
+host-suffix, m.me
+host-suffix, messenger.com
+host-suffix, oculus.com
+host-suffix, oculuscdn.com
+host-suffix, readyatdawn.com
+host-suffix, rocksdb.org
+host-suffix, whatsapp.net
+host-suffix, whatsapp.com
+host-suffix, meta.com
+host-suffix, facebook.com
+host-suffix,connectivitycheck.gstatic.com
+host-suffix,www.google.com
+host-suffix,graph.oculus.com
+host-suffix,mqtt-mini.facebook.com
+host-suffix,in.appcenter.ms
+host-suffix,graph.facebook-hardware.com
+host-suffix,graph.facebook.com
+host-suffix,scontent.oculuscdn.com
+host-suffix,time.facebook.com
+host-keyword, .facebook.
+ip-cidr, 157.240.0.0/17
