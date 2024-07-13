@@ -21,7 +21,7 @@ HOST-SUFFIX,7777777.buzz,PROXY
 HOST-SUFFIX,581658.best,PROXY
 
 # NMEmby
-HOST, film.hovervan.org,PROXY
+HOST-SUFFIX,film.hovervan.org,PROXY
 
 
 # 海外看
