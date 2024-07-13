@@ -1,0 +1,78 @@
+#HXD
+HOST-SUFFIX,bili.rip
+
+# TreeDiagram
+HOST-SUFFIX,123456.al
+IP-CIDR,104.21.74.160/32
+IP-CIDR,172.67.159.221/32
+
+#Emby-纸片人
+HOST-SUFFIX,embyplus.org
+IP-CIDR,172.67.197.145/32
+IP-CIDR,104.21.52.93/32
+IP-CIDR,89.58.18.111/32
+  
+# > 新增测试
+HOST-SUFFIX,gd.9521732.xyz
+
+# 牢大科蜜野兽
+HOST-SUFFIX,mius.uk
+
+# 飞跃彩虹
+HOST-SUFFIX,7777777.buzz
+HOST-SUFFIX,581658.best
+IP-CIDR,5.45.109.91/32
+
+# NMEmby
+HOST, film.hovervan.org
+IP-CIDR,172.67.212.126/32
+IP-CIDR,104.21.16.126/32
+
+# 海外看
+host-keyword,haiwaikan
+HOST,cdn.iz8qkg.com
+HOST,cdn.kin6c1.com
+HOST,cdn.v82u1l.com
+HOST-SUFFIX,jszyapi.com
+HOST-SUFFIX,wolongzy.cc
+HOST-SUFFIX,suoniapi.com
+HOST-SUFFIX,tiankongapi.com
+HOST-SUFFIX,feisuzyapi.com
+HOST-SUFFIX,hongniuzy2.com
+HOST-SUFFIX,ffzyapi.com
+HOST-SUFFIX,lziapi.com
+HOST-SUFFIX,ikunzyapi.com
+HOST-SUFFIX,guangsuapi.com
+HOST-SUFFIX,apibdzy.com
+HOST-SUFFIX,ckzy.me
+HOST-SUFFIX,kczyapi.com
+DOMAIN-SUFFIX,ukuapi.com
+HOST-SUFFIX,sdzyapi.com
+HOST-SUFFIX,wujinapi.com
+HOST-SUFFIX,hhzyapi.com
+HOST-SUFFIX,huyaapi.com
+HOST-SUFFIX,apiyhzy.com
+HOST-SUFFIX,fenwe078.cf
+
+# 某某
+HOST-SUFFIX,v1.mk
+HOST-SUFFIX,notion-api.splitbee.io
+HOST-SUFFIX,themoviedb.org
+HOST-SUFFIX,thetvdb.com
+HOST-SUFFIX,tmdb.org
+HOST-SUFFIX,discord.com
+HOST-SUFFIX,olevod.com
+HOST-SUFFIX,olemovienews.com
+HOST-SUFFIX,haiwaikan.com
+HOST-SUFFIX,bfvvs.com
+HOST-SUFFIX,cdn.venus7202.com
+HOST-SUFFIX,cdn.ceres9350.com
+HOST-SUFFIX,cdn.efhie.com
+HOST-SUFFIX,czzy.site
+HOST-SUFFIX,cz01.vip
+HOST-SUFFIX,picsum.photos
+HOST-SUFFIX,ibb.co
+HOST-SUFFIX,kin6c1.com
+HOST-SUFFIX,iz8qkg.com
+HOST-SUFFIX,v82u1l.com
+
