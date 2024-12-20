@@ -35,7 +35,7 @@ config.outbounds.push(...proxies);
 
 config.outbounds.forEach(i => {
   if (i.tag === '🚀 节点选择') {
-    i.outbounds.push(...getTags(proxies));
+    i.outbounds = getTags(proxies); // 只展示所有实际的代理节点
     i.default = i.outbounds[0]; // 添加 default 字段
     i.interrupt_exist_connections = false; // 添加 interrupt_exist_connections 字段
   }
