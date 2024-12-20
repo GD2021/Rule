@@ -1,47 +1,56 @@
 const { type, name } = $arguments;
-const compatible_outbound = {
-  tag: 'COMPATIBLE',
-  type: 'direct',
-};
 
-let compatible;
 let config = JSON.parse($files[0]);
 let proxies = await produceArtifact({
-  name,
-  type: /^1$|col/i.test(type) ? 'collection' : 'subscription',
-  platform: 'sing-box',
-  produceType: 'internal',
+    name,
+    type: /^1$|col/i.test(type) ? 'collection' : 'subscription',
+    platform: 'sing-box',
+    produceType: 'internal',
 });
+
+// 确保outbounds数组存在
+if (!config.outbounds) {
+    config.outbounds = [];
+}
 
 config.outbounds.push(...proxies);
 
-config.outbounds.map(i => {
-  if (['{all}'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies));
-  }
-  if (['🇭🇰 香港节点', '🔯 香港自动'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /🇭🇰|HK|hk|香港|港|HongKong/i));
-  }
-  if (['🇯🇵 日本节点'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /🇯🇵|JP|jp|日本|日|Japan/i));
-  }
-  if (['🇺🇲 美国节点'].includes(i.tag)) {
-    i.outbounds.push(...getTags(proxies, /🇺🇸|US|us|美国|美|United States/i));
-  }
-});
+// 定义需要更新的 selector/urltest 的 tag 列表
+const targetOutboundTags = [
+    " 节点选择", "🇭🇰 香港节点", "🇯🇵 日本节点", "🇺🇲 美国节点",
+    " 香港自动", "♻️ 自动选择", " 手动切换"
+];
 
 config.outbounds.forEach(outbound => {
-  if (Array.isArray(outbound.outbounds) && outbound.outbounds.length === 0) {
-    if (!compatible) {
-      config.outbounds.push(compatible_outbound);
-      compatible = true;
+    if ((outbound.type === 'selector' || outbound.type === 'urltest') && targetOutboundTags.includes(outbound.tag)) {
+        if (Array.isArray(outbound.outbounds)) {
+            // 特殊处理 {all}
+            if (outbound.outbounds.includes("{all}")) {
+                outbound.outbounds = proxies.map(p => p.tag);
+            } else {
+                const filter = outbound.filter;
+                if (filter && Array.isArray(filter)) {
+                    let filteredProxies = [...proxies];
+                    filter.forEach(f => {
+                        if (f.action === 'include' && Array.isArray(f.keywords)) {
+                            filteredProxies = filteredProxies.filter(p => f.keywords.some(keyword => new RegExp(keyword, 'i').test(p.tag)));
+                        } else if (f.action === 'exclude' && Array.isArray(f.keywords)) {
+                            filteredProxies = filteredProxies.filter(p => !f.keywords.some(keyword => new RegExp(keyword, 'i').test(p.tag)));
+                        }
+                    });
+                    outbound.outbounds = [...new Set(filteredProxies.map(p => p.tag))];
+                }
+            }
+        }
+
+        if (outbound.type === 'selector' && outbound.default && !outbound.outbounds.includes(outbound.default)) {
+            outbound.outbounds.unshift(outbound.default);
+        }
+
+        if (!outbound.interrupt_exist_connections) {
+            outbound.interrupt_exist_connections = false;
+        }
     }
-    outbound.outbounds.push(compatible_outbound.tag);
-  }
 });
 
 $content = JSON.stringify(config, null, 2);
-
-function getTags(proxies, regex) {
-  return (regex ? proxies.filter(p => regex.test(p.tag)) : proxies).map(p => p.tag);
-}
