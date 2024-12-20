@@ -73,6 +73,13 @@ config.outbounds.forEach(outbound => {
   }
 });
 
+// 删除所有的 filter 字段
+config.outbounds.forEach(outbound => {
+  if (outbound.filter) {
+    delete outbound.filter;
+  }
+});
+
 fs.writeFileSync(path.join(__dirname, 'updated-config.json'), JSON.stringify(config, null, 2));
 
 function getTags(proxies, regex) {
