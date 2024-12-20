@@ -3,7 +3,7 @@ const path = require('path');
 
 // 模拟 $arguments 和 $files
 const arguments = { type: 'subscription', name: 'my-proxies' };
-const files = [path.join(__dirname, 'config.json')];
+const files = [path.resolve('config.json')];
 
 const { type, name } = arguments;
 const compatible_outbound = {
@@ -80,7 +80,7 @@ config.outbounds.forEach(outbound => {
   }
 });
 
-fs.writeFileSync(path.join(__dirname, 'updated-config.json'), JSON.stringify(config, null, 2));
+fs.writeFileSync(path.resolve('updated-config.json'), JSON.stringify(config, null, 2));
 
 function getTags(proxies, regex) {
   return (regex ? proxies.filter(p => regex.test(p.tag)) : proxies).map(p => p.tag);
