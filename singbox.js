@@ -34,8 +34,8 @@ let proxies = await produceArtifact({
 config.outbounds.push(...proxies);
 
 config.outbounds.forEach(i => {
-  if (i.tag === '🚀 节点选择') {
-    i.outbounds = getTags(proxies); // 只展示所有实际的代理节点
+  if (i.tag === '🐸 手动切换') {
+    i.outbounds.push(...getTags(proxies));
     i.default = i.outbounds[0]; // 添加 default 字段
     i.interrupt_exist_connections = false; // 添加 interrupt_exist_connections 字段
   }
@@ -59,6 +59,7 @@ config.outbounds.forEach(i => {
     i.url = "http://www.gstatic.com/generate_204"; // 添加 url 字段
     i.interval = "10m"; // 添加 interval 字段
     i.tolerance = 50; // 添加 tolerance 字段
+    i.idle_timeout = ""; // 添加 idle_timeout 字段
     i.interrupt_exist_connections = false; // 添加 interrupt_exist_connections 字段
   }
 });
