@@ -19,7 +19,7 @@ config.outbounds.map(i => {
   if (i.tag === '🐸 手动切换') {
     i.outbounds.push(...getTags(proxies));
   }
-  if (i.tag === '🇭🇰 香港节点') {
+  if (['🇭🇰 香港节点', '🔯 香港自动'].includes(i.tag)) {
     i.outbounds.push(...getTags(proxies, /🇭🇰|HK|hk|香港|港|HongKong/i));
   }
   if (i.tag === '🇯🇵 日本节点') {
@@ -27,9 +27,6 @@ config.outbounds.map(i => {
   }
   if (i.tag === '🇺🇲 美国节点') {
     i.outbounds.push(...getTags(proxies, /🇺🇸|US|us|美国|美|United States/i));
-  }
-  if (i.tag === '🔯 香港自动') {
-    i.outbounds.push(...getTags(proxies, /🇭🇰|HK|hk|香港|港|HongKong/i));
   }
   if (i.tag === '♻️ 自动选择') {
     i.outbounds.push(...getTags(proxies, /🇭🇰|HK|hk|香港|港|HongKong|🇯🇵|JP|jp|日本|日|Japan|🇺🇸|US|us|美国|美|United States/i));
