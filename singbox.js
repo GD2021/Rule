@@ -1,51 +1,6 @@
-const { type, name } = $arguments;
-const compatible_outbound = {
-  tag: 'COMPATIBLE',
-  type: 'direct',
-};
-
-let compatible = false;
-let config = JSON.parse($files[0]);
-let proxies = await produceArtifact({
-  name,
-  type: /^1$|col/i.test(type) ? 'collection' : 'subscription',
-  platform: 'sing-box',
-  produceType: 'internal',
-});
-
-// Append new proxies to the existing outbounds list
-config.outbounds.push(...proxies);
-
-// Update specific selectors based on your SingBox configuration
-config.outbounds.forEach(outbound => {
-  if (outbound.type === "selector" && Array.isArray(outbound.outbounds)) {
-    // Update for each country-specific selector
-    if (outbound.tag === "🇭🇰 香港节点") {
-      outbound.outbounds.push(...getTags(proxies, /🇭🇰|HK|hk|香港|港|HongKong/i));
-    }
-    if (outbound.tag === "🇯🇵 日本节点") {
-      outbound.outbounds.push(...getTags(proxies, /🇯🇵|JP|jp|日本|日|Japan/i));
-    }
-    if (outbound.tag === "🇺🇲 美国节点") {
-      outbound.outbounds.push(...getTags(proxies, /🇺🇸|US|us|美国|美|United States/i));
-    }
-    if (outbound.tag === "🐸 手动切换") {
-      outbound.outbounds.push(...getTags(proxies));
-    }
+{
+  "script": {
+    "type": "text/javascript",
+    "content": "const { type, name } = $arguments;\n\nconst compatible_outbound = {\n  tag: 'COMPATIBLE',\n  type: 'direct'\n};\n\nlet compatible;\nlet config = JSON.parse($files[0]);\nlet proxies = await produceArtifact({\n  name,\n  type: /^1$|col/i.test(type) ? 'collection' : 'subscription',\n  platform: 'sing-box',\n  produceType: 'internal'\n});\n\nconfig.outbounds.push(...proxies);\n\nconfig.outbounds.map(i => {\n  if (['{all}'].includes(i.tag)) {\n    i.outbounds.push(...getTags(proxies))\n  }\n  if (['🇭🇰 香港节点', '🔯 香港自动'].includes(i.tag)) {\n    i.outbounds.push(...getTags(proxies, /🇭🇰|HK|hk|香港|港|HongKong/i))\n  }\n  if (['🇯🇵 日本节点'].includes(i.tag)) {\n    i.outbounds.push(...getTags(proxies, /🇯🇵|JP|jp|日本|日|Japan/i))\n  }\n  if (['🇺🇲 美国节点'].includes(i.tag)) {\n    i.outbounds.push(...getTags(proxies, /🇺🇸|US|us|美国|美|United States/i))\n  }\n});\n\nconfig.outbounds.forEach(outbound => {\n  if (Array.isArray(outbound.outbounds) && outbound.outbounds.length === 0) {\n    if (!compatible) {\n      config.outbounds.push(compatible_outbound);\n      compatible = true;\n    }\n    outbound.outbounds.push(compatible_outbound.tag);\n  }\n});\n\n$content = JSON.stringify(config, null, 2);\n\nfunction getTags(proxies, regex) {\n  return (regex ? proxies.filter(p => regex.test(p.tag)) : proxies).map(p => p.tag)\n}"
   }
-  
-  // Handle cases where outbounds list might be empty
-  if (Array.isArray(outbound.outbounds) && outbound.outbounds.length === 0) {
-    if (!compatible) {
-      config.outbounds.push(compatible_outbound);
-      compatible = true;
-    }
-    outbound.outbounds.push(compatible_outbound.tag);
-  }
-});
-
-$content = JSON.stringify(config, null, 2);
-
-function getTags(proxies, regex) {
-  return (regex ? proxies.filter(p => regex.test(p.tag)) : proxies).map(p => p.tag);
 }
