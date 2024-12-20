@@ -4,7 +4,7 @@ const compatible_outbound = {
   type: 'direct',
 };
 
-let compatible;
+let compatible = false;
 let config = JSON.parse($files[0]);
 let proxies = await produceArtifact({
   name,
@@ -15,7 +15,7 @@ let proxies = await produceArtifact({
 
 config.outbounds.push(...proxies);
 
-config.outbounds.map(i => {
+config.outbounds.forEach(i => {
   if (i.tag === '🐸 手动切换') {
     i.outbounds.push(...getTags(proxies));
   }
