@@ -1,73 +1,84 @@
 async function operator(proxies = [], targetPlatform, context) {
-  const { type, name } = argumentsObj;
-  const config = JSON.parse(fileContent);
-
   try {
-    const proxiesFromArtifact = await processArtifact(name, type, 'sing-box');
-    const updatedConfig = await handleOutbounds(config, proxiesFromArtifact);
+    const { type, name } = $arguments;
+    const compatible_outbound = {
+      tag: 'COMPATIBLE',
+      type: 'block',
+    };
 
-    outputContent = JSON.stringify(updatedConfig, null, 2);
+    let compatible = false;
+    let config = JSON.parse($files[0]);
+
+    let proxiesFromArtifact = await produceArtifact({
+      name,
+      type: /^1$|col/i.test(type) ? 'collection' : 'subscription',
+      platform: 'sing-box',
+      produceType: 'internal',
+    });
+
+    // 处理特殊的出站策略
+    config.outbounds.forEach((outbound) => {
+      if (outbound.outbounds && outbound.outbounds.includes("{all}")) {
+        outbound.outbounds = outbound.outbounds.filter(item => item !== "{all}");
+        let p = getTags(proxiesFromArtifact);
+        
+        if (outbound.filter && outbound.filter.length > 0) {
+          p = getTags(proxiesFromArtifact, outbound.filter[0].keywords[0]);
+          if (outbound.filter[0].action === "include") {
+            outbound.outbounds = outbound.outbounds.concat(p);
+          } else if (outbound.filter[0].action === "exclude") {
+            outbound.outbounds = outbound.outbounds.concat(getTags(proxiesFromArtifact).filter(tag => !p.includes(tag)));
+          }
+          delete outbound.filter;
+        } else {
+          outbound.outbounds = outbound.outbounds.concat(p);
+        }
+      }
+    });
+
+    // 添加新的代理节点
+    config.outbounds.push(...proxiesFromArtifact);
+
+    // 确保没有空的`outbounds`数组
+    config.outbounds.forEach(outbound => {
+      if (Array.isArray(outbound.outbounds) && outbound.outbounds.length === 0) {
+        if (!compatible) {
+          config.outbounds.push(compatible_outbound);
+          compatible = true;
+        }
+        outbound.outbounds.push(compatible_outbound.tag);
+      }
+    });
+
+    // 处理特殊的策略，如"全球直连"等
+    const specialTags = ["🎯 全球直连", "🚀 节点选择", "dns-out"];
+    config.outbounds.forEach(outbound => {
+      if (specialTags.includes(outbound.tag)) {
+        outbound.outbounds = [outbound.tag];
+      }
+    });
+
+    // 输出修改后的配置
+    $content = JSON.stringify(config, null, 2);
   } catch (error) {
-    handleError(error);
+    console.error("An error occurred:", error);
+    $content = JSON.stringify({
+      "status": "failed",
+      "error": {
+        "code": "INTERNAL_SERVER_ERROR",
+        "type": "InternalServerError",
+        "message": "Failed to download file: sboxx",
+        "details": "Reason: " + error.message
+      }
+    }, null, 2);
   }
   return proxies;
 }
 
-async function processArtifact(name, type, platform) {
-  return produceArtifact({
-    name,
-    type: /^1$|col/i.test(type) ? 'collection' : 'subscription',
-    platform,
-    produceType: 'internal',
-  });
-}
-
-async function handleOutbounds(config, proxiesFromArtifact) {
-  const compatibleOutbound = { tag: 'COMPATIBLE', type: 'block' };
-  config.outbounds.forEach(outbound => {
-    handleSpecialOutboundStrategy(outbound, proxiesFromArtifact, config, compatibleOutbound);
-    handleSpecialTags(outbound);
-  });
-  return config;
-}
-
-function handleSpecialOutboundStrategy(outbound, proxiesFromArtifact, config, compatibleOutbound) {
-  if (outbound.outbounds && outbound.outbounds.includes("{all}")) {
-    outbound.outbounds = outbound.outbounds.filter(item => item !== "{all}");
-    const tags = getTags(proxiesFromArtifact, outbound.filter && outbound.filter[0] && outbound.filter[0].keywords[0]);
-    if (outbound.filter && outbound.filter.length > 0) {
-      applyFilter(outbound, tags, outbound.filter[0].action);
-      delete outbound.filter;
-    } else {
-      outbound.outbounds = outbound.outbounds.concat(tags);
-    }
+// 辅助函数
+function getTags(proxies, regex) {
+  if (regex) {
+    regex = new RegExp(regex);
   }
-}
-
-function applyFilter(outbound, tags, action) {
-  if (action === "include") {
-    outbound.outbounds = outbound.outbounds.concat(tags);
-  } else if (action === "exclude") {
-    outbound.outbounds = outbound.outbounds.concat(getTags(proxiesFromArtifact).filter(tag => !tags.includes(tag)));
-  }
-}
-
-function handleSpecialTags(outbound) {
-  const specialTags = ["🎯 全球直连", "🚀 节点选择", "dns-out"];
-  if (specialTags.includes(outbound.tag)) {
-    outbound.outbounds = [outbound.tag];
-  }
-}
-
-function handleError(error) {
-  console.error("An error occurred:", error);
-  outputContent = JSON.stringify({
-    "status": "failed",
-    "error": {
-      "code": "INTERNAL_SERVER_ERROR",
-      "type": "InternalServerError",
-      "message": "Failed to process configuration: sboxx",
-      "details": `Reason: ${error.message}`
-    }
-  }, null, 2);
+  return (regex ? proxies.filter(p => regex.test(p.tag)) : proxies).map(p => p.tag);
 }
