@@ -61,6 +61,11 @@ config.outbounds.forEach(i => {
     i.tolerance = 50; // 添加 tolerance 字段
     i.interrupt_exist_connections = false; // 添加 interrupt_exist_connections 字段
   }
+
+  // 删除 filter 字段
+  if (i.filter) {
+    delete i.filter;
+  }
 });
 
 config.outbounds.forEach(outbound => {
@@ -70,13 +75,6 @@ config.outbounds.forEach(outbound => {
       compatible = true;
     }
     outbound.outbounds.push(compatible_outbound.tag);
-  }
-});
-
-// 删除所有的 filter 字段
-config.outbounds.forEach(outbound => {
-  if (outbound.filter) {
-    delete outbound.filter;
   }
 });
 
