@@ -18,8 +18,10 @@ let config = JSON.parse(fs.readFileSync(files[0], 'utf8'));
 async function produceArtifact(options) {
   // 这里应该是获取代理节点的逻辑，这里用一个示例代替
   return [
-    { tag: 'proxy1', type: 'http' },
-    { tag: 'proxy2', type: 'https' },
+    { tag: '🇭🇰 香港 01', type: 'http' },
+    { tag: '🇭🇰 香港 02', type: 'https' },
+    { tag: '🇭🇰 香港 03', type: 'http' },
+    { tag: '🇭🇰 香港 04', type: 'https' },
     // 添加更多代理节点
   ];
 }
@@ -60,6 +62,11 @@ config.outbounds.forEach(i => {
     i.interval = "10m"; // 添加 interval 字段
     i.tolerance = 50; // 添加 tolerance 字段
     i.interrupt_exist_connections = false; // 添加 interrupt_exist_connections 字段
+  }
+
+  // 删除 filter 字段
+  if (i.filter) {
+    delete i.filter;
   }
 });
 
