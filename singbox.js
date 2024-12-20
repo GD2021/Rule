@@ -15,7 +15,6 @@ if (!config.outbounds) {
 
 config.outbounds.push(...proxies);
 
-// 定义需要更新的 selector/urltest 的 tag 列表
 const targetOutboundTags = [
     " 节点选择", "🇭🇰 香港节点", "🇯🇵 日本节点", "🇺🇲 美国节点",
     " 香港自动", "♻️ 自动选择", " 手动切换"
@@ -24,7 +23,6 @@ const targetOutboundTags = [
 config.outbounds.forEach(outbound => {
     if ((outbound.type === 'selector' || outbound.type === 'urltest') && targetOutboundTags.includes(outbound.tag)) {
         if (Array.isArray(outbound.outbounds)) {
-            // 特殊处理 {all}
             if (outbound.outbounds.includes("{all}")) {
                 outbound.outbounds = proxies.map(p => p.tag);
             } else {
@@ -32,6 +30,9 @@ config.outbounds.forEach(outbound => {
                 if (filter && Array.isArray(filter)) {
                     let filteredProxies = [...proxies];
                     filter.forEach(f => {
+                      if(f.keywords && !Array.isArray(f.keywords)){
+                        f.keywords = [f.keywords] //确保keywords是数组
+                      }
                         if (f.action === 'include' && Array.isArray(f.keywords)) {
                             filteredProxies = filteredProxies.filter(p => f.keywords.some(keyword => new RegExp(keyword, 'i').test(p.tag)));
                         } else if (f.action === 'exclude' && Array.isArray(f.keywords)) {
