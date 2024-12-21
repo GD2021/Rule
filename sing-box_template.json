@@ -29,14 +29,14 @@
       {"tag":"🚫 Block","address":"rcode://success"}
     ],
     "rules": [
-      {"rule_set":"AWAvenue-Ads-Rule","server":"🚫 Block"},
       { "outbound": "any", "server": "defaultDns", "disable_cache": true },
       { "clash_mode": "direct", "server": "localDns" },
       { "clash_mode": "global", "server": "proxyDns" },
+      {"rule_set":"AWAvenue-Ads-Rule","server":"🚫 Block"},
       { "rule_set": "geosite-cn", "server": "localDns" },
       { "rule_set": "geosite-geolocation-!cn", "server": "proxyDns" }      
     ],
-    "final": "proxyDns",
+    "final": "localDns",
     "strategy": "ipv4_only"
   },
 
