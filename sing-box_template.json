@@ -121,7 +121,7 @@
     ],
     
     "rule_set": [
-      { "tag": "AWAvenue-Ads-Rulez", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/Paff-77/sing-box-easylist@output/AWAvenue-Ads-Rule.srs", "download_detour": "🎯 全球直连" },    
+      { "tag": "AWAvenue-Ads-Rule", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/Paff-77/sing-box-easylist@output/AWAvenue-Ads-Rule.srs", "download_detour": "🎯 全球直连" },    
       { "tag": "geosite-chat", "type": "remote", "format": "binary", "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-chat-!cn.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geosite-youtube", "type": "remote", "format": "binary", "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geosite-google", "type": "remote", "format": "binary", "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs", "download_detour": "🎯 全球直连" },
