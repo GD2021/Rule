@@ -196,7 +196,7 @@
       { "tag": "geoip-twitter", "type": "remote", "format": "binary", "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/twitter.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geosite-windows", "type": "remote", "format": "binary", "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/win-update.srs", "download_detour": "🎯 全球直连" },
       { "tag": "geosite-onedrive", "type": "remote", "format": "binary", "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/onedrive.srs", "download_detour": "🎯 全球直连" },
-      { "tag": "geosite-geosite-spotify", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/spotify.srs", "download_detour": "🎯 全球直连" },
+      { "tag": "geosite-spotify", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/spotify.srs", "download_detour": "🎯 全球直连" },
       { "tag": "emby", "type": "remote", "format": "source", "url": "https://ghproxy.net/https://github.com/qljsyph/rules-icon/blob/main/rule/singbox/emby.srs", "download_detour": "🎯 全球直连" },
       { "tag": "ad", "type": "remote", "format": "binary", "url": "https://adrules.top/adrules-singbox.srs", "download_detour": "🎯 全球直连" }          
     ]
