@@ -1,4 +1,4 @@
-const { templatePath, subPath } = $arguments;
+const { templatePath, name, type } = $arguments;
 
 // 读取并解析配置模板文件
 let config;
@@ -11,8 +11,8 @@ try {
 
 // 获取订阅节点信息
 let proxies = await produceArtifact({
-  name: subPath,
-  type: 'subscription',
+  name,
+  type: /^1$|col/i.test(type) ? 'collection' : 'subscription',
   platform: 'sing-box',
   produceType: 'internal',
 });
@@ -28,7 +28,7 @@ let compatible = false;
 config.outbounds.push(...proxies);
 
 // 根据模板中的 selector 出站，将节点添加到对应的组中
-config.outbounds.map(outbound => {
+config.outbounds.forEach(outbound => {
   if (outbound.type !== 'selector') return; // 只处理 selector 类型的出站
 
   switch (outbound.tag) {
