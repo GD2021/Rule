@@ -37,8 +37,8 @@
       { "outbound": "any", "server": "defaultDns", "disable_cache": true },
       { "clash_mode": "direct", "server": "localDns" },
       { "clash_mode": "global", "server": "proxyDns" },
-      { "rule_set":["geosite-private","geoip-private"],"server":"localDns"},
-      { "rule_set":["geosite-cn","geoip-cn"], "server": "localDns" },
+      { "rule_set":"geosite-private","server":"localDns"},
+      { "rule_set":"geosite-cn", "server": "localDns" },
       { "rule_set": "geosite-geolocation-!cn", "server": "proxyDns" }
     ],
     "client_subnet": "221.1.81.13",
