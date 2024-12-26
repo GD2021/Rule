@@ -27,7 +27,6 @@
 ```
 **TV目前使用**
 ```
- "inbounds": [
     {
         "type": "tun",
         "tag": "tun-in",
@@ -60,5 +59,115 @@
         "sniff": true,
         "sniff_override_destination": true
       }
-    ],
+```
+示例1
+```
+        {
+            "type": "tun",
+            "tag": "tun-in",
+            "interface_name": "tun0",
+            "address": "172.19.0.1/30",
+            "mtu": 9000,
+            "auto_route": true,
+            "iproute2_table_index": 2022,
+            "iproute2_rule_index": 9000,
+            "auto_redirect": false,
+            "auto_redirect_input_mark": "0x2023",
+            "auto_redirect_output_mark": "0x2024",
+            "strict_route": true,
+            "sniff": true,
+            "endpoint_independent_nat": false,
+            "stack": "system",
+            "route_address": [
+                "0.0.0.0/1",
+                "128.0.0.0/1"
+            ],
+            "route_exclude_address": "192.168.0.0/16",
+            "platform": {
+                "http_proxy": {
+                    "enabled": true,
+                    "server": "0.0.0.0",
+                    "server_port": 2080
+                }
+            }
+        },
+        {
+            "type": "mixed",
+            "listen": "0.0.0.0",
+            "listen_port": 2080,
+            "sniff": true,
+            "users": [
+
+            ]
+        }
+```
+示例2
+```
+   {
+            "type": "tun",
+            "tag": "tun-in",
+            "interface_name": "tun0",
+            "address": [
+                "172.18.0.1/30",
+                "fdfe:dcba:9876::1/126"
+            ],
+            "mtu": 9000,
+            "auto_route": true,
+            "iproute2_table_index": 2022,
+            "iproute2_rule_index": 9000,
+            "auto_redirect": true,
+            "auto_redirect_input_mark": "0x2023",
+            "auto_redirect_output_mark": "0x2024",
+            "route_exclude_address_set": [
+                "geoip-cn"
+            ],
+            "endpoint_independent_nat": false,
+            "udp_timeout": "5m",
+            "stack": "system",
+            "sniff": true,
+            "platform": {
+                "http_proxy": {
+                    "enabled": false,
+                    "server": "127.0.0.1",
+                    "server_port": 7890,
+                    "bypass_domain": [],
+                    "match_domain": []
+                }
+            }
+        }
+```
+示例3
+```
+{
+        "type": "tun",
+        "tag": "tun-in",
+        "interface_name": "tun0",
+        "address": "172.18.0.1/30",
+        "mtu": 9000,
+        "auto_route": true,
+        "iproute2_table_index": 2022,
+        "iproute2_rule_index": 9000,
+        "auto_redirect": false,
+        "auto_redirect_input_mark": "0x2023",
+        "auto_redirect_output_mark": "0x2024",
+        "strict_route": true,
+        "route_address": [
+          "0.0.0.0/1",
+          "128.0.0.0/1"
+        ],
+
+        "route_exclude_address": "192.168.0.0/16",
+        "endpoint_independent_nat": true,
+        "stack": "mixed",
+        "sniff": true,
+        "sniff_override_destination": true
+      },
+      {
+        "type": "mixed",
+        "tag": "mixed-in",
+        "listen": "127.0.0.1",
+        "listen_port": 2334,
+        "sniff": true,
+        "sniff_override_destination": true
+      }
 ```
