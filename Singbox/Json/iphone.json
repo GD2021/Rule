@@ -66,21 +66,21 @@
       "strict_route": true,
       "sniff": true,
       "endpoint_independent_nat": false,
-      "route_address": [
-          "0.0.0.0/1",
-          "128.0.0.0/1"
-        ],
-      "route_exclude_address": [
-          "10.0.0.0/8",
-          "172.16.0.0/12"
-        ],
-      "stack": "mixed",
-        "platform": {
-          "http_proxy": {
-            "server": "127.0.0.1",
-            "server_port": 8080
-          }
-        } 
+      "stack": "system",
+      "platform": {
+        "http_proxy": {
+          "enabled": true,
+          "server": "127.0.0.1",
+          "server_port": 2080
+        }
+      }
+    },
+    {
+      "type": "mixed",
+      "listen": "127.0.0.1",
+      "listen_port": 2080,
+      "sniff": true,
+      "users": []
     }
   ],
 
@@ -149,7 +149,7 @@
       { "tag": "geosite-github", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/github.srs", "download_detour": "🚀 节点选择" },
       { "tag": "geosite-telegram", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/telegram.srs", "download_detour": "🚀 节点选择" },
       { "tag": "geosite-tiktok", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/tiktok.srs", "download_detour": "🚀 节点选择" },
-      { "tag": "geosite-emby", "type": "remote", "format": "binary", "url": "https://github.com/GD2021/sing-box-geosite/raw/refs/heads/main/rule/Emby%2520Proxy.srs", "download_detour": "🚀 节点选择" },
+      { "tag": "geosite-emby", "type": "remote", "format": "binary", "url": "https://github.com/GD2021/sing-box-geosite/raw/refs/heads/main/rule/Emby.srs", "download_detour": "🚀 节点选择" },
       { "tag": "geosite-talkatone", "type": "remote", "format": "binary", "url": "https://ghproxy.net/https://raw.githubusercontent.com/OPPO518/Talkatone/main/Talkatone.srs", "download_detour": "🎯 全球直连" },   
       { "tag": "geosite-spotify", "type": "remote", "format": "binary", "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/spotify.srs", "download_detour": "🎯 全球直连" },      
       { "tag": "geosite-pikpak", "type": "remote", "format": "binary", "url": "https://ghproxy.net/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/pikpak.srs", "download_detour": "🎯 全球直连" },               
