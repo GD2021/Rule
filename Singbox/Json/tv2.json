@@ -68,6 +68,7 @@
               "stack": "system",
               "mtu": 9000,
               "strict_route": false,
+              "auto_route": false,
               "sniff": true,
               "sniff_override_destination": true,
               "endpoint_independent_nat": true,
