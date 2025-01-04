@@ -34,7 +34,7 @@
       "servers": [      
         {"tag": "defaultDns", "address": "223.5.5.5", "address_strategy": "ipv4_only", "detour": "🎯 全球直连"},
         {"tag": "localDns", "address": "https://331140.alidns.com/dns-query", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🎯 全球直连"},
-        {"tag": "proxyDns", "address": "https://162.159.36.1/dns-query", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🚀 节点选择"}
+        {"tag": "proxyDns", "address": "https://146.112.41.2/dns-query", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🚀 节点选择"}
       ],
       "rules": [
         { "outbound": "any", "server": "defaultDns", "disable_cache": true },
