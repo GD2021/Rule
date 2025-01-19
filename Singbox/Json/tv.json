@@ -41,20 +41,11 @@
       { "rule_set":"geosite-cn", "server": "localDns" },
       { "rule_set": "geosite-geolocation-!cn", "server": "proxyDns" }
     ],
-    "client_subnet": "221.1.81.13",
     "final": "proxyDns",
     "disable_cache": false,
     "disable_expire": false,
     "independent_cache": false,
     "strategy": "ipv4_only"
-  },
-  
-  "ntp": {
-    "enabled": true,
-    "server": "time.apple.com",
-    "server_port": 123,
-    "interval": "30m0s",
-    "detour": "🎯 全球直连"
   },
 
     "inbounds": [
