@@ -58,29 +58,32 @@
   },
 
     "inbounds": [
-    {
-      "type": "tun",
-      "address": "172.19.0.1/30",
-      "mtu": 9000,
-      "auto_route": true,
-      "sniff": true,
-      "stack": "system",
-      "platform": {
-        "http_proxy": {
-          "enabled": true,
-          "server": "127.0.0.1",
-          "server_port": 2080
+      {
+        "type": "tun",
+        "tag": "tun-auto",
+        "address": [
+          "172.18.0.1/30"
+        ],
+        "auto_route": true,
+        "strict_route": true,
+        "route_address": [
+          "0.0.0.0/1",
+          "128.0.0.0/1"
+        ],
+        "route_exclude_address": [
+          "10.0.0.0/8",
+          "172.16.0.0/12",
+          "192.168.0.0/16"
+        ],
+        "stack": "system",
+        "platform": {
+          "http_proxy": {
+            "server": "127.0.0.1",
+            "server_port": 8080
+          }
         }
       }
-    },
-    {
-      "type": "mixed",
-      "listen": "127.0.0.1",
-      "listen_port": 2080,
-      "sniff": true,
-      "users": []
-    }
-  ],
+    ],
 
   "outbounds": [
     { "tag": "🚀 节点选择", "type": "selector", "outbounds": ["🔯 香港自动", "🇭🇰 香港节点", "🇹🇼 台湾节点","🇯🇵 日本节点", "🇸🇬 狮城节点", "🇺🇲 美国节点", "🐸 手动切换", "其他地区", "♻️ 自动选择", "🎯 全球直连"] },
