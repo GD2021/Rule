@@ -33,60 +33,17 @@
             "inet6_range": "fc00:8964::/32"
         },
         "servers": [
-            {
-                "tag": "dns_proxy",
-                "address": "h3://1.1.1.1/dns-query",
-                "detour": "proxy"
-            },
-            {
-                "tag": "dns_direct",
-                "address": "quic://223.5.5.5",
-                "detour": "direct-out"
-            },
-            {
-                "tag": "fakeip",
-                "address": "fakeip"
-            }
+           {"tag":"dns_proxy","address":"h3://1.1.1.1/dns-query","detour":"proxy"},
+           {"tag":"dns_direct","address":"quic://223.5.5.5","detour":"direct-out"},
+           {"tag":"fakeip","address":"fakeip"}
         ],
         "rules": [
-            {
-                "outbound": "any",
-                "server": "dns_direct"
-            },
-            {
-                "action": "route",
-                "clash_mode": "direct",
-                "server": "dns_direct"
-            },
-            {
-                "action": "reject",
-                "query_type": "HTTPS"
-            },
-            {
-                "action": "route",
-                "clash_mode": "global",
-                "server": "fakeip"
-            },
-            {
-                "action": "route",
-                "query_type": [
-                    "A",
-                    "AAAA"
-                ],
-                "server": "fakeip",
-                "rewrite_ttl": 1
-            },
-            {
-                "type": "logical",
-                "mode": "and",
-                "rules": [
-                    {
-                        "rule_set": "geosite-geolocation-!cn",
-                        "invert": true
-                    },
-                    {
-                        "rule_set": "geoip-cn"
-                    }
+            {"outbound":"any","server":"dns_direct"},
+            {"action":"route","clash_mode":"direct","server":"dns_direct"},
+            {"action":"reject","query_type":"HTTPS"},
+            {"action":"route","clash_mode":"global","server":"fakeip"},
+            {"action":"route","query_type":["A","AAAA"],"server":"fakeip","rewrite_ttl":1},
+            {"type":"logical","mode":"and","rules":[{"rule_set":"geosite-geolocation-!cn","invert":true},{"rule_set":"geoip-cn"}
                 ],
                 "server": "dns_proxy",
                 "client_subnet": "61.141.249.0/24"
@@ -146,27 +103,29 @@
       {"network":"udp","port":443,"action":"reject"},
       {"clash_mode":"direct","action":"route","outbound":"🎯 全球直连"},
       {"clash_mode":"global","action":"route","outbound":"GLOBAL"},
+      {"rule_set": "geosite-dnsblock", "action":"reject"},
       { "domain": ["clash.razord.top", "yacd.metacubex.one", "yacd.haishan.me", "d.metacubex.one"], "outbound": "🎯 全球直连" },
-      { "rule_set": ["geosite-private", "geoip-private"], "outbound": "🎯 全球直连" },
-      { "rule_set": "geosite-chat", "outbound": "🤖 OpenAI" },
-      { "rule_set": "geosite-github", "outbound": "👨‍💻 Github" },
-      { "rule_set": "geosite-youtube", "outbound": "📹 YouTube" },
-      { "rule_set": "geosite-onedrive", "outbound": "🐬 OneDrive" }, 
-      { "rule_set": "geosite-microsoft", "outbound": "🪟 Microsoft" }, 
-      { "rule_set": ["geoip-google", "geosite-google"], "outbound": "🍀 Google" },
-      { "rule_set": "geosite-tiktok", "outbound": "🎵 TikTok" },
-      { "rule_set": ["geoip-apple", "geosite-apple"], "outbound": "🍏 Apple" },
-      { "rule_set": "geosite-emby", "outbound": "🎥 Emby" },
-      { "rule_set": "geosite-spotify", "outbound": "🎧 Spotify" }, 
-      { "rule_set": "geosite-pikpak", "outbound": "🎥 Pikpak" }, 
-      { "rule_set": "geosite-speedtest", "outbound": "📶 Speedtest" }, 
-      { "rule_set": "geosite-talkatone", "outbound": "📞 Talkatone" },
-      { "rule_set": ["geoip-telegram", "geosite-telegram"], "outbound": "📲 Telegram" },
-      { "rule_set": "geosite-geolocation-!cn", "outbound": "🚀 节点选择" },
-      { "rule_set": ["geoip-cn", "geosite-cn"], "outbound": "🎯 全球直连" }
+      { "action":"route","rule_set": ["geosite-private", "geoip-private"], "outbound": "🎯 全球直连" },
+      { "action":"route","rule_set": "geosite-chat", "outbound": "🤖 OpenAI" },
+      { "action":"route","rule_set": "geosite-github", "outbound": "👨‍💻 Github" },
+      { "action":"route","rule_set": "geosite-youtube", "outbound": "📹 YouTube" },
+      { "action":"route","rule_set": "geosite-onedrive", "outbound": "🐬 OneDrive" }, 
+      { "action":"route","rule_set": "geosite-microsoft", "outbound": "🪟 Microsoft" }, 
+      { "action":"route","rule_set": ["geoip-google", "geosite-google"], "outbound": "🍀 Google" },
+      { "action":"route","rule_set": "geosite-tiktok", "outbound": "🎵 TikTok" },
+      { "action":"route","rule_set": ["geoip-apple", "geosite-apple"], "outbound": "🍏 Apple" },
+      { "action":"route","rule_set": "geosite-emby", "outbound": "🎥 Emby" },
+      { "action":"route","rule_set": "geosite-spotify", "outbound": "🎧 Spotify" }, 
+      { "action":"route","rule_set": "geosite-pikpak", "outbound": "🎥 Pikpak" }, 
+      { "action":"route","rule_set": "geosite-speedtest", "outbound": "📶 Speedtest" }, 
+      { "action":"route","rule_set": "geosite-talkatone", "outbound": "📞 Talkatone" },
+      { "action":"route","rule_set": ["geoip-telegram", "geosite-telegram"], "outbound": "📲 Telegram" },
+      { "action":"route","rule_set": "geosite-geolocation-!cn", "outbound": "🚀 节点选择" },
+      { "action":"route","rule_set": ["geoip-cn", "geosite-cn"], "outbound": "🎯 全球直连" }
     ],
     
     "rule_set": [
+      {"tag":"geosite-dnsblock","type":"remote","format":"binary","url":"https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main//Filters/AWAvenue-Ads-Rule-Singbox.srs","download_detour":"🎯 全球直连"},
       { "tag": "geosite-chat", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-chat-!cn.srs", "download_detour": "🚀 节点选择" },
       { "tag": "geosite-youtube", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs", "download_detour": "🚀 节点选择" },
       { "tag": "geosite-google", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs", "download_detour": "🚀 节点选择" },
