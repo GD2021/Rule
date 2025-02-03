@@ -157,6 +157,6 @@
         { "tag": "geoip-private", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/private.srs", "download_detour": "🚀 节点选择" }
       ],
           "auto_detect_interface": true,
-          "final": "🐠 漏网之鱼",      
+          "final": "🐠 漏网之鱼"      
     }
   }
