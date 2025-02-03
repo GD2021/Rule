@@ -33,8 +33,8 @@
             "inet6_range": "fc00:8964::/32"
         },
         "servers": [
-           {"tag":"dns_proxy","address":"h3://1.1.1.1/dns-query","detour":"🚀 节点选择"},
-           {"tag":"dns_direct","address":"quic://223.5.5.5","detour":"🎯 全球直连"},
+           {"tag":"dns_proxy","address":"https://146.112.41.2/dns-query","detour":"🚀 节点选择"},
+           {"tag":"dns_direct","address":"https://331140.alidns.com/dns-query","detour":"🎯 全球直连"},
            {"tag":"fakeip","address":"fakeip"}
         ],
         "rules": [
