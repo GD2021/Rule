@@ -34,7 +34,7 @@
         },
         "servers": [
            {"tag":"dns_proxy","address":"https://331140.alidns.com/dns-query","detour":"🚀 节点选择"},
-           {"tag":"dns_direct","address":"https://146.112.41.2/dns-query":"🎯 全球直连"},
+           {"tag":"dns_direct","address":"https://146.112.41.2/dns-query","detour":"🎯 全球直连"},
            {"tag":"fakeip","address":"fakeip"}
         ],
         "rules": [
