@@ -41,7 +41,7 @@
             {
                 "type": "logical",
                 "mode": "and",
-                "rules":[{"rule_set":"geolocation-!cn","invert":true},{"rule_set":"geoip-cn"}],
+                "rules":[{"rule_set":"geosite-geolocation-!cn","invert":true},{"rule_set":"geoip-cn"}],
                 "server": "dns_proxy",
                 "client_subnet": "61.141.249.0/24"
             }
