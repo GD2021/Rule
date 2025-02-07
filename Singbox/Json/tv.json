@@ -54,7 +54,7 @@
             "type": "tun",
             "stack": "system",
             "address": [
-                "172.19.0.1/28"
+                "172.19.0.1/30"
             ],
             "mtu": 9000,
             "auto_route": true,
@@ -100,7 +100,7 @@
     "final": "🐠 漏网之鱼",
     "rules": [
       {"action":"sniff"},
-      {"protocol":"dns","action":"hijack-dns"}
+      {"protocol":"dns","action":"hijack-dns"},
       {"clash_mode":"Direct","action":"route","outbound":"🎯 全球直连"},
       {"clash_mode":"Global","action":"route","outbound":"🚀 节点选择"},    
       {
