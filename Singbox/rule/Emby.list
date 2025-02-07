@@ -24,6 +24,9 @@ DOMAIN,oversea.alphatvapp.top
 
 ##### B #####
 
+#bibi
+DOMAIN-SUFFIX,beebi.org
+
 # BGK
 DOMAIN-SUFFIX,emby.pro
 
@@ -55,6 +58,11 @@ DOMAIN-SUFFIX,wiri.tk
 DOMAIN-SUFFIX,xiaoyi.one
 
 ##### E #####
+
+# 二刺螈_emby
+DOMAIN-SUFFIX,media.nijigem.by
+DOMAIN-SUFFIX,CT.cdn.bgp.yt
+DOMAIN-SUFFIX,us-w.cdn.bgp.yt
 
 # Exflux
 DOMAIN-SUFFIX,line.emby.men
@@ -134,6 +142,13 @@ IP-CIDR,202.61.255.248/32,no-resolve
 # 江湖(Porn)
 DOMAIN-SUFFIX,reddust.link
 
+#July
+DOMAIN,july.vfing.de
+DOMAIN,july-hk.vfing.de
+DOMAIN,july-sg.vfing.de
+DOMAIN,july-us.vfing.de
+DOMAIN,alist7.eu.org 
+
 ##### K #####
 
 # 卡戎
@@ -192,6 +207,10 @@ DOMAIN-SUFFIX,mulgore.net
 DOMAIN-SUFFIX,emby.mdss.cloud
 
 ##### N #####
+
+# Nanflix-US
+DOMAIN,us.nanflix.net # Nanflix-US
+IP-CIDR,152.53.54.201/32,no-resolve
 
 # ntRRR
 DOMAIN-SUFFIX,ntrrr.am.sb
