@@ -20,8 +20,8 @@
     },
       "dns": {
         "servers": [
-           {"tag":"dns-remote","address":"https://94.140.14.140/dns-query","strategy":"ipv4_only","detour":"🚀 节点选择"},
-           {"tag":"dns-local","address":"https://331140.alidns.com/dns-query","strategy":"ipv4_only","detour":"🎯 全球直连"},
+           {"tag":"dns-remote","address":"https://94.140.14.140/dns-query","strategy":"ipv4_only","address_resolver": "CNNIC DNS","detour":"🚀 节点选择"},
+           {"tag":"dns-local","address":"https://331140.alidns.com/dns-query","strategy":"ipv4_only","address_resolver": "CNNIC DNS","detour":"🎯 全球直连"},
            {"tag":"CNNIC DNS","address":"1.2.4.8","detour":"🎯 全球直连"}
         ],
         "rules": [
