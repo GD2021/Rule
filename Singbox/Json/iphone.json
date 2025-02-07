@@ -149,7 +149,7 @@
       { "tag": "geosite-talkatone", "type": "remote", "format": "binary", "url": "https://ghproxy.net/https://raw.githubusercontent.com/OPPO518/Talkatone/main/Talkatone.srs", "download_detour": "🎯 全球直连" },   
       { "tag": "geosite-spotify", "type": "remote", "format": "binary", "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Spotify/Spotify.srs", "download_detour": "🎯 全球直连" },      
       { "tag": "geosite-pikpak", "type": "remote", "format": "binary", "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/PikPak/PikPak.srs", "download_detour": "🎯 全球直连" },               
-      { "tag": "geosite-speedtest", "type": "remote", "format": "binary", "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Speedtest/Speedtest.srs", "download_detour": "🎯 全球直连" },           
+      { "tag": "geosite-speedtest", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/ookla-speedtest.srs", "download_detour": "🎯 全球直连" },           
       { "tag": "geosite-apple", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/apple.srs", "download_detour": "🚀 节点选择" },
       { "tag": "geosite-microsoft", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/microsoft.srs", "download_detour": "🚀 节点选择" },
       { "tag": "geosite-onedrive", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/onedrive.srs", "download_detour": "🚀 节点选择" },
