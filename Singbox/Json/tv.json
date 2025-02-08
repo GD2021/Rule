@@ -1,7 +1,7 @@
 {
     "log": {
         "disabled": false,
-        "level": "trace",
+        "level": "warn",
         "output": "box.log",
         "timestamp": true
     },
@@ -54,12 +54,12 @@
             "type": "tun",
             "stack": "system",
             "address": [
-                "172.19.0.1/30"
+                "172.19.0.1/28"
             ],
             "mtu": 9000,
             "auto_route": true,
             "endpoint_independent_nat": false,
-            "strict_route": true
+            "strict_route": false
         },
         {
             "tag": "mixed-in",
@@ -99,10 +99,19 @@
     "auto_detect_interface": true,
     "final": "🐠 漏网之鱼",
     "rules": [
-      {"action": "sniff"},
-      {"protocol": "dns", "action": "hijack-dns"},
+      {"inbound":["mixed-in","tun-in"],"action":"sniff"},
+      {"type":"logical","mode":"or","rules":[{"protocol":"dns"},{"port":53}],"action":"hijack-dns"},
+      {"rule_set":["geosite-dnsblock"],"action":"reject","method":"default","no_drop":false},
       {"clash_mode":"Direct","action":"route","outbound":"🎯 全球直连"},
       {"clash_mode":"Global","action":"route","outbound":"🚀 节点选择"},    
+      {
+                "type": "logical",
+                "mode": "or",
+                "rules": [{"port":853},{"network":"udp","port":443},{"protocol":"stun"}],
+                "action": "reject",
+                "method": "default",
+                "no_drop": false
+      },
       { "rule_set": ["geosite-private", "geoip-private"], "action":"route","outbound": "🎯 全球直连" },      
       { "port":[22,3306,3307],"action":"route","outbound":"🎯 全球直连"},  
       { "domain": ["clash.razord.top", "yacd.metacubex.one", "yacd.haishan.me", "d.metacubex.one"], "action":"route","outbound": "🎯 全球直连" },   
