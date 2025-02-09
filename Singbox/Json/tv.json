@@ -59,12 +59,19 @@
             "mtu": 9000,
             "auto_route": true,
             "endpoint_independent_nat": false,
-            "strict_route": false
+            "strict_route": false,
+            "platform": {
+               "http_proxy": {
+               "enabled": true,
+               "server": "127.0.0.1",
+               "server_port": 2080
+            }
+          }
         },
         {
             "tag": "mixed-in",
             "type": "mixed",
-            "listen": "::",
+            "listen": "127.0.0.1",
             "listen_port": 2080
         }
     ],
@@ -99,7 +106,7 @@
     "auto_detect_interface": true,
     "final": "🐠 漏网之鱼",
     "rules": [
-      { "action":"sniff" },
+      {"action":"sniff"},
       {"protocol": "dns", "action": "hijack-dns"},
       {"rule_set":["geosite-dnsblock"],"action":"reject","method":"default","no_drop":false},
       {"clash_mode":"Direct","action":"route","outbound":"🎯 全球直连"},
@@ -124,8 +131,6 @@
       "beebi.org"
       ],"action":"route","outbound":"🎥 Emby" },
       { "rule_set": ["geosite-private", "geoip-private"], "action":"route","outbound": "🎯 全球直连" },      
-      { "port":[22,3306,3307],"action":"route","outbound":"🎯 全球直连"},  
-      { "domain": ["clash.razord.top", "yacd.metacubex.one", "yacd.haishan.me", "d.metacubex.one"], "action":"route","outbound": "🎯 全球直连" },   
       { "rule_set": "geosite-chat", "action":"route","outbound": "🤖 OpenAI" },
       { "rule_set": "geosite-github", "action":"route","outbound": "👨‍💻 Github" },
       { "rule_set": "geosite-youtube", "action":"route","outbound": "📹 YouTube" },
@@ -152,7 +157,7 @@
       { "tag": "geosite-github", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/github.srs", "download_detour": "🚀 节点选择","update_interval": "3d" },
       { "tag": "geosite-telegram", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/telegram.srs", "download_detour": "🚀 节点选择","update_interval": "3d" },
       { "tag": "geosite-tiktok", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/tiktok.srs", "download_detour": "🚀 节点选择","update_interval": "3d" },
-      { "tag": "geosite-emby", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/senshinya/singbox_ruleset/main/rule/Emby/Emby.srs", "download_detour": "🚀 节点选择","update_interval": "3d" },
+      { "tag": "geosite-emby", "type": "remote", "format": "binary", "url": "https://raw.githubusercontent.com/imoyy/sing-box-geosite/main/rule/Emby.srs", "download_detour": "🚀 节点选择","update_interval": "3d" },
       { "tag": "geosite-talkatone", "type": "remote", "format": "binary", "url": "https://ghproxy.net/https://raw.githubusercontent.com/OPPO518/Talkatone/main/Talkatone.srs", "download_detour": "🚀 节点选择","update_interval": "3d" },   
       { "tag": "geosite-spotify", "type": "remote", "format": "binary", "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/Spotify/Spotify.srs", "download_detour": "🚀 节点选择","update_interval": "3d" },      
       { "tag": "geosite-pikpak", "type": "remote", "format": "binary", "url": "https://github.com/senshinya/singbox_ruleset/raw/refs/heads/main/rule/PikPak/PikPak.srs", "download_detour": "🚀 节点选择","update_interval": "3d" },               
