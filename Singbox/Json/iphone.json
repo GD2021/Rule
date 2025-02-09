@@ -111,10 +111,8 @@
 	"final": "🚀 节点选择",
     "rules": 
     [
-      {"inbound":["tun-in","mixed-in"],"action":"resolve","strategy":"ipv4_only"}, 
-      {"inbound":["tun-in","mixed-in"],"action":"sniff","timeout":"1s"},
-      {"protocol": "dns", "action": "hijack-dns"},
-      {	"type":"logical","mode":"or","rules":[{"port":853},{"network":"udp","port":443},{"protocol":"stun"}],"action":"reject"	},
+      {"inbound":["mixed-in","tun-in"],"action":"sniff"},
+      {"type":"logical","mode":"or","rules":[{"protocol":"dns"},{"port":53}],"action":"hijack-dns"},
       { "clash_mode":"Direct","action":"route","outbound":"🎯 全球直连" },
       { "clash_mode":"Global","action":"route","outbound":"🚀 节点选择" }, 
       {	"rule_set":"geosite-dnsblock","action":"reject","method":"default","no_drop":false	},
