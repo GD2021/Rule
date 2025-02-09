@@ -100,7 +100,7 @@
     "final": "🐠 漏网之鱼",
     "rules": [
       {"action":"sniff"},
-      {"action":"hijack-dns"}
+      {"action":"hijack-dns"},
       {"clash_mode":"Direct","action":"route","outbound":"🎯 全球直连"},
       {"clash_mode":"Global","action":"route","outbound":"🚀 节点选择"},      
       { "rule_set": ["geosite-private", "geoip-private"], "action":"route","outbound": "🎯 全球直连" },      
