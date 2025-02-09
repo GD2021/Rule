@@ -128,7 +128,9 @@
       "581658.best",
       "tanhuatv.site",
       "emby.as174.de",
-      "beebi.org"
+      "beebi.org",
+      "7777777.buzz",
+      "us.nanflix.net" 
       ],"action":"route","outbound":"🎥 Emby" },
       { "rule_set": ["geosite-private", "geoip-private"], "action":"route","outbound": "🎯 全球直连" },      
       { "rule_set": "geosite-chat", "action":"route","outbound": "🤖 OpenAI" },
