@@ -100,7 +100,7 @@
     "final": "🐠 漏网之鱼",
     "rules": [
       { "action":"sniff" },
-      {"type":"logical","mode":"or","rules":[{"protocol":"dns"},{"port":53}],"action":"hijack-dns"},
+      {"protocol": "dns", "action": "hijack-dns"},
       {"rule_set":["geosite-dnsblock"],"action":"reject","method":"default","no_drop":false},
       {"clash_mode":"Direct","action":"route","outbound":"🎯 全球直连"},
       {"clash_mode":"Global","action":"route","outbound":"🚀 节点选择"},    
