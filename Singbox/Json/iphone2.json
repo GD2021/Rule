@@ -25,9 +25,9 @@
         ],
         "rules": [
             {"outbound":"any","action":"route","server":"dns-local"},
+            {"rule_set":"geosite-dnsblock","action":"reject","method":"default","no_drop":false},
             {"clash_mode":"Direct","action":"route","server":"dns-local"},
             {"clash_mode":"Global","action":"route","server":"dns-remote"},
-            {"rule_set":"geosite-dnsblock","action":"reject","method":"default","no_drop":false},
             {"rule_set":"geosite-cn","action":"route","server":"dns-local"},
             {"rule_set":"geosite-geolocation-!cn","action":"route","server":"dns-remote"},
             {
@@ -38,13 +38,13 @@
                 ],
                 "action": "route",
                 "server": "dns-remote",
-                "client_subnet": "114.114.114.114/24"
+                "client_subnet": "124.134.235.0/24"
             }
         ],
         "final": "dns-remote",
         "strategy": "ipv4_only",
         "disable_cache": false,
-        "disable_expire": true,
+        "disable_expire": false,
         "independent_cache": true,
         "reverse_mapping": false
     },
@@ -59,7 +59,7 @@
             "mtu": 9000,
             "auto_route": true,
             "endpoint_independent_nat": false,
-            "strict_route": false
+            "strict_route": true
         },
         {
             "tag": "mixed-in",
@@ -99,21 +99,11 @@
     "auto_detect_interface": true,
     "final": "🐠 漏网之鱼",
     "rules": [
-      {"inbound":["mixed-in","tun-in"],"action":"sniff"},
-      {"type":"logical","mode":"or","rules":[{"protocol":"dns"},{"port":53}],"action":"hijack-dns"}, 
+      {"action":"sniff"},
+      {"action":"hijack-dns"}
       {"clash_mode":"Direct","action":"route","outbound":"🎯 全球直连"},
-      {"clash_mode":"Global","action":"route","outbound":"🚀 节点选择"},    
-      {
-                "type": "logical",
-                "mode": "or",
-                "rules": [{"port":853},{"network":"udp","port":443},{"protocol":"stun"}],
-                "action": "reject",
-                "method": "default",
-                "no_drop": false
-      },    
+      {"clash_mode":"Global","action":"route","outbound":"🚀 节点选择"},      
       { "rule_set": ["geosite-private", "geoip-private"], "action":"route","outbound": "🎯 全球直连" },      
-      { "port":[22,3306,3307],"action":"route","outbound":"🎯 全球直连"},  
-      { "domain": ["clash.razord.top", "yacd.metacubex.one", "yacd.haishan.me", "d.metacubex.one"], "action":"route","outbound": "🎯 全球直连" },   
       { "rule_set": "geosite-chat", "action":"route","outbound": "🤖 OpenAI" },
       { "rule_set": "geosite-github", "action":"route","outbound": "👨‍💻 Github" },
       { "rule_set": "geosite-youtube", "action":"route","outbound": "📹 YouTube" },
