@@ -33,7 +33,17 @@
             {"clash_mode":"Global","action":"route","server":"dns-remote"},
             {"rule_set":"geosite-dnsblock","action":"reject","method":"default","no_drop":false},
             {"rule_set":"geosite-cn","action":"route","server":"dns-local"},
-            {"rule_set":"geosite-geolocation-!cn","action":"route","server":"dns-remote"}
+            {"rule_set":"geosite-geolocation-!cn","action":"route","server":"dns-remote"},
+            {
+                "type": "logical",
+                "mode": "and",
+                "rules": [
+                   {"rule_set":"geosite-geolocation-!cn","invert":true},{"rule_set":"geoip-cn"}
+                ],
+                "action": "route",
+                "server": "dns-remote",
+                "client_subnet": "114.114.114.114/24"
+            }
         ],
         "final": "dns-remote",
         "strategy": "ipv4_only",
@@ -56,12 +66,12 @@
             "endpoint_independent_nat": false,
             "strict_route": false,
             "platform": {
-              "http_proxy": {
-              "enabled": true,
-              "server": "127.0.0.1",
-              "server_port": 2080
-        }
-        }
+               "http_proxy": {
+               "enabled": true,
+               "server": "127.0.0.1",
+               "server_port": 2080
+            }
+          }
         },
         {
             "tag": "mixed-in",
@@ -101,10 +111,11 @@
   "route": {
     "rules": 
     [
-      {"action":"sniff"},
-      {"action":"hijack-dns"},
-      {"clash_mode":"Direct","action":"route","outbound":"🎯 全球直连"},
-      {"clash_mode":"Global","action":"route","outbound":"🚀 节点选择"},      
+      { "action":"sniff" },
+      {"protocol": "dns", "action": "hijack-dns"},
+      { "clash_mode":"Direct","action":"route","outbound":"🎯 全球直连" },
+      { "clash_mode":"Global","action":"route","outbound":"🚀 节点选择" }, 
+      { "domain_suffix":["copymanga.site","copymanga.tv","mangafuna.xyz","mangafunb.fun","senzyo.net"],"action":"route","outbound":"🎥 Emby" },  
       { "rule_set": ["geosite-private", "geoip-private"], "action":"route","outbound": "🎯 全球直连" },      
       { "rule_set": "geosite-chat", "action":"route","outbound": "🤖 OpenAI" },
       { "rule_set": "geosite-github", "action":"route","outbound": "👨‍💻 Github" },
