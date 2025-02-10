@@ -106,8 +106,8 @@
    "final": "🚀 节点选择",
     "rules": 
     [
-	{"inbound":["mixed-in","tun-in"],"action":"sniff"},
-	{"type":"logical","mode":"or","rules":[{"protocol":"dns"},{"port":53}],"action":"hijack-dns"},
+	{"action":"sniff"},
+	{"protocol":"dns","action":"hijack-dns"},
 	{ "clash_mode":"Direct","action":"route","outbound":"🎯 全球直连" },
 	{ "clash_mode":"Global","action":"route","outbound":"🚀 节点选择" }, 
 	{"type":"logical","mode":"or","rules":[{"port":853},{"network":"udp","port":443},{"protocol":"stun"}],"action":"reject","method":"default","no_drop":false},
