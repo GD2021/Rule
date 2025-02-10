@@ -122,15 +122,17 @@
       {	"rule_set":"geosite-dnsblock","action":"reject","method":"default","no_drop":false	},
       { "domain_suffix":
       [
-      "cf.bili.rip",
-      "cu.cdn.bgp.yt",
-      "sxiaolong-my.sharepoint.com",
-      "july-us.vfing.de",
-      "embyplus.org",
-      "581658.best",
-      "tanhuatv.site",
-      "emby.as174.de",
-      "beebi.org"
+	"cf.bili.rip",
+	"cu.cdn.bgp.yt",
+	"sxiaolong-my.sharepoint.com",
+	"july-us.vfing.de",
+	"embyplus.org",
+	"581658.best",
+	"tanhuatv.site",
+	"emby.as174.de",
+	"beebi.org",
+	"7777777.buzz",
+	"us.nanflix.net" 
       ],
       "action":"route","outbound":"🎥 Emby" },  
       { "rule_set": ["geosite-private", "geoip-private"], "action":"route","outbound": "🎯 全球直连" },      
