@@ -64,14 +64,13 @@
             ],
             "mtu": 9000,
             "auto_route": true,
-            "endpoint_independent_nat": false,
-            "platform": {
-               "http_proxy": {
-               "enabled": true,
-               "server": "127.0.0.1",
-               "server_port": 2080
-            }
-          }
+            "endpoint_independent_nat": false
+        },
+        {  
+            "tag": "mixed-in",
+            "type": "mixed",
+            "listen": "127.0.0.1",
+            "listen_port": 2080
         }
     ],
   "outbounds": 
@@ -92,24 +91,23 @@
 	{ "tag": "📲 Telegram", "type": "selector", "outbounds": ["🚀 节点选择", "♻️ 自动选择", "🇭🇰 香港节点", "🇹🇼 台湾节点","🇯🇵 日本节点", "🇸🇬 狮城节点", "🇺🇲 美国节点", "🐸 手动切换"],"default":"♻️ 自动选择"},
 	{ "tag": "🍏 Apple", "type": "selector", "outbounds": ["🎯 全球直连", "🇭🇰 香港节点", "🇯🇵 日本节点", "🇺🇲 美国节点"],"default":"🎯 全球直连" },
 	{ "tag": "🐸 手动切换", "type": "selector", "outbounds": ["{all}"]},
-	{ "tag": "🐟 漏网之鱼", "type": "selector", "outbounds": ["🚀 节点选择", "🎯 全球直连"] },
 	{ "tag": "🇭🇰 香港节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇭🇰|HK|hk|香港|港|HongKong"] }] },
 	{ "tag": "🇹🇼 台湾节点", "type":"selector", "outbounds": ["{all}"], "filter": [{"action":"include", "keywords":["🇹🇼|TW|tw|台湾|臺灣|台|Taiwan"]}]},
 	{ "tag": "🇯🇵 日本节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇯🇵|JP|jp|日本|日|Japan"] }] },
 	{ "tag": "🇸🇬 狮城节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["新加坡|坡|狮城|SG|Singapore"] }] },
 	{ "tag": "🇺🇲 美国节点", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇺🇸|US|us|美国|美|United States"] }] },
 	{ "tag": "♻️ 自动选择", "type": "urltest", "outbounds": ["{all}"], "url": "https://www.youtube.com/generate_204", "interval": "10m", "tolerance": 50 },
-    	{ "tag": "🎯 全球直连", "type": "direct" }
+	{ "tag": "🎯 全球直连", "type": "direct" }
     
   ],
   
   "route": {
    "auto_detect_interface": true,
-   "final": "🐟 漏网之鱼",
+   "final": "🚀 节点选择",
     "rules": 
     [
-	{"inbound":["tun-in"],"action":"sniff"},
-	{"protocol": "dns", "action": "hijack-dns"},
+	{"inbound":["mixed-in","tun-in"],"action":"sniff"},
+	{"type":"logical","mode":"or","rules":[{"protocol":"dns"},{"port":53}],"action":"hijack-dns"},
 	{ "clash_mode":"Direct","action":"route","outbound":"🎯 全球直连" },
 	{ "clash_mode":"Global","action":"route","outbound":"🚀 节点选择" }, 
 	{"type":"logical","mode":"or","rules":[{"port":853},{"network":"udp","port":443},{"protocol":"stun"}],"action":"reject","method":"default","no_drop":false},
