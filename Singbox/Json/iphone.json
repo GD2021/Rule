@@ -72,12 +72,6 @@
                "server_port": 2080
             }
           }
-        },
-        {  
-            "tag": "mixed-in",
-            "type": "mixed",
-            "listen": "127.0.0.1",
-            "listen_port": 2080
         }
     ],
   "outbounds": 
