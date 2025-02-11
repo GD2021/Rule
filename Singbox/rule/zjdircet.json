@@ -1,0 +1,10 @@
+{
+  "rules": [
+    {
+      "domain_suffix": [
+        "chat.qwenlm.ai"
+      ]
+    }
+  ],
+  "version": 2
+}
