@@ -28,7 +28,7 @@
             {"clash_mode":"Direct","action":"route","server":"dns-local"},
             {"clash_mode":"Global","action":"route","server":"dns-remote"},
             {"rule_set":"geosite-dnsblock","action":"reject","method":"default","no_drop":false},
-            {"rule_set":"geosite-cn","action":"route","server":"dns-local"},
+            {"rule_set":["ChinaDirect","geosite-cn"],"action":"route","server":"dns-local"},
             {
                 "type": "logical",
                 "mode": "and",
