@@ -15,8 +15,8 @@
         },
         "clash_api": 
         {
-		"external_controller": "127.0.0.1:9090",
-		"external_ui": "ui",
+		"external_controller": "0.0.0.0:9090",
+		"external_ui": "xd",
 		"external_ui_download_url": "https://raw.ihtw.moe/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
 		"external_ui_download_detour": "🎯 全球直连",
 		"default_mode": "rule"
@@ -107,12 +107,12 @@
     "rules": 
     [
 	{"action":"sniff"},
-	{"protocol":"dns","action":"hijack-dns"},
+	{"protocol":"dns","action":"hijack-dns"},	
+	{"rule_set":"geosite-dnsblock","action":"reject","method":"default","no_drop":false},
 	{ "clash_mode":"Direct","action":"route","outbound":"🎯 全球直连" },
 	{ "clash_mode":"Global","action":"route","outbound":"🚀 节点选择" }, 
-	{"type":"logical","mode":"or","rules":[{"port":853},{"network":"udp","port":443},{"protocol":"stun"}],"action":"reject","method":"default","no_drop":false},
-	{"rule_set":"geosite-dnsblock","action":"reject","method":"default","no_drop":false},
-      	{ "rule_set": ["geosite-private", "geoip-private"], "action":"route","outbound": "🎯 全球直连" },      
+      	{ "rule_set": ["geosite-private", "geoip-private"], "action":"route","outbound": "🎯 全球直连" },   
+      	{ "rule_set": ["geoip-cn", "geosite-cn"], "action":"route","outbound": "🎯 全球直连" },    
       	{ "rule_set": "geosite-chat", "action":"route","outbound": "🤖 OpenAI" },
       	{ "rule_set": "geosite-github", "action":"route","outbound": "👨‍💻 Github" },
       	{ "rule_set": "geosite-youtube", "action":"route","outbound": "📹 YouTube" },
@@ -121,6 +121,11 @@
       	{ "rule_set": ["geoip-google", "geosite-google"], "action":"route","outbound": "🍀 Google" },
       	{ "rule_set": "geosite-tiktok", "action":"route","outbound": "🎵 TikTok" },
       	{ "rule_set": ["geoip-apple", "geosite-apple"], "action":"route","outbound": "🍏 Apple" },
+      	{ "rule_set": "geosite-spotify", "action":"route","outbound": "🎧 Spotify" }, 
+      	{ "rule_set": "geosite-pikpak", "action":"route","outbound": "🎥 Pikpak" }, 
+      	{ "rule_set": "geosite-speedtest", "action":"route","outbound": "📶 Speedtest" }, 
+      	{ "rule_set": "geosite-talkatone", "action":"route","outbound": "📞 Talkatone" },
+      	{ "rule_set": ["geoip-telegram", "geosite-telegram"], "action":"route","outbound": "📲 Telegram" },
       	{ "rule_set": "geosite-emby", "action":"route","outbound": "🎥 Emby" },
 	{ "domain_suffix":
 		[
@@ -137,13 +142,8 @@
 		"us.nanflix.net" 
 		],
       "action":"route","outbound":"🎥 Emby" }, 
-      	{ "rule_set": "geosite-spotify", "action":"route","outbound": "🎧 Spotify" }, 
-      	{ "rule_set": "geosite-pikpak", "action":"route","outbound": "🎥 Pikpak" }, 
-      	{ "rule_set": "geosite-speedtest", "action":"route","outbound": "📶 Speedtest" }, 
-      	{ "rule_set": "geosite-talkatone", "action":"route","outbound": "📞 Talkatone" },
-      	{ "rule_set": ["geoip-telegram", "geosite-telegram"], "action":"route","outbound": "📲 Telegram" },
-      	{ "rule_set": "geosite-geolocation-!cn", "action":"route","outbound": "🚀 节点选择" },
-      	{ "rule_set": ["geoip-cn", "geosite-cn"], "action":"route","outbound": "🎯 全球直连" }
+      	{ "rule_set": "geosite-geolocation-!cn", "action":"route","outbound": "🚀 节点选择" }
+      	
     ],
     
     "rule_set": 
