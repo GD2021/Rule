@@ -28,12 +28,14 @@
             {"clash_mode":"Direct","action":"route","server":"dns-local"},
             {"clash_mode":"Global","action":"route","server":"dns-remote"},
             {"rule_set":"geosite-dnsblock","action":"reject","method":"default","no_drop":false},
-            {"rule_set":["ChinaDirect","geosite-cn"],"action":"route","server":"dns-local"},
+			{"rule_set":"ChinaDirect","action":"route","server":"dns-local"},
+            {"rule_set":"geosite-cn","action":"route","server":"dns-local"},
+            {"rule_set":"geosite-javdb","action":"route","server":"dns-remote"},
             {
                 "type": "logical",
                 "mode": "and",
                 "rules": [
-                    {
+					{
                         "rule_set": "geosite-geolocation-!cn",
                         "invert": true
                     },
@@ -161,9 +163,11 @@
             {"rule_set":"geosite-youtube","action":"route","outbound":"📹 YouTube"},
             {"rule_set":"geosite-onedrive","action":"route","outbound":"🐬 OneDrive"},
             {"rule_set":"geosite-microsoft","action":"route","outbound":"🪟 Microsoft"},
-            {"rule_set":["geoip-google","geosite-google"],"action":"route","outbound":"🍀 Google"},
+            {"rule_set":["geoip-google","geosite-google"],"action":"route","outbound":"🍀 Google"},  
+			{"rule_set":"geosite-javdb","action":"route","outbound":"🐸 手动切换"},
             {"rule_set":"geosite-geolocation-!cn","action":"route","outbound":"🚀 节点选择"},
-            {"rule_set":["ChinaDirect","geosite-cn","geoip-cn"],"action":"route","outbound":"🎯 全球直连"}
+            {"rule_set":"ChinaDirect","action":"route","outbound":"🎯 全球直连"},
+            {"rule_set":["geosite-cn","geoip-cn"],"action":"route","outbound":"🎯 全球直连"}
         ],
         "rule_set": [
             {
@@ -350,6 +354,14 @@
                 "download_detour": "🎯 全球直连",
                 "update_interval": "3d"
             },
+            {
+				"tag": "geosite-javdb",
+				"type": "remote",
+				"format": "binary",
+				"url": "https://jsdelivr.pai233.top/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/javdb.srs",
+				"download_detour": "🎯 全球直连",
+                "update_interval": "3d"
+			},
             {
                 "tag": "geoip-private",
                 "type": "remote",
