@@ -163,6 +163,19 @@
                 "action": "route",
                 "outbound": "🎥 Emby"
             },
+            { "domain_suffix":[
+						"fpo.xxx",
+						"bigwarp.io",
+						"cdn-centaurus.com",
+						"filegram.to",
+						"trendyporn.com",
+						"zload.cc",
+						"trafficdeposit.com",
+						"cambro.tv",
+						"phncdn.com",
+						"tapecontent.net",
+						"vidoza.net"
+			],"action":"route","outbound":"🐸 手动切换" },
             {"rule_set":"geosite-javdb","action":"route","outbound":"🐸 手动切换"},
             {"rule_set":"geosite-geolocation-!cn","action":"route","outbound":"🚀 节点选择"},
             {"rule_set":"ChinaDirect","action":"route","outbound":"🎯 全球直连"},
