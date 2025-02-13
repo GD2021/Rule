@@ -114,9 +114,9 @@
         "rules": [
             {"action":"sniff"},
             {"protocol":"dns","action":"hijack-dns"},
-            {"rule_set":"geosite-dnsblock","action":"reject","method":"default","no_drop":false},
             {"clash_mode":"Direct","action":"route","outbound":"🎯 全球直连"},
             {"clash_mode":"Global","action":"route","outbound":"🚀 节点选择"},
+	    {"rule_set":"geosite-dnsblock","action":"reject","method":"default","no_drop":false},
             {"rule_set":["geosite-private","geoip-private"],"action":"route","outbound":"🎯 全球直连"},
             {"rule_set":"geosite-chat","action":"route","outbound":"🤖 OpenAI"},
             {"rule_set":"geosite-github","action":"route","outbound":"👨‍💻 Github"},
