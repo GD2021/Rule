@@ -25,7 +25,7 @@
             {
                 "tag": "dns-remote",
                 "address": "https://dns.google/dns-query",
-                "address_resolver": "dns-dl",
+                "address_resolver": "dns-zl",
                 "strategy": "ipv4_only",
                 "detour": "🚀 节点选择"
             },
@@ -35,12 +35,6 @@
                 "address_resolver": "dns-zl",
                 "strategy": "ipv4_only",
                 "detour": "🎯 全球直连"
-            },
-            {
-                "tag": "dns-dl",
-                "address": "udp://8.8.8.8",
-                "strategy": "ipv4_only",
-                "detour": "🚀 节点选择"
             },
             {
                 "tag": "dns-zl",
