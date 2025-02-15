@@ -125,7 +125,7 @@
         "rules": [
             {"inbound":["mixed-in","tun-in"],"action":"sniff"},
 			{"type":"logical","mode":"or","rules":[{"protocol":"dns"},{"port":53}],"action":"hijack-dns"},
-			{"ip_is_private":true,"action":"route","outbound":"🐢 直连"},
+			{"ip_is_private":true,"action":"route","outbound":"🎯 全球直连"},
             {"clash_mode":"Direct","action":"route","outbound":"🎯 全球直连"},
             {"clash_mode":"Global","action":"route","outbound":"🚀 节点选择"},
 			{"rule_set":"geosite-dnsblock","action":"reject","method":"default","no_drop":false},
