@@ -336,7 +336,7 @@
                 "tag": "ChinaDirect",
                 "type": "remote",
                 "format": "binary",
-                "url": "https://fastly.jsdelivr.net/gh/GD2021/sing-box-rule@main/rule/ChinaDirect.srs",
+                "url": "https://jsdelivr.pai233.top/gh/GD2021/auto-rule@main/rule/ChinaDirect.srs",
                 "download_detour": "🎯 全球直连",
                 "update_interval": "3d"
             },
