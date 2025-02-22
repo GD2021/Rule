@@ -30,10 +30,25 @@
             {"clash_mode":"Global","action":"route","server":"remote_fakeip"},
             {"query_type":"HTTPS","action":"reject"},
             {"query_type": ["A","AAAA"],"action": "route","server": "remote_fakeip","rewrite_ttl": 1},
-            {"rule_set":["geosite-cn","ChinaDirect","geosite-apple"],"action":"route","server":"dns-local"}
+            {"rule_set":["geosite-cn","ChinaDirect","geosite-apple"],"action":"route","server":"dns-local"},
+            {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set": "geosite-geolocation-!cn",
+            "invert": true
+          },
+          {
+            "rule_set": "geoip_cn"
+          }
         ],
-        "final": "dns-remote",
+        "server": "dns-remote",
+        "client_subnet": "114.114.114.114/24"
+      }
+        ],
         "fakeip": {"enabled": true,"inet4_range": "198.18.0.0/15","inet6_range": "fc00::/18"},
+        "final": "dns-remote",
         "strategy": "ipv4_only",
         "independent_cache": true
     },
@@ -41,8 +56,9 @@
 			{
 			"type": "tun",
 			"address": [
-				"172.19.0.0/30"
-			],
+                "172.18.0.1/30",
+                "fdfe:dcba:9876::1/126"
+            ],
 			"stack": "mixed",
 			"auto_route": true,
 			"platform": {
@@ -61,7 +77,7 @@
 		],
 
     "outbounds": [
-		{"tag":"🎯 全球直连","type":"direct"},
+		
         {"tag":"🚀 节点选择","type":"selector","outbounds":["🇭🇰 香港节点","🇹🇼 台湾节点","🇯🇵 日本节点","🇸🇬 狮城节点","🇺🇲 美国节点","🐸 手动切换","♻️ 自动选择","🎯 全球直连"]},
         {"tag":"📹 YouTube","type":"selector","outbounds":["🚀 节点选择","♻️ 自动选择","🇭🇰 香港节点","🇹🇼 台湾节点","🇯🇵 日本节点","🇸🇬 狮城节点","🇺🇲 美国节点","🐸 手动切换"],"default":"♻️ 自动选择"},
         {"tag":"🤖 OpenAI","type":"selector","outbounds":["🚀 节点选择","♻️ 自动选择","🇭🇰 香港节点","🇹🇼 台湾节点","🇯🇵 日本节点","🇸🇬 狮城节点","🇺🇲 美国节点","🐸 手动切换"],"default":"♻️ 自动选择"},
@@ -79,14 +95,14 @@
         {"tag":"🍏 Apple","type":"selector","outbounds":["🎯 全球直连","🇭🇰 香港节点","🇯🇵 日本节点","🇺🇲 美国节点"],"default":"🎯 全球直连"},
         { "tag": "🐠 漏网之鱼", "type": "selector", "outbounds": ["🚀 节点选择","🎯 全球直连","🇭🇰 香港节点","🇹🇼 台湾节点","🇯🇵 日本节点","🇸🇬 狮城节点","🇺🇲 美国节点","🐸 手动切换"] },
         
-        
         {"tag":"🐸 手动切换","type":"selector","outbounds":["{all}"]},
         {"tag":"🇭🇰 香港节点","type":"selector","outbounds":["{all}"],"filter":[{"action":"include","keywords":["🇭🇰|HK|hk|香港|港|HongKong"]}]},
         {"tag":"🇹🇼 台湾节点","type":"selector","outbounds":["{all}"],"filter":[{"action":"include","keywords":["🇹🇼|TW|tw|台湾|臺灣|台|Taiwan"]}]},
         {"tag":"🇯🇵 日本节点","type":"selector","outbounds":["{all}"],"filter":[{"action":"include","keywords":["🇯🇵|JP|jp|日本|日|Japan"]}]},
         {"tag":"🇸🇬 狮城节点","type":"selector","outbounds":["{all}"],"filter":[{"action":"include","keywords":["新加坡|坡|狮城|SG|Singapore"]}]},
         {"tag":"🇺🇲 美国节点","type":"selector","outbounds":["{all}"],"filter":[{"action":"include","keywords":["🇺🇸|US|us|美国|美|United States"]}]},
-        {"tag":"♻️ 自动选择","type":"urltest","outbounds":["{all}"],"url":"https://www.youtube.com/generate_204","interval":"10m","tolerance":50}
+        {"tag":"♻️ 自动选择","type":"urltest","outbounds":["{all}"],"url":"https://www.youtube.com/generate_204","interval":"10m","tolerance":50},
+        {"tag":"🎯 全球直连","type":"direct"}
     ],
     "route": {
 		"find_process": false,
@@ -95,6 +111,7 @@
         "rules": [
             {"action":"sniff","sniffer":["http","tls","quic","dns"],"timeout":"500ms"},
 			{"type":"logical","mode":"or","rules":[{"port":53},{"protocol":"dns"}],"action":"hijack-dns"},
+			{"ip_is_private":true,"action":"route","outbound":"🎯 全球直连"},
             {"clash_mode":"Direct","action":"route","outbound":"🎯 全球直连"},
             {"clash_mode":"Global","action":"route","outbound":"🚀 节点选择"},
             {"rule_set": ["geosite-dnsblock"],"action": "reject"},
@@ -183,8 +200,8 @@
                 "outbound": "🎥 Emby"
             },
             {"rule_set":"ChinaDirect","action":"route","outbound":"🎯 全球直连"},
-            {"rule_set":["geoip-cn","geosite-cn"],"action":"route","outbound":"🎯 全球直连"},
-            {"ip_is_private":true,"action":"route","outbound":"🎯 全球直连"}
+            {"rule_set":["geoip-cn","geosite-cn"],"action":"route","outbound":"🎯 全球直连"}
+            
         ],
         "rule_set": [
             {
