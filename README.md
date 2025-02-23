@@ -3,13 +3,21 @@
 
 ### 🔗 Singbox订阅转换工具
 
-- [Sublink](https://sub.jojo.cloudns.org/)
-- [https://hproxy.filegear-sg.me/config/订阅链接&file=模板文件](https://hproxy.filegear-sg.me/config/%E8%AE%A2%E9%98%85%E9%93%BE%E6%8E%A5&file=%E6%A8%A1%E6%9D%BF%E6%96%87%E4%BB%B6)
+- `https://hproxy.filegear-sg.me/config/订阅链接&file=模板文件`
+- 
+### 鸣谢
+- [luestr/ProxyResource: 可莉的Loon资源库 | 插件 | 脚本 | 规则](https://github.com/luestr/ProxyResource/tree/main)
+- [Repcz/Tool](https://github.com/Repcz/Tool)
+- [Centralmatrix3/Matrix-io](https://github.com/Centralmatrix3/Matrix-io)
+- [Coldvvater/Mononoke](https://github.com/Coldvvater/Mononoke/tree/master)
+- [LeLeBay/linzein](https://github.com/LeLeBay/linzein)
+- [mphin/ACL4SSR](https://github.com/mphin/ACL4SSR)
+- [GeQ1an/Rules](https://github.com/GeQ1an/Rules/tree/master)
+- [Surge Ruleset Server | Sukka](https://ruleset.skk.moe/)
+- [LucaLin233/Luca_Conf: LucaLin233的自用配置](https://github.com/LucaLin233/Luca_Conf)
+- [Scripts/Ruleset/Special/P-Media.list](https://github.com/Centralmatrix3/Scripts/blob/c921cbc8caef89e9dee2d9cd4ba815d6f7902d3d/Ruleset/Special/P-Media.list#L37)
+- [Rabbit-Spec/Surge: Surge自用配置以及模块和脚本](https://github.com/Rabbit-Spec/Surge?tab=readme-ov-file)
+- [Yfamily](https://whatshub.top/)
 
----
-a
-### 📜 Substore 转换脚本
+### 配置模板
 
-- [GD2021 脚本](https://raw.githubusercontent.com/GD2021/Rule/refs/heads/main/singbox.js#type=1&name=TV)
-- [Xishang0128 脚本](https://raw.githubusercontent.com/xishang0128/sub-store-template/main/sing-box.js#type=1&name=TV)
-- [Marlunzhang 脚本](https://raw.githubusercontent.com/marlunzhang/rules/refs/heads/main/sinbox.js#type=1&name=TV)
