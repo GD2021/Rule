@@ -32,7 +32,8 @@
         "rules": [
             {"outbound":"any","action":"route","server":"dns-local", "disable_cache": true},
             {"clash_mode":"Direct","action":"route","server":"dns-local"},
-            {"clash_mode":"Global","action":"route","server":"remote_fakeip"},            
+            {"clash_mode":"Global","action":"route","server":"remote_fakeip"},  
+            {"query_type":"HTTPS","action":"reject"},  
             {"rule_set":"geosite-cn","action":"route","server":"dns-local"},
             {"rule_set":"geosite-geolocation-!cn","action":"route","server":"remote_fakeip"},
             {"rule_set":"geosite-geolocation-!cn","query_type":["A","AAAA"],"server":"remote_fakeip","rewrite_ttl": 1}
@@ -100,9 +101,8 @@
         "final": "🐠 漏网之鱼",
         "rules": [
         
-			{"inbound":"tun-in","action":"sniff"},
-			{"protocol":"dns","action":"hijack-dns"},
-			{"port":443,"network":"udp","action":"reject"},
+			{"action":"sniff","sniffer":["http","tls","quic","dns"],"timeout":"500ms"},
+			{"type":"logical","mode":"or","rules":[{"port":53},{"protocol":"dns"}],"action":"hijack-dns"},
 			{"rule_set":"geosite-dnsblock","clash_mode":"rule","action":"reject"},
 			{"rule_set":"geosite-dnsblock","clash_mode":"Global","outbound":"🚀 节点选择"},
             {"clash_mode":"Direct","action":"route","outbound":"🎯 全球直连"},
