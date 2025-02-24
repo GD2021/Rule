@@ -71,7 +71,7 @@
             {"tag":"Speedtest","type":"remote","format":"binary","url":
 "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/ookla-speedtest.srs","download_detour":"direct"},
 			{"tag":"Talkatone","type":"remote","format":"binary","url":
-"https://fastly.jsdelivr.net/gh/OPPO518/Talkatone@main/Talkatone.srs","download_detour":"direct"},
+"https://git.repcz.link/github.com/Repcz/Tool/raw/refs/heads/X/sing-box/Rules/Talkatone.srs","download_detour":"direct"},
 			{"tag":"Javdb","type":"remote","format":"binary","url":
 "https://jsdelivr.pai233.top/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/javdb.srs","download_detour":"direct"},
             
