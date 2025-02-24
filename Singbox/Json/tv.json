@@ -104,7 +104,7 @@
 			{"protocol":"dns","action":"hijack-dns"},
 			{"port":443,"network":"udp","action":"reject"},
 			{"rule_set":"geosite-dnsblock","clash_mode":"rule","action":"reject"},
-			{"rule_set":"geosite-dnsblock","clash_mode":"global","outbound":"Proxy"},
+			{"rule_set":"geosite-dnsblock","clash_mode":"Global","outbound":"🚀 节点选择"},
             {"clash_mode":"Direct","action":"route","outbound":"🎯 全球直连"},
             {"clash_mode":"Global","action":"route","outbound":"🚀 节点选择"},
             {"ip_is_private":true,"action":"route","outbound":"🎯 全球直连"},
