@@ -76,7 +76,7 @@
 "https://jsdelivr.pai233.top/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/javdb.srs","download_detour":"direct"},
             
             {"tag": "ChinaDomain", "type": "remote", "format": "binary", "url": "https://git.repcz.link/raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs", "download_detour": "direct"},
-            {"tag": "China IP", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Loyalsoldier/geoip/raw/release/srs/cn.srs", "download_detour": "direct"},
+            {"tag": "ChinaIP", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Loyalsoldier/geoip/raw/release/srs/cn.srs", "download_detour": "direct"},
             {"tag": "geolocation-!cn","type": "remote","format": "binary","url": "https://git.repcz.link/raw.githubusercontent.com/CHIZI-0618/v2ray-rules-dat/release/singbox_rule_set/geosite-geolocation-!cn.srs","download_detour": "direct"}
         ],
         "rules": [
