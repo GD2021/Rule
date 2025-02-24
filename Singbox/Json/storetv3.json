@@ -19,26 +19,26 @@
     },
     "outbounds": [
         {"tag": "direct","type": "direct"},
-        {"tag": "Proxy","type": "selector","outbounds": ["🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","手动切换","direct"],"default": "direct","interrupt_exist_connections": true},
+        {"tag": "Proxy","type": "selector","outbounds": ["🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","♻️ HOH","direct"],"default": "direct","interrupt_exist_connections": true},
         {"tag": "AI","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default": "Proxy","interrupt_exist_connections": true},
         {"tag": "Google","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default": "Proxy","interrupt_exist_connections": true},
         {"tag": "Microsoft","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","direct"],"default": "Proxy","interrupt_exist_connections": true},
         {"tag": "Twitter","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default": "Proxy","interrupt_exist_connections": true},
         {"tag": "Telegram","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default": "Proxy","interrupt_exist_connections": true},
         
-        {"tag": "Emby","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","手动切换","direct"],"default": "Proxy","interrupt_exist_connections": true},
+        {"tag": "Emby","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","♻️ HOH","direct"],"default": "Proxy","interrupt_exist_connections": true},
         
         {"tag": "Game","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","direct"],"default": "Proxy","interrupt_exist_connections": true},
         
         {"tag": "Spotify","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","direct"],"default": "Proxy","interrupt_exist_connections": true},
         {"tag": "TikTok","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default": "Proxy","interrupt_exist_connections": true},
-        {"tag": "Pikpak","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","手动切换"],"default": "Proxy","interrupt_exist_connections": true},
-        {"tag": "Speedtest","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","手动切换","direct"],"default": "Proxy","interrupt_exist_connections": true},
+        {"tag": "Pikpak","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","♻️ HOH"],"default": "Proxy","interrupt_exist_connections": true},
+        {"tag": "Speedtest","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","♻️ HOH","direct"],"default": "Proxy","interrupt_exist_connections": true},
         {"tag": "Talkatone","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default": "Proxy","interrupt_exist_connections": true},
         
         {"tag": "Final","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","direct"],"default": "Proxy","interrupt_exist_connections": true},
 
-		{"tag":"手动切换","type":"selector","outbounds": [],"interrupt_exist_connections": true},
+		{"tag":"♻️ HOH","type":"selector","outbounds": [],"interrupt_exist_connections": true},
         {"tag": "🇭🇰 HongKong","type": "selector","outbounds": [],"interrupt_exist_connections": true},
         {"tag": "🇺🇸 United States","type": "selector","outbounds": [],"interrupt_exist_connections": true},
         {"tag": "🇸🇬 Singapore","type": "selector","outbounds": [],"interrupt_exist_connections": true},
@@ -118,7 +118,7 @@
 						"phncdn.com",
 						"tapecontent.net",
 						"vidoza.net"
-			],"action":"route","outbound":"手动切换" },
+			],"action":"route","outbound":"♻️ HOH" },
 			
             {"rule_set": ["Steam","Epic"],"action": "route","outbound": "Game"},
              
@@ -127,7 +127,7 @@
             {"rule_set": ["Pikpak"],"action": "route","outbound": "Pikpak"},
             {"rule_set": ["Speedtest"],"action": "route","outbound": "Speedtest"},
             {"rule_set": ["Talkatone"],"action": "route","outbound": "Talkatone"},
-            {"rule_set": ["Javdb"],"action": "route","outbound": "手动切换"},
+            {"rule_set": ["Javdb"],"action": "route","outbound": "♻️ HOH"},
             
             
             {"rule_set": ["AppleProxy"],"action": "route","outbound": "🇭🇰 HongKong"},
