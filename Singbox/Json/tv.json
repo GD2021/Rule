@@ -34,8 +34,8 @@
             {"clash_mode":"Direct","action":"route","server":"dns-local"},
             {"clash_mode":"Global","action":"route","server":"remote_fakeip"},            
             {"rule_set":"geosite-cn","action":"route","server":"dns-local"},
-            {"rule_set":"geosite-geolocation-!cn","server":"remote_fakeip"},
-            {"rule_set":"geosite-geolocation-!cn","query_type":["A","AAAA"],"server":"dns_fakeip","rewrite_ttl": 1}
+            {"rule_set":"geosite-geolocation-!cn","action":"route","server":"remote_fakeip"},
+            {"rule_set":"geosite-geolocation-!cn","query_type":["A","AAAA"],"server":"remote_fakeip","rewrite_ttl": 1}
 			],
 			"final": "dns-remote",
 			"strategy": "ipv4_only",
