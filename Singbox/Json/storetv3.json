@@ -19,26 +19,27 @@
     },
     "outbounds": [
         {"tag": "direct","type": "direct"},
-        {"tag": "Proxy","type": "selector","outbounds": ["🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","♻️ HOH","direct"],"default": "direct","interrupt_exist_connections": true},
+        {"tag": "Proxy","type": "selector","outbounds": ["🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","direct"],"default": "direct","interrupt_exist_connections": true},
         {"tag": "AI","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default": "Proxy","interrupt_exist_connections": true},
         {"tag": "Google","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default": "Proxy","interrupt_exist_connections": true},
         {"tag": "Microsoft","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","direct"],"default": "Proxy","interrupt_exist_connections": true},
         {"tag": "Twitter","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default": "Proxy","interrupt_exist_connections": true},
         {"tag": "Telegram","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default": "Proxy","interrupt_exist_connections": true},
         
-        {"tag": "Emby","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","♻️ HOH","direct"],"default": "Proxy","interrupt_exist_connections": true},
+        {"tag": "Emby","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","direct"],"default": "Proxy","interrupt_exist_connections": true},
+        
+        {"tag": "Nsfw","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","direct"],"default": "Proxy","interrupt_exist_connections": true},
         
         {"tag": "Game","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","direct"],"default": "Proxy","interrupt_exist_connections": true},
         
         {"tag": "Spotify","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","direct"],"default": "Proxy","interrupt_exist_connections": true},
         {"tag": "TikTok","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default": "Proxy","interrupt_exist_connections": true},
-        {"tag": "Pikpak","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","♻️ HOH"],"default": "Proxy","interrupt_exist_connections": true},
-        {"tag": "Speedtest","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","♻️ HOH","direct"],"default": "Proxy","interrupt_exist_connections": true},
+        {"tag": "Pikpak","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default": "Proxy","interrupt_exist_connections": true},
+        {"tag": "Speedtest","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","direct"],"default": "Proxy","interrupt_exist_connections": true},
         {"tag": "Talkatone","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan"],"default": "Proxy","interrupt_exist_connections": true},
         
         {"tag": "Final","type": "selector","outbounds": ["Proxy","🇭🇰 HongKong","🇺🇸 United States","🇸🇬 Singapore","🇯🇵 Japan","🇨🇳 Taiwan","direct"],"default": "Proxy","interrupt_exist_connections": true},
 
-		{"tag":"♻️ HOH","type":"selector","outbounds": [],"interrupt_exist_connections": true},
         {"tag": "🇭🇰 HongKong","type": "selector","outbounds": [],"interrupt_exist_connections": true},
         {"tag": "🇺🇸 United States","type": "selector","outbounds": [],"interrupt_exist_connections": true},
         {"tag": "🇸🇬 Singapore","type": "selector","outbounds": [],"interrupt_exist_connections": true},
@@ -58,7 +59,8 @@
             {"tag": "Apple", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Apple.srs", "download_detour": "direct"},
             {"tag": "AppleProxy", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/AppleProxy.srs", "download_detour": "direct"},
             {"tag": "AI", "type": "remote", "format": "binary", "url": "https://git.repcz.link/raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-chat-!cn.srs", "download_detour": "direct"},
-            {"tag": "Emby", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Emby.srs", "download_detour": "direct"},
+            {"tag": "Emby", "type": "remote", "format": "binary", "url": "https://jsdelivr.pai233.top/gh/GD2021/auto-rule@refs/heads/main/rule/Emby.srs", "download_detour": "direct"},
+            {"tag": "Nsfw", "type": "remote", "format": "binary", "url": "https://jsdelivr.pai233.top/gh/GD2021/auto-rule@refs/heads/main/rule/nsfw.srs", "download_detour": "direct"},
             {"tag": "Epic", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Epic.srs", "download_detour": "direct"},
             {"tag": "Steam", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Steam.srs", "download_detour": "direct"},
             
@@ -89,37 +91,10 @@
             {"rule_set": ["Twitter"],"action": "route","outbound": "Twitter"},
             {"rule_set": ["Telegram"],"action": "route","outbound": "Telegram"},
             
-            {"type":"logical","mode":"or","rules":[{"domain_suffix":[
-                "cf.bili.rip",
-                "cu.cdn.bgp.yt",
-                "sxiaolong-my.sharepoint.com",
-                "july-us.vfing.de",
-                "july.vfing.de",
-                "embyplus.org",
-                "581658.best",
-                "tanhuatv.site",
-                "emby.as174.de",
-                "beebi.org",
-                "7777777.buzz",
-                "api.dandanplay.net",
-                "cas2.dandanplay.net",
-                "us.nanflix.net"
-			]},{"rule_set":["Emby"]}],"action":"route","outbound":"Emby"},
             
-            { "domain_suffix":[
-						"fpo.xxx",
-						"bigwarp.io",
-						"cdn-centaurus.com",
-						"filegram.to",
-						"trendyporn.com",
-						"zload.cc",
-						"trafficdeposit.com",
-						"cambro.tv",
-						"phncdn.com",
-						"tapecontent.net",
-						"vidoza.net"
-			],"action":"route","outbound":"♻️ HOH" },
-			
+			{"rule_set": ["Emby"],"action": "route","outbound": "Emby"},
+			{"rule_set": ["Nsfw"],"action": "route","outbound": "Nsfw"},
+
             {"rule_set": ["Steam","Epic"],"action": "route","outbound": "Game"},
              
             {"rule_set": ["TikTok"],"action": "route","outbound": "TikTok"},
@@ -127,7 +102,6 @@
             {"rule_set": ["Pikpak"],"action": "route","outbound": "Pikpak"},
             {"rule_set": ["Speedtest"],"action": "route","outbound": "Speedtest"},
             {"rule_set": ["Talkatone"],"action": "route","outbound": "Talkatone"},
-            {"rule_set": ["Javdb"],"action": "route","outbound": "♻️ HOH"},
             
             
             {"rule_set": ["AppleProxy"],"action": "route","outbound": "🇭🇰 HongKong"},
