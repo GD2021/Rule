@@ -1,7 +1,7 @@
 {
     "dns": {
         "servers": [
-			{"tag":"cloudflare","address":"https://dns.google/dns-query","address_resolver":"CNNIC DNS","detour":"Proxy"},
+			{"tag":"cloudflare","address":"https://1.1.1.1/dns-query","address_resolver":"CNNIC DNS","detour":"Proxy"},
 			{"tag":"ali","address":"https://dns.alidns.com/dns-query","address_resolver":"CNNIC DNS","detour":"direct"},
 			{"tag":"CNNIC DNS","address":"223.5.5.5","detour":"direct"}
         ],
@@ -93,7 +93,7 @@
             {"tag": "geolocation-!cn","type": "remote","format": "binary","url": "https://git.repcz.link/raw.githubusercontent.com/CHIZI-0618/v2ray-rules-dat/release/singbox_rule_set/geosite-geolocation-!cn.srs","download_detour": "direct"}
         ],
         "rules": [
-			{"inbound":["mixed-in","tun-in"],"action":"sniff"},
+			{"action": "sniff","sniffer": ["http","tls","quic","dns"],"timeout": "500ms"},
 			{"type":"logical","mode":"or","rules":[{"protocol":"dns"},{"port":53}],"action":"hijack-dns"},
             {"ip_is_private": true,"outbound": "direct"},
             {"clash_mode": "全局直连","action": "route","outbound": "direct"},
@@ -150,7 +150,7 @@
         {
             "type": "tun",
             "tag": "tun-in",
-            "address": ["172.22.0.1/30"],
+            "address": ["172.18.0.1/30"],
             "auto_route": true,
             "strict_route": false,
             "stack": "system",
@@ -162,13 +162,13 @@
                 }
             },
             "endpoint_independent_nat": true,
-            "mtu": 1500,
+            "mtu": 9000,
             "route_exclude_address": ["192.168.2.0/24", "224.0.0.0/4"]  
         },
         {
             "type": "mixed",
             "tag": "mixed-in",
-            "listen": "0.0.0.0",
+            "listen": "127.0.0.1",
             "listen_port": 7080
         }
     ]
