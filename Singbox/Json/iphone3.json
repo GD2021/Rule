@@ -93,32 +93,32 @@
         "rules": [
 			{"ip_cidr":["192.168.2.0/24","172.18.0.0/30"],"outbound":"direct"},
 			{"ip_cidr": ["198.18.0.0/16"], "outbound": "Proxy"},
-            {"inbound":["mixed"，"tun"]，"action":"sniff"，"sniffer":["http"，"tls"，"quic"，"dns"]，"timeout":"1s"}，
-            {"type":"logical"，"mode":"or"，"rules":[{"port":53}，{"protocol":"dns"}]，"action":"hijack-dns"}，
-            {"ip_is_private": true，"outbound": "direct"}，
-            {"clash_mode": "全局直连"，"action": "route"，"outbound": "direct"}，
-            {"clash_mode": "全局代理"，"action": "route"，"outbound": "Proxy"}，
-            {"rule_set": ["Ads"]，"action": "reject"}，
-            {"rule_set": ["AI"]，"action": "route"，"outbound": "AI"}，
-            {"rule_set": ["YouTube"，"Google"]，"action": "route"，"outbound": "Google"}，
-            {"rule_set": ["Microsoft"，"OneDrive"，"Github"]，"action": "route"，"outbound": "Microsoft"}，
-            {"rule_set": ["Twitter"]，"action": "route"，"outbound": "Twitter"}，
-            {"rule_set": ["Telegram"]，"action": "route"，"outbound": "Telegram"}，
+            {"inbound":["mixed","tun"],"action":"sniff","sniffer":["http","tls","quic","dns"],"timeout":"1s"},
+            {"type":"logical","mode":"or","rules":[{"port":53},{"protocol":"dns"}],"action":"hijack-dns"},
+            {"ip_is_private": true,"outbound": "direct"},
+            {"clash_mode": "全局直连","action": "route","outbound": "direct"},
+            {"clash_mode": "全局代理","action": "route","outbound": "Proxy"},
+            {"rule_set": ["Ads"],"action": "reject"},
+            {"rule_set": ["AI"],"action": "route","outbound": "AI"},
+            {"rule_set": ["YouTube","Google"],"action": "route","outbound": "Google"},
+            {"rule_set": ["Microsoft","OneDrive","Github"],"action": "route","outbound": "Microsoft"},
+            {"rule_set": ["Twitter"],"action": "route","outbound": "Twitter"},
+            {"rule_set": ["Telegram"],"action": "route","outbound": "Telegram"},
             
             
-			{"rule_set": ["Emby"]，"action": "route"，"outbound": "Emby"}，
-			{"rule_set": ["Nsfw"，"Javdb"]，"action": "route"，"outbound": "Nsfw"}，
+			{"rule_set": ["Emby"],"action": "route","outbound": "Emby"},
+			{"rule_set": ["Nsfw","Javdb"],"action": "route","outbound": "Nsfw"},
 
-            {"rule_set": ["Steam"，"Epic"]，"action": "route"，"outbound": "Game"}，
+            {"rule_set": ["Steam","Epic"],"action": "route","outbound": "Game"},
              
-            {"rule_set": ["TikTok"]，"action": "route"，"outbound": "TikTok"}，
-            {"rule_set": ["Spotify"]，"action": "route"，"outbound": "Spotify"}，
-            {"rule_set": ["Pikpak"]，"action": "route"，"outbound": "Pikpak"}，
-            {"rule_set": ["Speedtest"]，"action": "route"，"outbound": "Speedtest"}，
-            {"rule_set": ["Talkatone"]，"action": "route"，"outbound": "Talkatone"}，
+            {"rule_set": ["TikTok"],"action": "route","outbound": "TikTok"},
+            {"rule_set": ["Spotify"],"action": "route","outbound": "Spotify"},
+            {"rule_set": ["Pikpak"],"action": "route","outbound": "Pikpak"},
+            {"rule_set": ["Speedtest"],"action": "route","outbound": "Speedtest"},
+            {"rule_set": ["Talkatone"],"action": "route","outbound": "Talkatone"},
             
             
-            {"rule_set": ["AppleProxy"]，"action": "route"，"outbound": "🇭🇰 HongKong"}，
+            {"rule_set": ["AppleProxy"],"action": "route","outbound": "🇭🇰 HongKong"},
             {"rule_set": ["geolocation-!cn"]，"action": "route"，"outbound": "Proxy"}，
             {"action": "resolve"}，
             {"rule_set": ["ChinaDomain"，"ChinaIP"，"Apple"]，"action": "route"，"outbound": "direct"}
