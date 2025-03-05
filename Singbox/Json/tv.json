@@ -160,7 +160,6 @@
                     "server_port": 7080
                 }
             },
-            "endpoint_independent_nat": true,
             "mtu": 9000
         },
         {
