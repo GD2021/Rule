@@ -119,64 +119,64 @@
             
             
             {"rule_set": ["AppleProxy"],"action": "route","outbound": "🇭🇰 HongKong"},
-            {"rule_set": ["geolocation-!cn"]，"action": "route"，"outbound": "Proxy"}，
-            {"action": "resolve"}，
-            {"rule_set": ["ChinaDomain"，"ChinaIP"，"Apple"]，"action": "route"，"outbound": "direct"}
+            {"rule_set": ["geolocation-!cn"],"action": "route","outbound": "Proxy"},
+            {"action": "resolve"},
+            {"rule_set": ["ChinaDomain","ChinaIP","Apple"],"action": "route","outbound": "direct"}
             
-        ]，
-        "find_process": false，
-        "default_network_strategy": "prefer_ipv4"，
-        "auto_detect_interface": true，
-        "final": "Final"，
-        "default_domain_resolver": "ali"，
+        ],
+        "find_process": false,
+        "default_network_strategy": "prefer_ipv4",
+        "auto_detect_interface": true,
+        "final": "Final",
+        "default_domain_resolver": "ali",
         "default_fallback_delay": "300ms"
-    }，
+    },
     "log": {
-        "disabled": false，
-		"level": "info"，
-		"timestamp": true，
+        "disabled": false,
+		"level": "info",
+		"timestamp": true,
 		"output": "box.log"
-    }，
+    },
     "experimental": {
         "cache_file": {
-            "enabled": true，
-            "store_fakeip": true，
-            "path": "cache.db"，
-            "cache_id": "appletv-singbox"，  
+            "enabled": true,
+            "store_fakeip": true,
+            "path": "cache.db",
+            "cache_id": "appletv-singbox",  
             "max_size": 10485760  
-        }，
+        },
         "clash_api": {
-            "default_mode": "规则模式"，
-            "external_controller": "127.0.0.1:9090"，
-            "external_ui": "ui"，
-            "external_ui_download_url": "https://git.repcz.link/github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"，
+            "default_mode": "规则模式",
+            "external_controller": "127.0.0.1:9090",
+            "external_ui": "ui",
+            "external_ui_download_url": "https://git.repcz.link/github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
             "external_ui_download_detour": "direct"
         }
-    }，
+    },
     "inbounds": [
         {
-            "type": "tun"，
-            "tag": "tun-in"，
-            "address": ["172.18.0.0/30"]，
-            "auto_route": true，
-            "strict_route": false，
-            "stack": "system"，
+            "type": "tun",
+            "tag": "tun-in",
+            "address": ["172.18.0.0/30"],
+            "auto_route": true,
+            "strict_route": false,
+            "stack": "system",
             "platform": {
                 "http_proxy": {
-                    "enabled": true，
-                    "server": "127.0.0.1"，
+                    "enabled": true,
+                    "server": "127.0.0.1",
                     "server_port": 7080
                 }
-            }，
-            "endpoint_independent_nat": true，
-            "mtu": 9000，
-            "route_address": ["192.168.0.0/16"， "172.16.0.0/12"， "10.0.0.0/8"]，
-            "route_exclude_address": ["192.168.2.1/31"， "224.0.0.0/4"]  
-        }，
+            },
+            "endpoint_independent_nat": true,
+            "mtu": 9000,
+            "route_address": ["192.168.0.0/16", "172.16.0.0/12", "10.0.0.0/8"],
+            "route_exclude_address": ["192.168.2.1/31", "224.0.0.0/4"]  
+        },
         {
-            "type": "mixed"，
-            "tag": "mixed-in"，
-            "listen": "127.0.0.1"，
+            "type": "mixed",
+            "tag": "mixed-in",
+            "listen": "127.0.0.1",
             "listen_port": 7080
         }
     ]
