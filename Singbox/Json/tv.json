@@ -4,11 +4,13 @@
             {"tag": "cloudflare","address": "https://1.1.1.1/dns-query","detour": "Proxy"},
             {"tag":"google","address":"https://8.8.8.8/dns-query","detour":"Proxy"},
             {"tag":"ali","address":"https://223.5.5.5/dns-query","detour":"direct"},
-            {"tag":"local-dns","address":"local","detour":"direct"}
+            {"tag":"local-dns","address":"local","detour":"direct"},
+            {"tag":"quic","address":"quic://dns.adguard.com","detour":"Proxy"}
         ],
         "rules": [
             {"outbound": "any", "server": "local-dns", "disable_cache": true},
             {"clash_mode":"全局直连","action":"route","server":"ali"},
+            {"query_type":"HTTPS","action":"reject","method":"default"},
             {"clash_mode":"全局代理","action":"route","server":"cloudflare"},
             {"rule_set":["ChinaDomain","Apple"],"action":"route","server":"ali"},
             {
@@ -34,10 +36,6 @@
         "disable_expire": false
     },
     "outbounds": [
-        {
-            "tag": "direct",
-            "type": "direct"
-        },
         {
             "tag": "Proxy",
             "type": "selector",
@@ -256,6 +254,10 @@
             "interrupt_exist_connections": true
         },
         {
+            "tag": "direct",
+            "type": "direct"
+        },
+        {
             "tag": "🇭🇰 HongKong",
             "type": "selector",
             "outbounds": [
@@ -468,14 +470,13 @@
             }
         ],
         "rules": [
-            {"action": "sniff", "sniffer": ["http", "tls", "quic", "dns"], "timeout": "500ms"},
-            {"type": "logical","mode": "or","rules": [{"port": 53},{"protocol": "dns"}],"action": "hijack-dns"},
-            {"protocol":["quic"],"action":"reject","method":"default","no_drop":false},
+            { "type": "logical", "mode": "or", "rules": [{ "port": 53 }, { "protocol": "dns" }], "outbound": "dns-out" },
+            {"ip_is_private":true,"outbound":"direct"},
             {"rule_set":"Ads","clash_mode":"规则模式","action":"reject"},
             {"rule_set":"Ads","clash_mode":"全局代理","outbound":"proxy"},
             {"clash_mode":"全局直连","action":"route","outbound":"direct"},
             {"clash_mode":"全局代理","action":"route","outbound":"Proxy"},
-            {"ip_is_private":true,"outbound":"direct"},
+            { "domain": ["dns.weixin.qq.com", "dns.weixin.qq.com.cn"], "action": "reject" },
             {"rule_set":["AI"],"action":"route","outbound":"AI"},
             {"rule_set":["YouTube","Google"],"action":"route","outbound":"Google"},
             {"rule_set":["Microsoft","OneDrive","Github"],"action":"route","outbound":"Microsoft"},
@@ -521,12 +522,11 @@
             "type": "tun",
             "tag": "tun-in",
             "address": [
-                "172.18.0.1/30"
+                "172.19.0.1/30"
             ],
             "auto_route": true,
             "strict_route": false,
-            "mtu": 1500,
-            "stack": "system"
+            "mtu": 9000
         }
     ]
 }
