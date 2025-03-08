@@ -469,7 +469,8 @@
             }
         ],
         "rules": [
-            {"type": "logical","mode": "or","rules": [{"port": 53},{"protocol": "dns"}],"action": "hijack-dns"},
+            {"action": "sniff","sniffer": ["http","tls","quic","dns"],"timeout": "500ms"},
+            {"protocol":"dns","action":"hijack-dns"},
             {"ip_is_private":true,"outbound":"direct"},
             {"rule_set":"Ads","clash_mode":"规则模式","action":"reject"},
             {"rule_set":"Ads","clash_mode":"全局代理","outbound":"proxy"},
@@ -491,6 +492,7 @@
             {"rule_set":["Talkatone"],"action":"route","outbound":"Talkatone"},
             {"rule_set":["AppleProxy"],"action":"route","outbound":"🇭🇰 HongKong"},
             {"rule_set":["geolocation-!cn"],"action":"route","outbound":"Proxy"},
+            {"action": "resolve"},
             {"rule_set":["ChinaDomain","ChinaIP","Apple"],"action":"route","outbound":"direct"}
         ],
         "find_process": false,
@@ -525,7 +527,14 @@
             ],
             "auto_route": true,
             "strict_route": false,
+            "stack": "mixed",
             "mtu": 9000
         }
+        {
+            "type": "mixed",
+            "listen": "127.0.0.1",
+            "listen_port": 7080,
+            "set_system_proxy": false
+        },
     ]
 }
