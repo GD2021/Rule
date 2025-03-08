@@ -459,32 +459,32 @@
                 "format": "binary",
                 "url": "https://git.repcz.link/github.com/Loyalsoldier/geoip/raw/release/srs/cn.srs",
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "geolocation-!cn",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/raw.githubusercontent.com/CHIZI-0618/v2ray-rules-dat/release/singbox_rule_set/geosite-geolocation-!cn.srs",
+                "tag": "geolocation-!cn"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/raw.githubusercontent.com/CHIZI-0618/v2ray-rules-dat/release/singbox_rule_set/geosite-geolocation-!cn.srs"，
                 "download_detour": "direct"
             }
-        ],
+        ]，
         "rules": [
-            {"action": "sniff", "sniffer": ["http", "tls", "quic", "dns"], "timeout": "500ms"},
-            {"protocol":"dns","action":"hijack-dns"},
-            {"protocol":["quic"],"action":"reject","method":"default","no_drop":false},
-            {"rule_set":"Ads","clash_mode":"规则模式","action":"reject"},
-            {"rule_set":"Ads","clash_mode":"全局代理","outbound":"proxy"},
-            {"clash_mode":"全局直连","action":"route","outbound":"direct"},
-            {"clash_mode":"全局代理","action":"route","outbound":"Proxy"},
-            {"ip_is_private":true,"outbound":"direct"},
-            {"rule_set":["AI"],"action":"route","outbound":"AI"},
-            {"rule_set":["YouTube","Google"],"action":"route","outbound":"Google"},
-            {"rule_set":["Microsoft","OneDrive","Github"],"action":"route","outbound":"Microsoft"},
-            {"rule_set":["Twitter"],"action":"route","outbound":"Twitter"},
-            {"rule_set":["Telegram"],"action":"route","outbound":"Telegram"},
-            {"rule_set":["Emby"],"action":"route","outbound":"Emby"},
-            {"rule_set":["Nsfw","Javdb"],"action":"route","outbound":"Nsfw"},
-            {"rule_set":["Steam","Epic"],"action":"route","outbound":"Game"},
+            {"action": "sniff"， "sniffer": ["http"， "tls"， "quic"， "dns"]， "timeout": "500ms"}，
+            {"protocol":"dns"，"action":"hijack-dns"}，
+            {"protocol":["quic"]，"action":"reject"，"method":"default"，"no_drop":false}，
+            {"rule_set":"Ads"，"clash_mode":"规则模式"，"action":"reject"}，
+            {"rule_set":"Ads"，"clash_mode":"全局代理"，"outbound":"proxy"}，
+            {"clash_mode":"全局直连"，"action":"route"，"outbound":"direct"}，
+            {"clash_mode":"全局代理"，"action":"route"，"outbound":"Proxy"}，
+            {"ip_is_private":true，"outbound":"direct"}，
+            {"rule_set":["AI"]，"action":"route"，"outbound":"AI"}，
+            {"rule_set":["YouTube"，"Google"]，"action":"route"，"outbound":"Google"}，
+            {"rule_set":["Microsoft"，"OneDrive"，"Github"]，"action":"route"，"outbound":"Microsoft"}，
+            {"rule_set":["Twitter"]，"action":"route"，"outbound":"Twitter"}，
+            {"rule_set":["Telegram"]，"action":"route"，"outbound":"Telegram"}，
+            {"rule_set":["Emby"]，"action":"route"，"outbound":"Emby"}，
+            {"rule_set":["Nsfw"，"Javdb"]，"action":"route"，"outbound":"Nsfw"}，
+            {"rule_set":["Steam"，"Epic"]，"action":"route"，"outbound":"Game"}，
             {"rule_set":["TikTok"]，"action":"route"，"outbound":"TikTok"}，
             {"rule_set":["Spotify"]，"action":"route"，"outbound":"Spotify"}，
             {"rule_set":["Pikpak"]，"action":"route"，"outbound":"Pikpak"}，
