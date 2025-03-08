@@ -1,11 +1,14 @@
 {
     "dns": {
         "servers": [
-            {"tag":"cloudflare","address":"tls://8.8.8.8"},
-            {"tag":"ali","address":"https://223.5.5.5/dns-query","detour":"direct"}
+            {"tag": "cloudflare","address": "https://1.1.1.1/dns-query","detour": "Proxy"},
+            {"tag":"google","address":"https://8.8.8.8/dns-query","detour":"Proxy"},
+            {"tag":"ali","address":"https://223.5.5.5/dns-query","detour":"direct"},
+            {"tag":"local","address":"local","detour":"direct"}
         ],
         "rules": [
-            {"outbound":"any","server":"ali","disable_cache":true},
+            {"outbound":"Proxy","server":"cloudflare"},
+            {"outbound":"direct","server":"ali"},
             {"clash_mode":"全局直连","action":"route","server":"ali"},
             {"clash_mode":"全局代理","action":"route","server":"cloudflare"},
             {"rule_set":["ChinaDomain","Apple"],"action":"route","server":"ali"},
@@ -27,7 +30,9 @@
         ],
         "final": "cloudflare",
         "strategy": "ipv4_only",
-        "independent_cache": false
+        "independent_cache": true,
+        "disable_cache": false,
+        "disable_expire": false
     },
     "outbounds": [
         {
@@ -467,10 +472,11 @@
             {"inbound":"tun-in","action":"sniff"},
             {"protocol":"dns","action":"hijack-dns"},
             {"protocol":["quic"],"action":"reject","method":"default","no_drop":false},
-            {"ip_is_private":true,"outbound":"direct"},
+            {"rule_set":"Ads","clash_mode":"规则模式","action":"reject"},
+            {"rule_set":"Ads","clash_mode":"全局代理","outbound":"proxy"},
             {"clash_mode":"全局直连","action":"route","outbound":"direct"},
             {"clash_mode":"全局代理","action":"route","outbound":"Proxy"},
-            {"rule_set":["Ads"],"action":"reject","method":"default","no_drop":false},
+            {"ip_is_private":true,"outbound":"direct"},
             {"rule_set":["AI"],"action":"route","outbound":"AI"},
             {"rule_set":["YouTube","Google"],"action":"route","outbound":"Google"},
             {"rule_set":["Microsoft","OneDrive","Github"],"action":"route","outbound":"Microsoft"},
@@ -520,7 +526,7 @@
             ],
             "auto_route": true,
             "strict_route": false,
-            "mtu": 9000,
+            "mtu": 1500,
             "stack": "system"
         }
     ]
