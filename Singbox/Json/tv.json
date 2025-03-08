@@ -469,7 +469,7 @@
             }
         ],
         "rules": [
-            {"inbound":"tun-in","action":"sniff"},
+            {"action": "sniff", "sniffer": ["http", "tls", "quic", "dns"], "timeout": "500ms"},
             {"protocol":"dns","action":"hijack-dns"},
             {"protocol":["quic"],"action":"reject","method":"default","no_drop":false},
             {"rule_set":"Ads","clash_mode":"规则模式","action":"reject"},
