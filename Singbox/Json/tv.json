@@ -4,11 +4,11 @@
             {"tag": "cloudflare","address": "https://1.1.1.1/dns-query","detour": "Proxy"},
             {"tag":"google","address":"https://8.8.8.8/dns-query","detour":"Proxy"},
             {"tag":"ali","address":"https://223.5.5.5/dns-query","detour":"direct"},
-            {"tag":"local","address":"local","detour":"direct"}
+            {"tag":"local-dns","address":"local","detour":"direct"},
+            {"tag":"quic","address":"quic://dns.adguard.com","detour":"Proxy"}
         ],
         "rules": [
-            {"outbound":"Proxy","server":"cloudflare"},
-            {"outbound":"direct","server":"ali"},
+            {"outbound": "any", "server": "local-dns", "disable_cache": true},
             {"clash_mode":"全局直连","action":"route","server":"ali"},
             {"clash_mode":"全局代理","action":"route","server":"cloudflare"},
             {"rule_set":["ChinaDomain","Apple"],"action":"route","server":"ali"},
@@ -21,7 +21,7 @@
                         "invert": true
                     },
                     {
-                        "rule_set": "ChinaDomain"
+                        "rule_set": "ChinaIP"
                     }
                 ],
                 "server": "cloudflare",
@@ -485,48 +485,48 @@
             {"rule_set":["Emby"],"action":"route","outbound":"Emby"},
             {"rule_set":["Nsfw","Javdb"],"action":"route","outbound":"Nsfw"},
             {"rule_set":["Steam","Epic"],"action":"route","outbound":"Game"},
-            {"rule_set":["TikTok"],"action":"route","outbound":"TikTok"},
-            {"rule_set":["Spotify"],"action":"route","outbound":"Spotify"},
-            {"rule_set":["Pikpak"],"action":"route","outbound":"Pikpak"},
-            {"rule_set":["Speedtest"],"action":"route","outbound":"Speedtest"},
-            {"rule_set":["Talkatone"],"action":"route","outbound":"Talkatone"},
-            {"rule_set":["AppleProxy"],"action":"route","outbound":"🇭🇰 HongKong"},
-            {"rule_set":["geolocation-!cn"],"action":"route","outbound":"Proxy"},
-            {"rule_set":["ChinaDomain","ChinaIP","Apple"],"action":"route","outbound":"direct"}
-        ],
-        "find_process": false,
-        "auto_detect_interface": true,
+            {"rule_set":["TikTok"]，"action":"route"，"outbound":"TikTok"}，
+            {"rule_set":["Spotify"]，"action":"route"，"outbound":"Spotify"}，
+            {"rule_set":["Pikpak"]，"action":"route"，"outbound":"Pikpak"}，
+            {"rule_set":["Speedtest"]，"action":"route"，"outbound":"Speedtest"}，
+            {"rule_set":["Talkatone"]，"action":"route"，"outbound":"Talkatone"}，
+            {"rule_set":["AppleProxy"]，"action":"route"，"outbound":"🇭🇰 HongKong"}，
+            {"rule_set":["geolocation-!cn"]，"action":"route"，"outbound":"Proxy"}，
+            {"rule_set":["ChinaDomain"，"ChinaIP"，"Apple"]，"action":"route"，"outbound":"direct"}
+        ]，
+        "find_process": false，
+        "auto_detect_interface": true，
         "final": "Final"
-    },
+    }，
     "log": {
-        "disabled": false,
-        "level": "warn",
+        "disabled": false，
+        "level": "warn"，
         "timestamp": true
-    },
+    }，
     "experimental": {
         "cache_file": {
-            "enabled": true,
-            "store_rdrc": true,
+            "enabled": true，
+            "store_rdrc": true，
             "path": "cache.db"
-        },
+        }，
         "clash_api": {
-            "default_mode": "规则模式",
-            "external_controller": "0.0.0.0:9090",
-            "external_ui": "ui",
-            "external_ui_download_url": "https://git.repcz.link/github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+            "default_mode": "规则模式"，
+            "external_controller": "0.0.0.0:9090"，
+            "external_ui": "ui"，
+            "external_ui_download_url": "https://git.repcz.link/github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"，
             "external_ui_download_detour": "direct"
         }
-    },
+    }，
     "inbounds": [
         {
-            "type": "tun",
-            "tag": "tun-in",
+            "type": "tun"，
+            "tag": "tun-in"，
             "address": [
                 "172.19.0.1/30"
-            ],
-            "auto_route": true,
-            "strict_route": false,
-            "mtu": 1500,
+            ]，
+            "auto_route": true，
+            "strict_route": false，
+            "mtu": 1500，
             "stack": "system"
         }
     ]
