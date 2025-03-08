@@ -1,463 +1,463 @@
 {
     "dns": {
         "servers": [
-            {"tag": "cloudflare","address": "https://1.1.1.1/dns-query","detour": "Proxy"},
-            {"tag":"google","address":"https://8.8.8.8/dns-query","detour":"Proxy"},
-            {"tag":"ali","address":"https://223.5.5.5/dns-query","detour":"direct"},
-            {"tag":"local-dns","address":"local","detour":"direct"},
-            {"tag":"quic","address":"quic://dns.adguard.com","detour":"Proxy"}
-        ],
+            {"tag": "cloudflare"，"address": "https://1.1.1.1/dns-query"，"detour": "Proxy"}，
+            {"tag":"google"，"address":"https://8.8.8.8/dns-query"，"detour":"Proxy"}，
+            {"tag":"ali"，"address":"https://223.5.5.5/dns-query"，"detour":"direct"}，
+            {"tag":"local-dns"，"address":"local"，"detour":"direct"}，
+            {"tag":"quic"，"address":"quic://dns.adguard.com"，"detour":"Proxy"}
+        ]，
         "rules": [
-            {"outbound": "any", "server": "local-dns", "disable_cache": true},
-            {"clash_mode":"全局直连","action":"route","server":"ali"},
-            {"clash_mode":"全局代理","action":"route","server":"cloudflare"},
-            {"rule_set":["ChinaDomain","Apple"],"action":"route","server":"ali"},
+            {"outbound": "any"， "server": "local-dns"， "disable_cache": true}，
+            {"clash_mode":"全局直连"，"action":"route"，"server":"ali"}，
+            {"clash_mode":"全局代理"，"action":"route"，"server":"cloudflare"}，
+            {"rule_set":["ChinaDomain"，"Apple"]，"action":"route"，"server":"ali"}，
             {
-                "type": "logical",
-                "mode": "and",
+                "type": "logical"，
+                "mode": "and"，
                 "rules": [
                     {
-                        "rule_set": "geolocation-!cn",
+                        "rule_set": "geolocation-!cn"，
                         "invert": true
-                    },
+                    }，
                     {
                         "rule_set": "ChinaIP"
                     }
-                ],
-                "server": "cloudflare",
+                ]，
+                "server": "cloudflare"，
                 "client_subnet": "114.114.114.114/24"
             }
-        ],
-        "final": "cloudflare",
-        "strategy": "ipv4_only",
-        "independent_cache": true,
-        "disable_cache": false,
+        ]，
+        "final": "cloudflare"，
+        "strategy": "ipv4_only"，
+        "independent_cache": true，
+        "disable_cache": false，
         "disable_expire": false
-    },
+    }，
     "outbounds": [
         {
-            "tag": "direct",
+            "tag": "direct"，
             "type": "direct"
-        },
+        }，
         {
-            "tag": "Proxy",
-            "type": "selector",
+            "tag": "Proxy"，
+            "type": "selector"，
             "outbounds": [
-                "🇭🇰 HongKong",
-                "🇺🇸 United States",
-                "🇸🇬 Singapore",
-                "🇯🇵 Japan",
-                "🇨🇳 Taiwan",
+                "🇭🇰 HongKong"，
+                "🇺🇸 United States"，
+                "🇸🇬 Singapore"，
+                "🇯🇵 Japan"，
+                "🇨🇳 Taiwan"，
                 "direct"
-            ],
-            "default": "direct",
+            ]，
+            "default": "direct"，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "AI",
-            "type": "selector",
+            "tag": "AI"，
+            "type": "selector"，
             "outbounds": [
-                "Proxy",
-                "🇭🇰 HongKong",
-                "🇺🇸 United States",
-                "🇸🇬 Singapore",
-                "🇯🇵 Japan",
+                "Proxy"，
+                "🇭🇰 HongKong"，
+                "🇺🇸 United States"，
+                "🇸🇬 Singapore"，
+                "🇯🇵 Japan"，
                 "🇨🇳 Taiwan"
-            ],
-            "default": "Proxy",
+            ]，
+            "default": "Proxy"，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "Google",
-            "type": "selector",
+            "tag": "Google"，
+            "type": "selector"，
             "outbounds": [
-                "Proxy",
-                "🇭🇰 HongKong",
-                "🇺🇸 United States",
-                "🇸🇬 Singapore",
-                "🇯🇵 Japan",
+                "Proxy"，
+                "🇭🇰 HongKong"，
+                "🇺🇸 United States"，
+                "🇸🇬 Singapore"，
+                "🇯🇵 Japan"，
                 "🇨🇳 Taiwan"
-            ],
-            "default": "Proxy",
+            ]，
+            "default": "Proxy"，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "Microsoft",
-            "type": "selector",
+            "tag": "Microsoft"，
+            "type": "selector"，
             "outbounds": [
-                "Proxy",
-                "🇭🇰 HongKong",
-                "🇺🇸 United States",
-                "🇸🇬 Singapore",
-                "🇯🇵 Japan",
-                "🇨🇳 Taiwan",
+                "Proxy"，
+                "🇭🇰 HongKong"，
+                "🇺🇸 United States"，
+                "🇸🇬 Singapore"，
+                "🇯🇵 Japan"，
+                "🇨🇳 Taiwan"，
                 "direct"
-            ],
-            "default": "Proxy",
+            ]，
+            "default": "Proxy"，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "Twitter",
-            "type": "selector",
+            "tag": "Twitter"，
+            "type": "selector"，
             "outbounds": [
-                "Proxy",
-                "🇭🇰 HongKong",
-                "🇺🇸 United States",
-                "🇸🇬 Singapore",
-                "🇯🇵 Japan",
+                "Proxy"，
+                "🇭🇰 HongKong"，
+                "🇺🇸 United States"，
+                "🇸🇬 Singapore"，
+                "🇯🇵 Japan"，
                 "🇨🇳 Taiwan"
-            ],
-            "default": "Proxy",
+            ]，
+            "default": "Proxy"，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "Telegram",
-            "type": "selector",
+            "tag": "Telegram"，
+            "type": "selector"，
             "outbounds": [
-                "Proxy",
-                "🇭🇰 HongKong",
-                "🇺🇸 United States",
-                "🇸🇬 Singapore",
-                "🇯🇵 Japan",
+                "Proxy"，
+                "🇭🇰 HongKong"，
+                "🇺🇸 United States"，
+                "🇸🇬 Singapore"，
+                "🇯🇵 Japan"，
                 "🇨🇳 Taiwan"
-            ],
-            "default": "Proxy",
+            ]，
+            "default": "Proxy"，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "Emby",
-            "type": "selector",
+            "tag": "Emby"，
+            "type": "selector"，
             "outbounds": [
-                "Proxy",
-                "🇭🇰 HongKong",
-                "🇺🇸 United States",
-                "🇸🇬 Singapore",
-                "🇯🇵 Japan",
-                "🇨🇳 Taiwan",
+                "Proxy"，
+                "🇭🇰 HongKong"，
+                "🇺🇸 United States"，
+                "🇸🇬 Singapore"，
+                "🇯🇵 Japan"，
+                "🇨🇳 Taiwan"，
                 "direct"
-            ],
-            "default": "Proxy",
+            ]，
+            "default": "Proxy"，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "Nsfw",
-            "type": "selector",
+            "tag": "Nsfw"，
+            "type": "selector"，
             "outbounds": [
-                "Proxy",
-                "🇭🇰 HongKong",
-                "🇺🇸 United States",
-                "🇸🇬 Singapore",
-                "🇯🇵 Japan",
-                "🇨🇳 Taiwan",
+                "Proxy"，
+                "🇭🇰 HongKong"，
+                "🇺🇸 United States"，
+                "🇸🇬 Singapore"，
+                "🇯🇵 Japan"，
+                "🇨🇳 Taiwan"，
                 "direct"
-            ],
-            "default": "Proxy",
+            ]，
+            "default": "Proxy"，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "Game",
-            "type": "selector",
+            "tag": "Game"，
+            "type": "selector"，
             "outbounds": [
-                "Proxy",
-                "🇭🇰 HongKong",
-                "🇺🇸 United States",
-                "🇸🇬 Singapore",
-                "🇯🇵 Japan",
-                "🇨🇳 Taiwan",
+                "Proxy"，
+                "🇭🇰 HongKong"，
+                "🇺🇸 United States"，
+                "🇸🇬 Singapore"，
+                "🇯🇵 Japan"，
+                "🇨🇳 Taiwan"，
                 "direct"
-            ],
-            "default": "Proxy",
+            ]，
+            "default": "Proxy"，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "Spotify",
-            "type": "selector",
+            "tag": "Spotify"，
+            "type": "selector"，
             "outbounds": [
-                "Proxy",
-                "🇭🇰 HongKong",
-                "🇺🇸 United States",
-                "🇸🇬 Singapore",
-                "🇯🇵 Japan",
-                "🇨🇳 Taiwan",
+                "Proxy"，
+                "🇭🇰 HongKong"，
+                "🇺🇸 United States"，
+                "🇸🇬 Singapore"，
+                "🇯🇵 Japan"，
+                "🇨🇳 Taiwan"，
                 "direct"
-            ],
-            "default": "Proxy",
+            ]，
+            "default": "Proxy"，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "TikTok",
-            "type": "selector",
+            "tag": "TikTok"，
+            "type": "selector"，
             "outbounds": [
-                "Proxy",
-                "🇭🇰 HongKong",
-                "🇺🇸 United States",
-                "🇸🇬 Singapore",
-                "🇯🇵 Japan",
+                "Proxy"，
+                "🇭🇰 HongKong"，
+                "🇺🇸 United States"，
+                "🇸🇬 Singapore"，
+                "🇯🇵 Japan"，
                 "🇨🇳 Taiwan"
-            ],
-            "default": "Proxy",
+            ]，
+            "default": "Proxy"，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "Pikpak",
-            "type": "selector",
+            "tag": "Pikpak"，
+            "type": "selector"，
             "outbounds": [
-                "Proxy",
-                "🇭🇰 HongKong",
-                "🇺🇸 United States",
-                "🇸🇬 Singapore",
-                "🇯🇵 Japan",
+                "Proxy"，
+                "🇭🇰 HongKong"，
+                "🇺🇸 United States"，
+                "🇸🇬 Singapore"，
+                "🇯🇵 Japan"，
                 "🇨🇳 Taiwan"
-            ],
-            "default": "Proxy",
+            ]，
+            "default": "Proxy"，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "Speedtest",
-            "type": "selector",
+            "tag": "Speedtest"，
+            "type": "selector"，
             "outbounds": [
-                "Proxy",
-                "🇭🇰 HongKong",
-                "🇺🇸 United States",
-                "🇸🇬 Singapore",
-                "🇯🇵 Japan",
-                "🇨🇳 Taiwan",
+                "Proxy"，
+                "🇭🇰 HongKong"，
+                "🇺🇸 United States"，
+                "🇸🇬 Singapore"，
+                "🇯🇵 Japan"，
+                "🇨🇳 Taiwan"，
                 "direct"
-            ],
-            "default": "Proxy",
+            ]，
+            "default": "Proxy"，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "Talkatone",
-            "type": "selector",
+            "tag": "Talkatone"，
+            "type": "selector"，
             "outbounds": [
-                "Proxy",
-                "🇭🇰 HongKong",
-                "🇺🇸 United States",
-                "🇸🇬 Singapore",
-                "🇯🇵 Japan",
+                "Proxy"，
+                "🇭🇰 HongKong"，
+                "🇺🇸 United States"，
+                "🇸🇬 Singapore"，
+                "🇯🇵 Japan"，
                 "🇨🇳 Taiwan"
-            ],
-            "default": "Proxy",
+            ]，
+            "default": "Proxy"，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "Final",
-            "type": "selector",
+            "tag": "Final"，
+            "type": "selector"，
             "outbounds": [
-                "Proxy",
-                "🇭🇰 HongKong",
-                "🇺🇸 United States",
-                "🇸🇬 Singapore",
-                "🇯🇵 Japan",
-                "🇨🇳 Taiwan",
+                "Proxy"，
+                "🇭🇰 HongKong"，
+                "🇺🇸 United States"，
+                "🇸🇬 Singapore"，
+                "🇯🇵 Japan"，
+                "🇨🇳 Taiwan"，
                 "direct"
-            ],
-            "default": "Proxy",
+            ]，
+            "default": "Proxy"，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "🇭🇰 HongKong",
-            "type": "selector",
+            "tag": "🇭🇰 HongKong"，
+            "type": "selector"，
             "outbounds": [
 
-            ],
+            ]，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "🇺🇸 United States",
-            "type": "selector",
+            "tag": "🇺🇸 United States"，
+            "type": "selector"，
             "outbounds": [
 
-            ],
+            ]，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "🇸🇬 Singapore",
-            "type": "selector",
+            "tag": "🇸🇬 Singapore"，
+            "type": "selector"，
             "outbounds": [
 
-            ],
+            ]，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "🇯🇵 Japan",
-            "type": "selector",
+            "tag": "🇯🇵 Japan"，
+            "type": "selector"，
             "outbounds": [
 
-            ],
+            ]，
             "interrupt_exist_connections": true
-        },
+        }，
         {
-            "tag": "🇨🇳 Taiwan",
-            "type": "selector",
+            "tag": "🇨🇳 Taiwan"，
+            "type": "selector"，
             "outbounds": [
 
-            ],
+            ]，
             "interrupt_exist_connections": true
         }
-    ],
+    ]，
     "route": {
         "rule_set": [
             {
-                "tag": "Ads",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Ads_SukkaW.srs",
+                "tag": "Ads"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Ads_SukkaW.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "Telegram",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Telegram.srs",
+                "tag": "Telegram"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Telegram.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "YouTube",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/YouTube.srs",
+                "tag": "YouTube"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/YouTube.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "Google",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Google.srs",
+                "tag": "Google"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Google.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "Microsoft",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Microsoft.srs",
+                "tag": "Microsoft"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Microsoft.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "OneDrive",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/OneDrive.srs",
+                "tag": "OneDrive"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/OneDrive.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "Github",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Github.srs",
+                "tag": "Github"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Github.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "Twitter",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Twitter.srs",
+                "tag": "Twitter"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Twitter.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "Apple",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Apple.srs",
+                "tag": "Apple"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Apple.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "AppleProxy",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/AppleProxy.srs",
+                "tag": "AppleProxy"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/AppleProxy.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "AI",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-chat-!cn.srs",
+                "tag": "AI"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-chat-!cn.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "Emby",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://jsdelivr.pai233.top/gh/GD2021/auto-rule@refs/heads/main/rule/Emby.srs",
+                "tag": "Emby"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://jsdelivr.pai233.top/gh/GD2021/auto-rule@refs/heads/main/rule/Emby.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "Nsfw",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://jsdelivr.pai233.top/gh/GD2021/auto-rule@refs/heads/main/rule/nsfw.srs",
+                "tag": "Nsfw"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://jsdelivr.pai233.top/gh/GD2021/auto-rule@refs/heads/main/rule/nsfw.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "Epic",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Epic.srs",
+                "tag": "Epic"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Epic.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "Steam",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Steam.srs",
+                "tag": "Steam"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Steam.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "Spotify",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Spotify.srs",
+                "tag": "Spotify"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Spotify.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "TikTok",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/TikTok.srs",
+                "tag": "TikTok"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/TikTok.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "Pikpak",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://jsdelivr.pai233.top/gh/senshinya/singbox_ruleset@refs/heads/main/rule/PikPak/PikPak.srs",
+                "tag": "Pikpak"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://jsdelivr.pai233.top/gh/senshinya/singbox_ruleset@refs/heads/main/rule/PikPak/PikPak.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "Speedtest",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/ookla-speedtest.srs",
+                "tag": "Speedtest"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/ookla-speedtest.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "Talkatone",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/refs/heads/X/sing-box/Rules/Talkatone.srs",
+                "tag": "Talkatone"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/refs/heads/X/sing-box/Rules/Talkatone.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "Javdb",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://jsdelivr.pai233.top/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/javdb.srs",
+                "tag": "Javdb"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://jsdelivr.pai233.top/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/javdb.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "ChinaDomain",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs",
+                "tag": "ChinaDomain"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs"，
                 "download_detour": "direct"
-            },
+            }，
             {
-                "tag": "ChinaIP",
-                "type": "remote",
-                "format": "binary",
-                "url": "https://git.repcz.link/github.com/Loyalsoldier/geoip/raw/release/srs/cn.srs",
+                "tag": "ChinaIP"，
+                "type": "remote"，
+                "format": "binary"，
+                "url": "https://git.repcz.link/github.com/Loyalsoldier/geoip/raw/release/srs/cn.srs"，
                 "download_detour": "direct"
             }，
             {
