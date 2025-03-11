@@ -176,6 +176,7 @@ DOMAIN-SUFFIX,7777777.buzz
 DOMAIN-SUFFIX,api.dandanplay.net
 DOMAIN-SUFFIX,cas2.dandanplay.net
 DOMAIN-SUFFIX,us.nanflix.net
+DOMAIN-SUFFIX,eightysix.lv
 IP-CIDR,152.53.67.239/32,no-resolve
 IP-CIDR,188.172.228.49/32,no-resolve
 IP-CIDR,202.61.255.248/32,no-resolve
