@@ -1,21 +1,21 @@
 {
   "dns": {
     "servers": [
-      {"address": "local", "tag": "local-dns", "detour": "direct"},
-      {"tag": "ali", "address": "223.5.5.5", "detour": "direct"},
-      {"tag": "cloudflare", "address": "https://1.1.1.1/dns-query", "detour": "Proxy"}
+      {"tag": "cloudflare","address": "https://1.1.1.1/dns-query","detour": "Proxy"},
+      {"tag": "ali","address": "223.5.5.5","detour": "direct"},
+      {"tag": "remote_fakeip","address": "fakeip"} 
     ],
     "rules": [
-      {"outbound": "any", "server": "local-dns", "disable_cache": true},
-      {"action": "route", "server": "ali"},
-      {"action": "route", "server": "cloudflare"},
-      {"action": "reject", "method": "default", "no_drop": false, "rule_set": "ads"},
-      {"rule_set": ["ChinaDomain", "Apple"], "action": "route", "server": "ali"},
-      {"rule_set": ["geolocation-!cn"], "action": "route", "server": "cloudflare"}
+      {"outbound": "any","server": "ali"},
+      {"clash_mode": "全局直连","action": "route","server": "ali"},
+      {"clash_mode": "全局代理","action": "route","server": "remote_fakeip"},
+      {"query_type": "HTTPS","action": "reject"},
+      {"query_type": ["A","AAAA"],"action": "route","server": "remote_fakeip","rewrite_ttl": 1},
+      {"rule_set": ["ChinaDomain","Apple"],"action": "route","server": "ali"}
     ],
     "final": "cloudflare",
-    "strategy": "ipv4_only",
-    "independent_cache": false
+    "fakeip": {"enabled": true,"inet4_range": "198.18.0.0/15","inet6_range": "fc00::/18"},
+    "independent_cache": true
   },
     "outbounds": [
     {"tag": "direct", "type": "direct"},
@@ -75,20 +75,12 @@
         ],
         "rules": [
 			
-			{"action": "sniff", "sniffer": ["http", "tls", "dns"], "timeout": "500ms", "inbound": "tun-in"},
-			{"action": "sniff", "sniffer": ["http", "tls", "dns"], "timeout": "500ms", "inbound": "mixed-in"},
-			{"action": "resolve", "strategy": "prefer_ipv4", "inbound": "tun-in"},
-			{"action": "resolve", "strategy": "prefer_ipv4", "inbound": "mixed-in"},
-			{"action":"hijack-dns","type":"logical","mode":"or","rules":[{"protocol":"dns"},{"port":53}]},
-			{"action": "reject", "method": "default", "no_drop": false, "protocol": "quic"},
-			{"action":"reject","method":"default","no_drop":false,"type":"logical","mode":"and","rules":[{"network":"tcp"},{"port":853}]},
-			{"action":"reject","method":"default","no_drop":false,"type":"logical","mode":"and","rules":[{"network":"udp"},{"port":443}]},
-			{"action":"reject","method":"default","no_drop":false,"rule_set":["aff","yun"]},
-            {"ip_is_private": true,"outbound": "direct"},
+			{"action": "sniff","sniffer": ["http","tls","quic","dns"],"timeout": "500ms"},
+            {"type": "logical","mode": "or","rules": [{"port": 53},{"protocol": "dns"}],"action": "hijack-dns"},
+            {"ip_is_private": true,"action": "route","outbound": "direct"},
             {"clash_mode": "全局直连","action": "route","outbound": "direct"},
             {"clash_mode": "全局代理","action": "route","outbound": "Proxy"},
-		{"protocol":["quic"],"action":"reject","method":"default","no_drop":true},
-            {"rule_set": ["Ads"],"action": "reject","method": "default","no_drop": true},
+		    {"rule_set": ["Ads"],"action": "reject"},
             {"rule_set": ["AI"],"action": "route","outbound": "AI"},
             {"rule_set": ["YouTube","Google"],"action": "route","outbound": "Google"},
             {"rule_set": ["Microsoft","OneDrive","Github"],"action": "route","outbound": "Microsoft"},
@@ -113,7 +105,6 @@
             {"rule_set": ["ChinaDomain","ChinaIP","Apple"],"action": "route","outbound": "direct"}
             
         ],
-        "find_process": false,
         "auto_detect_interface": true,
         "final": "Final"
     },
@@ -125,7 +116,7 @@
     "experimental": {
         "cache_file": {
             "enabled": true,
-            "path": "cache.db"
+            "store_fakeip": true
 
         },
         "clash_api": {
@@ -138,13 +129,17 @@
     },
     "inbounds": [
         {
+            "type": "mixed",
+            "listen": "127.0.0.1",
+            "listen_port": 7080,
+            "set_system_proxy": false
+        },
+        {
             "type": "tun",
-            "tag": "tun-in",
-            "mtu": 9000,
-            "address": ["172.19.0.1/30"],
-            "auto_route": true,
-            "strict_route": false,
-            "stack": "system",
+            "address": [
+                "172.18.0.1/30",
+                "fdfe:dcba:9876::1/126"
+            ],
             "platform": {
                 "http_proxy": {
                     "enabled": true,
@@ -152,13 +147,8 @@
                     "server_port": 7080
                 }
             },
-            "endpoint_independent_nat": true
-        },
-        {
-            "type": "mixed",
-            "tag": "mixed-in",
-            "listen": "127.0.0.1",
-            "listen_port": 7081
+            "stack": "mixed",
+            "auto_route": true
         }
     ]
 }
