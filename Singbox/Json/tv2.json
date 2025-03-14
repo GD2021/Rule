@@ -1,39 +1,136 @@
 {
-  "log": {
-    "level": "info",
-    "timestamp": true
-  },
-  "experimental": {
-    "clash_api": {
-      "external_controller": "0.0.0.0:9090",
-      "external_ui": "ui",
-      "secret": "",
-      "external_ui_download_url": "https://git.repcz.link/github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
-      "external_ui_download_detour": "direct",
-      "default_mode": "rule"
-    },
-  "cache_file": {
-    "enabled": true,
-    "store_fakeip": false
-    }
-  },
   "dns": {
     "servers": [
-      {"tag":"proxyDns","address":"tls://8.8.8.8","detour":"proxy"},
-      {"tag":"localDns","address":"https://223.5.5.5/dns-query","detour":"direct"}
+      {"tag": "cloudflare","address": "https://1.1.1.1/dns-query","detour": "Proxy"},
+      {"tag": "ali","address": "https://223.5.5.5/dns-query","detour": "direct"}
     ],
     "rules": [
-      {"outbound":"any","server":"localDns"},
-      {"rule_set":"geosite-cn","server":"localDns"}, 
-      {"clash_mode":"direct","server":"localDns"},
-      {"clash_mode":"global","server":"proxyDns"},
-      {"rule_set":"geosite-geolocation-!cn","server":"proxyDns"}
+      {"outbound": "any","server": "ali"},
+      {"rule_set":"geosite-cn","server":"ali"},
+      {"clash_mode": "direct","action": "route","server": "ali"},
+      {"clash_mode": "global","action": "route","server": "Proxy"},
+      {"rule_set":"geolocation-!cn","server":"cloudflare"}
     ],
-    "final": "localDns",
+    "final": "ali",
     "strategy": "ipv4_only"
   },
-  "inbounds": [
-    {
+    "outbounds": [
+    {"tag": "Final", "type": "selector", "outbounds": ["Proxy","direct"], "default": "Proxy", "interrupt_exist_connections": true},   
+    {"tag": "Proxy", "type": "selector", "outbounds": ["🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan", "direct"], "default": "direct", "interrupt_exist_connections": true},
+    {"tag":"GLOBAL","type":"selector","outbounds":["🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan", "direct"],"default":"direct"},
+    {"tag": "AI", "type": "selector", "outbounds": ["Proxy", "🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan"], "default": "Proxy", "interrupt_exist_connections": true},
+    {"tag": "YouTube", "type": "selector", "outbounds": ["Proxy", "🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan"], "default": "Proxy", "interrupt_exist_connections": true},
+    {"tag": "Emby", "type": "selector", "outbounds": ["Proxy", "🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan", "direct"], "default": "Proxy", "interrupt_exist_connections": true},
+    {"tag": "Nsfw", "type": "selector", "outbounds": ["Proxy", "🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan", "direct"], "default": "Proxy", "interrupt_exist_connections": true},
+    {"tag": "Spotify", "type": "selector", "outbounds": ["Proxy", "🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan", "direct"], "default": "Proxy", "interrupt_exist_connections": true},
+    {"tag": "TikTok", "type": "selector", "outbounds": ["Proxy", "🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan"], "default": "Proxy", "interrupt_exist_connections": true},
+    {"tag": "Pikpak", "type": "selector", "outbounds": ["Proxy", "🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan"], "default": "Proxy", "interrupt_exist_connections": true},
+    {"tag": "Talkatone", "type": "selector", "outbounds": ["Proxy", "🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan"], "default": "Proxy", "interrupt_exist_connections": true},
+    {"tag": "Telegram", "type": "selector", "outbounds": ["Proxy", "🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan"], "default": "Proxy", "interrupt_exist_connections": true},
+    {"tag": "Twitter", "type": "selector", "outbounds": ["Proxy", "🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan"], "default": "Proxy", "interrupt_exist_connections": true},
+    {"tag": "Speedtest", "type": "selector", "outbounds": ["Proxy", "🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan", "direct"], "default": "Proxy", "interrupt_exist_connections": true},
+    {"tag": "Google", "type": "selector", "outbounds": ["Proxy", "🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan"], "default": "Proxy", "interrupt_exist_connections": true},
+    {"tag": "Microsoft", "type": "selector", "outbounds": ["Proxy", "🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan", "direct"], "default": "Proxy", "interrupt_exist_connections": true},
+    {"tag": "Game", "type": "selector", "outbounds": ["Proxy", "🇭🇰 HongKong", "🇺🇸 United States", "🇸🇬 Singapore", "🇯🇵 Japan", "🇨🇳 Taiwan", "direct"], "default": "Proxy", "interrupt_exist_connections": true},
+    {"tag": "🇭🇰 HongKong", "type": "selector", "outbounds": [], "interrupt_exist_connections": true},
+    {"tag": "🇺🇸 United States", "type": "selector", "outbounds": [], "interrupt_exist_connections": true},
+    {"tag": "🇸🇬 Singapore", "type": "selector", "outbounds": [], "interrupt_exist_connections": true},
+    {"tag": "🇯🇵 Japan", "type": "selector", "outbounds": [], "interrupt_exist_connections": true},
+    {"tag": "🇨🇳 Taiwan", "type": "selector", "outbounds": [], "interrupt_exist_connections": true},
+    {"tag": "direct", "type": "direct"}
+  ],
+    "route": {
+        "rule_set": [
+            {"tag": "Ads","type": "remote","format": "binary","url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Ads_SukkaW.srs","download_detour": "direct"},
+            {"tag":"geosite-private","type":"remote","format":"binary","url":
+"https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs","download_detour":"direct"},
+             {"tag": "AI", "type": "remote", "format": "binary", "url": "https://git.repcz.link/raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-chat-!cn.srs", "download_detour": "direct"},
+             {"tag": "YouTube", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/YouTube.srs", "download_detour": "direct"},
+             {"tag": "Emby", "type": "remote", "format": "binary", "url": "https://jsdelivr.pai233.top/gh/GD2021/auto-rule@refs/heads/main/rule/Emby.srs", "download_detour": "direct"},
+            {"tag": "Telegram", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Telegram.srs", "download_detour": "direct"},   
+            {"tag":"geoip-google","type":"remote","format":"binary","url":
+"https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/google.srs","download_detour":"direct"},
+      {"tag":"geosite-google","type":"remote","format":"binary","url":
+"https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/google.srs","download_detour":"direct"},
+            {"tag": "Microsoft", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Microsoft.srs", "download_detour": "direct"},
+            {"tag": "OneDrive", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/OneDrive.srs", "download_detour": "direct"},
+            {"tag": "Github", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Github.srs", "download_detour": "direct"},
+            {"tag": "Twitter", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Twitter.srs", "download_detour": "direct"},
+            {"tag": "Apple", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Apple.srs", "download_detour": "direct"},
+            {"tag": "AppleProxy", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/AppleProxy.srs", "download_detour": "direct"},
+            {"tag": "Nsfw", "type": "remote", "format": "binary", "url": "https://jsdelivr.pai233.top/gh/GD2021/auto-rule@refs/heads/main/rule/nsfw.srs", "download_detour": "direct"},
+            {"tag": "Epic", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Epic.srs", "download_detour": "direct"},
+            {"tag": "Steam", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Steam.srs", "download_detour": "direct"}, 
+            {"tag": "Spotify", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/Spotify.srs", "download_detour": "direct"},
+            {"tag": "TikTok", "type": "remote", "format": "binary", "url": "https://git.repcz.link/github.com/Repcz/Tool/raw/X/sing-box/Rules/TikTok.srs", "download_detour": "direct"},
+            {"tag":"Pikpak","type":"remote","format":"binary","url":
+"https://jsdelivr.pai233.top/gh/senshinya/singbox_ruleset@refs/heads/main/rule/PikPak/PikPak.srs","download_detour":"direct"},
+            {"tag":"Speedtest","type":"remote","format":"binary","url":
+"https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/ookla-speedtest.srs","download_detour":"direct"},
+			{"tag":"Talkatone","type":"remote","format":"binary","url":
+"https://git.repcz.link/github.com/Repcz/Tool/raw/refs/heads/X/sing-box/Rules/Talkatone.srs","download_detour":"direct"},
+			{"tag":"Javdb","type":"remote","format":"binary","url":
+"https://jsdelivr.pai233.top/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/javdb.srs","download_detour":"direct"},
+            {"tag": "geolocation-!cn","type": "remote","format": "binary","url": "https://git.repcz.link/raw.githubusercontent.com/CHIZI-0618/v2ray-rules-dat/release/singbox_rule_set/geosite-geolocation-!cn.srs","download_detour":"direct"},
+            {"tag":"geoip-cn","type":"remote","format":"binary","url":
+ "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs","download_detour":"direct"},
+      {"tag":"geosite-cn","type":"remote","format":"binary","url":
+"https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs","download_detour":"direct"}
+        ],
+        "rules": [
+			{"inbound":["tun-in","mixed-in"],"action":"sniff"},
+            {"type":"logical","mode":"or","rules":[{"port":53},{"protocol":"dns"}],"action":"hijack-dns"},           
+            {"rule_set":"Ads","clash_mode":"rule","action":"reject"},
+            {"rule_set":"Ads","clash_mode":"global","outbound":"Proxy"},
+            {"clash_mode": "direct","action": "route","outbound": "direct"},
+            {"clash_mode": "global","action": "route","outbound": "Proxy"},  
+            {"domain":["clash.razord.top","yacd.metacubex.one","yacd.haishan.me","d.metacubex.one"],"outbound":"direct"},
+            {"ip_is_private": true,"action": "route","outbound": "direct"},
+            {"rule_set":"geosite-private","outbound":"direct"},
+            
+            {"rule_set": ["AI"],"action": "route","outbound": "AI"},
+            {"rule_set": ["YouTube"],"action": "route","outbound": "YouTube"},
+            {"rule_set": ["Twitter"],"action": "route","outbound": "Twitter"},
+            {"rule_set": ["Telegram"],"action": "route","outbound": "Telegram"},
+			{"rule_set": ["Emby"],"action": "route","outbound": "Emby"},
+			{"rule_set": ["Nsfw","Javdb"],"action": "route","outbound": "Nsfw"},
+            {"rule_set": ["TikTok"],"action": "route","outbound": "TikTok"},
+            {"rule_set": ["Spotify"],"action": "route","outbound": "Spotify"},
+            {"rule_set": ["Pikpak"],"action": "route","outbound": "Pikpak"},
+            {"rule_set": ["Speedtest"],"action": "route","outbound": "Speedtest"},
+            {"rule_set": ["Talkatone"],"action": "route","outbound": "Talkatone"},
+            {"rule_set": ["AppleProxy"],"action": "route","outbound": "🇭🇰 HongKong"},
+            {"rule_set":["geoip-google","geosite-google"],"outbound":"Google"},
+            {"rule_set": ["Microsoft","OneDrive","Github"],"action": "route","outbound": "Microsoft"},
+            {"rule_set": ["Steam","Epic"],"action": "route","outbound": "Game"}, 
+            {"rule_set": ["geolocation-!cn"],"action": "route","outbound": "Proxy"},
+            {"rule_set":["geoip-cn","geosite-cn"],"action": "route","outbound": "direct"}
+        ],
+        "auto_detect_interface": true,
+        "final": "Proxy"
+    },
+    "log": {
+        "disabled": false,
+        "level": "warn",
+        "timestamp": true
+    },
+    "experimental": {
+        "cache_file": {
+            "enabled": true,
+            "path": "cache.db",
+            "store_fakeip": false
+
+        },
+        "clash_api": {
+            "default_mode": "rule",
+            "external_controller": "192.168.2.224:9090",
+            "external_ui": "ui",
+            "external_ui_download_url": "https://git.repcz.link/github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+            "external_ui_download_detour": "direct"
+        }
+    },
+    "inbounds": [
+         {
       "tag": "tun-in",
       "type": "tun",
       "address": [
@@ -46,7 +143,7 @@
       "platform": {
         "http_proxy": {
           "enabled": true,
-          "server": "127.0.0.1",
+          "server": "192.168.2.224",
           "server_port": 2080
         }
       }
@@ -54,268 +151,8 @@
     {
       "tag": "mixed-in",
       "type": "mixed",
-      "listen": "127.0.0.1",
+      "listen": "192.168.2.224",
       "listen_port": 2080
     }
-  ],
-  "outbounds": [
-    {"tag":"Final","type":"selector","outbounds":["proxy","direct"],"default":"proxy"},
-   {"tag":"proxy","type":"selector","outbounds":["HongKong","TaiWan","Japan","Korea","Singapore","America","UnitedKingdom","AllServer","direct"],"default":"AllServer"},
-    {"tag":"GLOBAL","type":"selector","outbounds":["direct","proxy","HongKong","TaiWan","Japan","Korea","Singapore","America","UnitedKingdom","AllServer"],"default":"direct"},
-   {"tag":"AI","type":"selector","outbounds":["proxy","HongKong","TaiWan","Japan","Korea","Singapore","America","UnitedKingdom","AllServer"],"default":"proxy"},
-   {"tag":"YouTube","type":"selector","outbounds":["proxy","HongKong","TaiWan","Japan","Korea","Singapore","America","UnitedKingdom","AllServer"],"default":"proxy"},
-    {"tag":"NSFW","type":"selector","outbounds":["proxy","HongKong","TaiWan","Japan","Korea","Singapore","America","UnitedKingdom","AllServer"],"default":"proxy"},
-    {"tag":"Emby","type":"selector","outbounds":["proxy","HongKong","TaiWan","Japan","Kore   a","Singapore","America","UnitedKingdom","AllServer","direct"],"default":"proxy"},
-    {"tag":"TikTok","type":"selector","outbounds":["proxy","HongKong","TaiWan","Japan","Korea","Singapore","America","UnitedKingdom","AllServer"],"default":"proxy"},
-    {"tag":"bilibili","type":"selector","outbounds":["direct","HongKong","TaiWan"],"default":"direct"},
-    {"tag":"Spotify","type":"selector","outbounds":["proxy","HongKong","TaiWan","Japan","Korea","Singapore","America","UnitedKingdom","AllServer","direct"],"default":"proxy"},
-    {"tag":"Telegram","type":"selector","outbounds":["proxy","HongKong","TaiWan","Japan","Korea","Singapore","America","UnitedKingdom","AllServer"],"default":"proxy"},
-    {"tag":"X","type":"selector","outbounds":["proxy","HongKong","TaiWan","Japan","Korea","Singapore","America","UnitedKingdom","AllServer"],"default":"proxy"},
-    {"tag":"Apple","type":"selector","outbounds":["direct","proxy","HongKong","TaiWan","Japan","Korea","Singapore","America","UnitedKingdom","AllServer"],"default":"direct"},
-    {"tag":"Google","type":"selector","outbounds":["proxy","HongKong","TaiWan","Japan","Korea","Singapore","America","UnitedKingdom","AllServer","direct"],"default":"proxy"},
-    {"tag":"Microsoft","type":"selector","outbounds":["direct","proxy","HongKong","TaiWan","Japan","Korea","Singapore","America","UnitedKingdom","AllServer"],"default":"proxy"},
-    {"tag":"Games","type":"selector","outbounds":["direct","proxy","HongKong","TaiWan","Japan","Korea","Singapore","America","UnitedKingdom","AllServer"],"default":"proxy"},
-    {"tag":"HongKong","type":"urltest","outbounds":[],"url":"https://www.gstatic.com/generate_204","interval":"5m","tolerance":50},
-    {"tag":"TaiWan","type":"urltest","outbounds":[],"url":"https://www.gstatic.com/generate_204","interval":"5m","tolerance":50},
-    {"tag":"Japan","type":"urltest","outbounds":[],"url":"https://www.gstatic.com/generate_204","interval":"5m","tolerance":50},
-    {"tag":"Korea","type":"urltest","outbounds":[],"url":"https://www.gstatic.com/generate_204","interval":"5m","tolerance":50},
-    {"tag":"Singapore","type":"urltest","outbounds":[],"url":"https://www.gstatic.com/generate_204","interval":"5m","tolerance":50},
-    {"tag":"America","type":"urltest","outbounds":[],"url":"https://www.gstatic.com/generate_204","interval":"5m","tolerance":50},
-    {"tag":"UnitedKingdom","type":"urltest","outbounds":[],"url":"https://www.gstatic.com/generate_204","interval":"5m","tolerance":50},
-    {"tag":"AllServer","type":"selector","outbounds":[]},
-    {"type":"direct","tag":"direct"}
-  ],
-  "route": {
-    "auto_detect_interface": true,
-    "final": "proxy",
-    "rules": [
-      {"inbound":["tun-in","mixed-in"],"action":"sniff"},
-      {"type":"logical","mode":"or","rules":[{"port":53},{"protocol":"dns"}],"action":"hijack-dns"},
-      {"rule_set":"geosite-category-ads-all","clash_mode":"rule","action":"reject"},   
-      {"rule_set":"geosite-category-ads-all","clash_mode":"global","outbound":"proxy"},
-      {"clash_mode":"direct","outbound":"direct"},
-      {"clash_mode":"global","outbound":"proxy"},
-      {"domain":["clash.razord.top","yacd.metacubex.one","yacd.haishan.me","d.metacubex.one"],"outbound":"direct"},
-      {"ip_is_private":true,"outbound":"direct"},
-      {"rule_set":"geosite-private","outbound":"direct"},
-      {"rule_set":"geosite-category-ai-chat-!cn","outbound":"AI"},
-      {"rule_set":"geosite-youtube","outbound":"YouTube"},
-      {"rule_set":["geosite-NSFW"],"outbound":"NSFW"},
-      {"rule_set":"mixed-emby","outbound":"Emby"},
-      {"rule_set":"mixed-tiktok","outbound":"TikTok"},
-      {"rule_set":"geosite-bahamut","outbound":"TaiWan"},
-      {"rule_set":"geosite-biliintl","outbound":"proxy"},
-      {"rule_set":["geoip-bilibili","geosite-bilibili"],"outbound":"bilibili"},
-      {"rule_set":"geosite-spotify","outbound":"Spotify"},
-      {"rule_set":"mixed-wechat","outbound":"direct"},
-      {"rule_set":["geoip-telegram","geosite-telegram"],"outbound":"Telegram"},
-      {"rule_set":"geosite-github","outbound":"proxy"},
-      {"rule_set":["geoip-twitter","geosite-twitter"],"outbound":"X"},
-      {"rule_set":"mixed-appleproxyservice","outbound":"America"},
-      {"rule_set":["geoip-apple","geosite-apple"],"outbound":"Apple"},
-      {"rule_set":["geoip-google","geosite-google"],"outbound":"Google"},
-      {"rule_set":"geosite-microsoft","outbound":"Microsoft"},
-      {"rule_set":"geosite-category-games","outbound":"Games"},
-      {"rule_set":"geosite-geolocation-!cn","outbound":"proxy"},
-      {"rule_set":["geoip-cn","geosite-cn"],"outbound":"direct"}
-    ],
-    "rule_set": [
-      {
-        "tag": "geosite-category-ads-all",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ads-all.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-private",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/private.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-category-ai-chat-!cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-ai-chat-!cn.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-youtube",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/youtube.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-NSFW",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://jsdelivr.pai233.top/gh/GD2021/auto-rule@refs/heads/main/rule/nsfw.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "mixed-emby",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://jsdelivr.pai233.top/gh/GD2021/auto-rule@refs/heads/main/rule/Emby.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "mixed-tiktok",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/Coldvvater/sing-box-geosite@main/rule/TikTok.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-bahamut",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bahamut.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-biliintl",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/biliintl.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-bilibili",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geoip/bilibili.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-bilibili",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/bilibili.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-spotify",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/spotify.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "mixed-wechat",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/Coldvvater/sing-box-geosite@main/rule//Wechat.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-telegram",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/telegram.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-telegram",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/telegram.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-github",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/github.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-twitter",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/twitter.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-twitter",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/twitter.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "mixed-appleproxyservice",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/Coldvvater/sing-box-geosite@main/rule/AppleProxyService.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-apple",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo-lite/geoip/apple.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-apple",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/apple.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-google",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/google.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-google",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/google.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-microsoft",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/microsoft.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-category-games",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/category-games.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-geolocation-!cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/geolocation-!cn.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geoip-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/cn.srs",
-        "download_detour": "direct"
-      },
-      {
-        "tag": "geosite-cn",
-        "type": "remote",
-        "format": "binary",
-        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/cn.srs",
-        "download_detour": "direct"
-      }
     ]
-  }
 }
