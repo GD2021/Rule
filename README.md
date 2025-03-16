@@ -27,14 +27,12 @@
 
 ### Loon 
 
-Repcz Tool：https://github.com/Repcz/Tool
-[Sooinn](https://github.com/Sooinn/Sooinn-io)
 
 ### Stash
-[Sooinn](https://github.com/Sooinn/Sooinn-io)
+[快捷配置 - 虚空终端 Docs](https://wiki.metacubex.one/example/conf/#__tabbed_4_1)
+[Lanlan13-14/Rules](https://github.com/Lanlan13-14/Rules/tree/main)
 
 ### Egern
-[Sooinn](https://github.com/Sooinn/Sooinn-io)
 [jnlaoshu/MySelf: Egern、Stash、Surge、Loon、Quanx、Shadowrocket等自用配置。网上搜集，仅供参考！感谢大佬们的无私分享！](https://github.com/jnlaoshu/MySelf)
 
 
