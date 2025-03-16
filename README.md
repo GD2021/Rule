@@ -1,20 +1,4 @@
-# 📋 ZY各种配置
-
-## 🔗 Singbox订阅转换工具
-
-<details>
-<summary>详细信息</summary>
-
-- `https://hproxy.filegear-sg.me/config/订阅链接&file=模板文件`
-</details>
-
-## 配置模板
-
-<details open>
-<summary>详细信息</summary>
-
-- [Yfamily](https://whatshub.top/)
-</details>
+# 📋 ZY配置
 
 ## Surge
 
@@ -74,4 +58,20 @@
 - [luestr/ProxyResource: 可莉的](https://github.com/luestr/ProxyResource/tree/main)
 - [Repcz/Tool](https://github.com/Repcz/Tool)
 - [Centralmatrix3/Matrix-io](https://github.com/Centralmatrix3/Matrix-io)
+</details>
+
+### Singbox订阅转换工具
+
+<details>
+<summary>详细信息</summary>
+
+- `https://hproxy.filegear-sg.me/config/订阅链接&file=模板文件`
+</details>
+
+### 脚本
+
+<details open>
+<summary>详细信息</summary>
+
+- [Yfamily](https://whatshub.top/)
 </details>
