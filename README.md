@@ -1,40 +1,77 @@
-# ZY各种配置
----
+# 📋 ZY各种配置
 
-### 🔗 Singbox订阅转换工具
+## 🔗 Singbox订阅转换工具
+
+<details>
+<summary>详细信息</summary>
 
 - `https://hproxy.filegear-sg.me/config/订阅链接&file=模板文件`
-- 
-### 鸣谢
-- [luestr/ProxyResource: 可莉的Loon资源库 | 插件 | 脚本 | 规则](https://github.com/luestr/ProxyResource/tree/main)
+</details>
+
+## 配置模板
+
+<details open>
+<summary>详细信息</summary>
+
+- [Yfamily](https://whatshub.top/)
+</details>
+
+## Surge
+
+<details>
+<summary>详细信息</summary>
+
+- [Surge Ruleset Server | Sukka](https://ruleset.skk.moe/)
+</details>
+
+## Singbox
+
+<details>
+<summary>详细信息</summary>
+
+- [Repcz/Tool](https://github.com/Repcz/Tool)
+- [Centralmatrix3/Matrix-io](https://github.com/Centralmatrix3/Matrix-io)
+</details>
+
+## Loon
+
+<details>
+<summary>详细信息</summary>
+
+- [luestr/ProxyResource: 可莉的](https://github.com/luestr/ProxyResource/tree/main)
 - [Repcz/Tool](https://github.com/Repcz/Tool)
 - [Centralmatrix3/Matrix-io](https://github.com/Centralmatrix3/Matrix-io)
 - [Coldvvater/Mononoke](https://github.com/Coldvvater/Mononoke/tree/master)
-- [LeLeBay/linzein](https://github.com/LeLeBay/linzein)
-- [mphin/ACL4SSR](https://github.com/mphin/ACL4SSR)
-- [GeQ1an/Rules](https://github.com/GeQ1an/Rules/tree/master)
-- [Surge Ruleset Server | Sukka](https://ruleset.skk.moe/)
-- [LucaLin233/Luca_Conf: LucaLin233的自用配置](https://github.com/LucaLin233/Luca_Conf)
-- [Scripts/Ruleset/Special/P-Media.list](https://github.com/Centralmatrix3/Scripts/blob/c921cbc8caef89e9dee2d9cd4ba815d6f7902d3d/Ruleset/Special/P-Media.list#L37)
-- [Rabbit-Spec/Surge: Surge自用配置以及模块和脚本](https://github.com/Rabbit-Spec/Surge?tab=readme-ov-file)
-- [Yfamily](https://whatshub.top/)
+</details>
 
-### 配置模板
+## Stash
 
+<details>
+<summary>详细信息</summary>
 
+- [快捷配置 - 虚空终端 Docs](https://wiki.metacubex.one/example/conf/#__tabbed_4_1)
+- [Lanlan13-14/Rules](https://github.com/Lanlan13-14/Rules/tree/main)
+- [Repcz/Tool](https://github.com/Repcz/Tool)
+- [Centralmatrix3/Matrix-io](https://github.com/Centralmatrix3/Matrix-io)
+- [Coldvvater/Mononoke](https://github.com/Coldvvater/Mononoke/tree/master)
+</details>
 
-### Singbox
+## Egern
 
-### Loon 
+<details>
+<summary>详细信息</summary>
 
+- [jnlaoshu/MySelf: Egern、Stash、Surge、Loon、Quanx、Shadowrocket等自用配置。网上搜集，仅供参考！感谢大佬们的无私分享！](https://github.com/jnlaoshu/MySelf)
+- [Repcz/Tool](https://github.com/Repcz/Tool)
+- [Centralmatrix3/Matrix-io](https://github.com/Centralmatrix3/Matrix-io)
+</details>
 
-### Stash
-[快捷配置 - 虚空终端 Docs](https://wiki.metacubex.one/example/conf/#__tabbed_4_1)
-[Lanlan13-14/Rules](https://github.com/Lanlan13-14/Rules/tree/main)
+## qx
 
-### Egern
-[jnlaoshu/MySelf: Egern、Stash、Surge、Loon、Quanx、Shadowrocket等自用配置。网上搜集，仅供参考！感谢大佬们的无私分享！](https://github.com/jnlaoshu/MySelf)
+<details>
+<summary>详细信息</summary>
 
-
-### qx
-
+- [luestr/ProxyResource: 可莉的](https://github.com/luestr/ProxyResource/tree/main)
+- [Repcz/Tool](https://github.com/Repcz/Tool)
+- [Centralmatrix3/Matrix-io](https://github.com/Centralmatrix3/Matrix-io)
+</details>
