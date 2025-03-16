@@ -38,6 +38,7 @@
 - [Repcz/Tool](https://github.com/Repcz/Tool)
 - [Centralmatrix3/Matrix-io](https://github.com/Centralmatrix3/Matrix-io)
 - [Coldvvater/Mononoke](https://github.com/Coldvvater/Mononoke/tree/master)
+- [Auniquesir/规则集](https://github.com/Auniquesir/Tool/tree/X)
 </details>
 
 ## Egern
