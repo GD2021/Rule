@@ -66,7 +66,7 @@
 - [Centralmatrix3/Matrix-io](https://github.com/Centralmatrix3/Matrix-io)
 </details>
 
-## qx
+## QuantumultX
 
 <details>
 <summary>详细信息</summary>
