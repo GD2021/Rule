@@ -69,6 +69,14 @@
 - `https://hproxy.filegear-sg.me/config/订阅链接&file=模板文件`
 </details>
 
+### Shadowrocket
+
+<details>
+<summary>详细信息</summary>
+
+- [LOWERTOP/Shadowrocket-First at main](https://github.com/LOWERTOP/Shadowrocket-First/tree/main)
+</details>
+
 ### 脚本
 
 <details open>
