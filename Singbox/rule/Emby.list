@@ -1,6 +1,14 @@
 # 规则名称: Emby
 # 规则统计: 165
 
+#自添加
+DOMAIN-SUFFIX,yhemby.top
+# 二刺螈_emby
+DOMAIN-SUFFIX,media.nijigem.by
+DOMAIN-SUFFIX,CT.cdn.bgp.yt
+DOMAIN-SUFFIX,us-w.cdn.bgp.yt
+# 纸片人
+DOMAIN-SUFFIX,embyplus.org
 DOMAIN,195.201.86.86
 DOMAIN,cc.coemn.com
 DOMAIN,cminf.sfcat.link
