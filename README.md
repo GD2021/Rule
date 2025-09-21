@@ -67,6 +67,7 @@
 <summary>详细信息</summary>
 
 - `https://sbs.jojoo.eu.org/config/订阅链接&file=模板文件`
+- `https://sub.links.ip-ddns.com/`
 </details>
 
 ### Shadowrocket
