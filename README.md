@@ -66,7 +66,7 @@
 <details>
 <summary>详细信息</summary>
 
-- `https://hproxy.filegear-sg.me/config/订阅链接&file=模板文件`
+- `https://sb.jojoo.eu.org/config/订阅链接&file=模板文件`
 </details>
 
 ### Shadowrocket
