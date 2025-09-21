@@ -6,9 +6,9 @@
         ],
         "rules": [
             {"clash_mode": "全局直连","action": "route","server": "ali"},
-            {"clash_mode": "全局代理","action": "route","server": "fakeip"},
+            {"clash_mode": "全局代理","action": "route","server": "cloudflare"},
             {"query_type": "HTTPS","action": "reject"},
-            {"rule_set": ["ChinaDomain"],"action": "route","server": "ali"}
+            {"rule_set": ["ChinaDomain"],"action": "route","server": "ali"},
             {
                 "type": "logical",
                 "mode": "and",
@@ -142,4 +142,5 @@
             "auto_route": true
         }
     ]
+
 }
