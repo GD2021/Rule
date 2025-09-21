@@ -14,7 +14,7 @@
                 "mode": "and",
                 "rules": [
                     {
-                        "rule_set": ["Proxy","CDN"],
+                        "rule_set": "Proxy",
                         "invert": true
                     },
                     {
@@ -144,3 +144,4 @@
     ]
 
 }
+
